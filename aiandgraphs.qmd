@@ -1,0 +1,141 @@
+---
+title: "Graphs and AI"
+
+execute: 
+  warning: false
+  message: false
+---
+
+## Using AI for R coding
+
+<div class="alert alert-dismissible alert-warning">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <p class="mb-0">AI can be used to write code to solve problems you have with your data but you need to know what variables and numbers go where and exactly what you want to achieve.</p> 
+
+<p>Treat AI like a peer - they could be right but they may have misunderstood.</p>
+
+<p>You MUST credit AI software when you use it. Not doing so is a form of plagiarism.</p>
+
+<p>You MUST NOT use AI to write text for your assignments!</p>
+</div>
+
+<br>
+
+**Challenge**
+
+Create an account with [ChatGPT3.5](https://openai.com/) (freeversion), [Google bard](https://bard.google.com/) or similar AI. Use it in the challenges below to help you write code.
+
+Try to get the code to run in R. If it fails try to rephrase your prompt to the AI. 
+
+<br>
+
+## Graphs
+
+Load the data (they come with R) then recreate the two graphs by finding code on the internet for the basic graph and building on it.
+
+Look at this [Learning R webpage](https://acriach.github.io/r_teaching/ggplot.html) if you need an introduction or reminder on using ggplot to build graphs in R.
+
+<br>
+
+**Challenge**
+
+Use this data:
+```{r}
+#| eval: true
+#| echo: true
+data(mtcars)
+```
+
+Recreate this graph using the variables miles per gallon `mpg`, weight `wt`, displacement `disp` and automatic or manual `am`. 
+```{r}
+#| eval: true
+#| echo: false
+library(ggplot2)
+mtcars$am <- as.factor(mtcars$am) # make am factor
+ggplot(mtcars) + # tell R to use the mtcars data
+    geom_point(aes(x = wt, y = mpg, size = disp, col = am), alpha = 0.7) + # put in aesthetics to use
+  labs(y = "Miles per Gallon (mpg)", x = "Weight (lbs/1000)", col = "Automatic or Manual", size = "Displacement") + # add labels
+  theme_classic() # add a theme
+```
+
+<details>
+  <summary>**Hints**</summary>
+
+This is a scatterplot. The size of the points are weighted by `disp`.  Points are coloured by `am`.  
+There are many ways to write code to achieve this graph.  
+If something doesn't work don't be afraid to look for alternative code.
+
+</details> 
+
+<br>
+
+**Challenge**
+
+Use the tooth growth dataset:
+```{r}
+#| eval: true
+#| echo: true
+data(ToothGrowth)
+```
+
+
+Recreate this graph using the variable `len` and `dose`.
+```{r}
+#| eval: true
+#| echo: false
+library(ggplot2)
+df <- ToothGrowth # name dataset df
+df$dose <- as.factor(df$dose) # change so thinks is factor not continuous
+library(dplyr) # need for group_by
+df.summary <- df %>%
+  group_by(dose) %>%
+  summarise(
+    sd = sd(len, na.rm = TRUE),
+    len = mean(len)
+  ) # create a summary df with 3 means and 3 sds
+ggplot(df, aes(dose, len)) + #use original data, set y and x
+  geom_jitter(position = position_jitter(0.1), color = "black") + # plot each point but jitter by 0.2
+  geom_pointrange(aes(ymin = len-sd, ymax = len+sd),data = df.summary, colour = "blue") + # use summary data to draw error lines with a point in the middle 
+  theme_classic() + # add theme
+  labs(x="Dose (mg)", y = "Teeth Length") # add axis labels
+```
+
+<details>
+  <summary>**Hints**</summary>
+
+This is called a jitter plot with errorbars.  
+The raw data is needed for the jitter part but the mean and standard deviation values are needed for the errorbars. Therefore you may need to summarise the data.  
+R sometimes thinks `dose` is a continuous variable not a factor. 
+
+</details> 
+
+<br>
+
+### Reflect on using AI
+
+Did the R code always work first time? Did you or the AI correct it?
+
+Did you ask the AI to address two problems at once or one at a time and what worked?
+
+Could you have been more specific in your question?
+
+Did you give the AI the raw data? Is it a good idea to give your data to AI software?
+
+<br>
+
+### Citing AI
+
+Some norms are emerging for correctly crediting AI.
+
+One suggestion is to state in the methods section what part of the work you used AI for, what software was used and what you asked it to do.
+
+For example you may write "The R code used to run a power analysis on the chaffinch data was written using artificial intelligence software ChatGPT 3.5 (OpenAI, 2023).
+
+The reference would be "OpenAi. 2023. ChatGPT (26 Oct version) [Large language model]. https://chat.opanai.com/chat"
+
+<br>
+
+<br>
+
+[Source](https://github.com/acriach/BLGY5121MAdvStats)  
+[CC Licensed](https://creativecommons.org/)

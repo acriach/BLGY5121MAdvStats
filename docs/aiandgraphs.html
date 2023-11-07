@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BLGY5121M Adv Stats - Projects</title>
+<title>BLGY5121M Adv Stats - Graphs and AI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -83,11 +146,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Advanced Statistics</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./projects.html" aria-current="page">
+    <a class="nav-link" href="./projects.html">
  <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aiandgraphs.html">
+    <a class="nav-link active" href="./aiandgraphs.html" aria-current="page">
  <span class="menu-text">Graphs and AI</span></a>
   </li>  
 </ul>
@@ -105,9 +168,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project-1" id="toc-project-1" class="nav-link active" data-scroll-target="#project-1">Project 1</a></li>
-  <li><a href="#project-2" id="toc-project-2" class="nav-link" data-scroll-target="#project-2">Project 2</a></li>
-  <li><a href="#project-3" id="toc-project-3" class="nav-link" data-scroll-target="#project-3">Project 3</a></li>
+  <li><a href="#using-ai-for-r-coding" id="toc-using-ai-for-r-coding" class="nav-link active" data-scroll-target="#using-ai-for-r-coding">Using AI for R coding</a></li>
+  <li><a href="#graphs" id="toc-graphs" class="nav-link" data-scroll-target="#graphs">Graphs</a>
+  <ul class="collapse">
+  <li><a href="#reflect-on-using-ai" id="toc-reflect-on-using-ai" class="nav-link" data-scroll-target="#reflect-on-using-ai">Reflect on using AI</a></li>
+  <li><a href="#citing-ai" id="toc-citing-ai" class="nav-link" data-scroll-target="#citing-ai">Citing AI</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -116,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Projects</h1>
+<h1 class="title">Graphs and AI</h1>
 </div>
 
 
@@ -131,16 +197,95 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="project-1" class="level2">
-<h2 class="anchored" data-anchor-id="project-1">Project 1</h2>
+<section id="using-ai-for-r-coding" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-for-r-coding">Using AI for R coding</h2>
+<div class="alert alert-dismissible alert-warning">
+<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+<p class="mb-0">
+AI can be used to write code to solve problems you have with your data but you need to know what variables and numbers go where and exactly what you want to achieve.
+</p>
+<p>
+Treat AI like a peer - they could be right but they may have misunderstood.
+</p>
+<p>
+You MUST credit AI software when you use it. Not doing so is a form of plagiarism.
+</p>
+<p>
+You MUST NOT use AI to write text for your assignments!
+</p>
+</div>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>Create an account with <a href="https://openai.com/">ChatGPT3.5</a> (freeversion), <a href="https://bard.google.com/">Google bard</a> or similar AI. Use it in the challenges below to help you write code.</p>
+<p>Try to get the code to run in R. If it fails try to rephrase your prompt to the AI.</p>
+<p><br></p>
 </section>
-<section id="project-2" class="level2">
-<h2 class="anchored" data-anchor-id="project-2">Project 2</h2>
+<section id="graphs" class="level2">
+<h2 class="anchored" data-anchor-id="graphs">Graphs</h2>
+<p>Load the data (they come with R) then recreate the two graphs by finding code on the internet for the basic graph and building on it.</p>
+<p>Look at this <a href="https://acriach.github.io/r_teaching/ggplot.html">Learning R webpage</a> if you need an introduction or reminder on using ggplot to build graphs in R.</p>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>Use this data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Recreate this graph using the variables miles per gallon <code>mpg</code>, weight <code>wt</code>, displacement <code>disp</code> and automatic or manual <code>am</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="aiandgraphs_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<details>
+<summary>
+<strong>Hints</strong>
+</summary>
+<p>This is a scatterplot. The size of the points are weighted by <code>disp</code>. Points are coloured by <code>am</code>.<br>
+There are many ways to write code to achieve this graph.<br>
+If something doesn’t work don’t be afraid to look for alternative code.</p>
+</details>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>Use the tooth growth dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ToothGrowth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Recreate this graph using the variable <code>len</code> and <code>dose</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="aiandgraphs_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<details>
+<summary>
+<strong>Hints</strong>
+</summary>
+<p>This is called a jitter plot with errorbars.<br>
+The raw data is needed for the jitter part but the mean and standard deviation values are needed for the errorbars. Therefore you may need to summarise the data.<br>
+R sometimes thinks <code>dose</code> is a continuous variable not a factor.</p>
+</details>
+<p><br></p>
+<section id="reflect-on-using-ai" class="level3">
+<h3 class="anchored" data-anchor-id="reflect-on-using-ai">Reflect on using AI</h3>
+<p>Did the R code always work first time? Did you or the AI correct it?</p>
+<p>Did you ask the AI to address two problems at once or one at a time and what worked?</p>
+<p>Could you have been more specific in your question?</p>
+<p>Did you give the AI the raw data? Is it a good idea to give your data to AI software?</p>
+<p><br></p>
 </section>
-<section id="project-3" class="level2">
-<h2 class="anchored" data-anchor-id="project-3">Project 3</h2>
+<section id="citing-ai" class="level3">
+<h3 class="anchored" data-anchor-id="citing-ai">Citing AI</h3>
+<p>Some norms are emerging for correctly crediting AI.</p>
+<p>One suggestion is to state in the methods section what part of the work you used AI for, what software was used and what you asked it to do.</p>
+<p>For example you may write “The R code used to run a power analysis on the chaffinch data was written using artificial intelligence software ChatGPT 3.5 (OpenAI, 2023).</p>
+<p>The reference would be “OpenAi. 2023. ChatGPT (26 Oct version) [Large language model]. https://chat.opanai.com/chat”</p>
+<p><br></p>
+<p><br></p>
+<p><a href="https://github.com/acriach/BLGY5121MAdvStats">Source</a><br>
+<a href="https://creativecommons.org/">CC Licensed</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

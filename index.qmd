@@ -1,19 +1,6 @@
 ---
-title: "About Me"
-about:
-  id: me
-  template: broadside
-  image: img/profile.png
+title: "Advanced Statistics"
 ---
 
-:::{#me}
+![Cute fuzzy monsters putting rectangular data tables onto a conveyor belt. Along the conveyor belt line are different automated “stations” that update the data, reading “WRANGLE”, “VISUALIZE”, and “MODEL”. A monster at the end of the conveyor belt is carrying away a table that reads “Complete analysis.”](./img/tidydata_5.jpg)
 
-## Goals
-
-## Education
-
-## Experience
-
-:::
-
-Thanks for checking out my web site!

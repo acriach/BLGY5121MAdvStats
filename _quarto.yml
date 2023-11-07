@@ -7,16 +7,19 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - projects.qmd
+        text: Advanced Statistics
+      - aiandgraphs.qmd
+      - lm.qmd
+      - power.qmd
+      - multivariatemethods.qmd
     tools:
       - icon: twitter
         href: https://twitter.com/
       - icon: github
         href: https://github.com/acriach/BLGY5121MAdvStats
   page-footer:
-    right: "Built with [Quarto](https://quarto.org/)"
-    left: "CC Licensed"
+    right: "[Source](https://github.com/acriach/BLGY5121MAdvStats)"
+    left: "[CC Licensed](https://creativecommons.org/)"
 
 format:
   html:

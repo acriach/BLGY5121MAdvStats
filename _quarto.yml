@@ -12,6 +12,9 @@ website:
       - lm.qmd
       - power.qmd
       - multivariatemethods.qmd
+      - mixedmodels1.qmd
+      - mixedmodels2.qmd
+      - spatial.qmd
     tools:
       - icon: twitter
         href: https://twitter.com/

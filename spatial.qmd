@@ -135,7 +135,9 @@ Un-oh! Looks like we have spatial autocorrelation! (Moran's I values are high on
 We can also establish if there is autocorrelation by running the `moran.test()` in package `spdep`. It gives us a p value that suggests if the data is randomly dispersed.
 
 Load the package
-```{r, eval=TRUE, warning=FALSE}
+```{r}
+#| eval: true
+#| warning: false
 library(spdep)
 ```
 
@@ -171,44 +173,52 @@ The p value suggests there is a difference in the Moran I's values as the distan
 
 Maps may help us understand why data is autocorrelated.
 
+
 **Challenge**
 
-Install and library load the package `maptools` containing the `wrld_simpl` dataset which is the coordinates of a simple world map. 
-Then pass `wrld_simpl` through the `data()` function to load it. Then the `plot()` function.
+Install and library load the package `ggplot2` and `ggmap` containing the `world` dataset which is the coordinates of a simple world map. 
+Then pass the `world` dataset through the map_data function and assign it as an object that you call `world`.
 
 <details>
   <summary>**Answer**</summary>
 ```{r}
 #| eval: false
-install.packages("maptools")
-library(maptools) 
+install.packages("ggmap")
 ```
 
 ```{r}
 #| eval: true
 #| warning: false
-library(maptools)
-data(wrld_simpl) 
-plot(wrld_simpl)
+library(ggmap) 
+world <- map_data("world") 
 ```
 </details>
 
 <br>
 
+Now plot world using ggplot.
+
+```{r}
+worldmap <- ggplot(world, aes(x=long, y=lat, group=group)) +
+  geom_path()
+worldmap
+```
+
+
 We can plot the residuals of our `model1` on top of this simple map of the world, to see where the spatial autocorrelation occurs.
 ```{r}
-plot(wrld_simpl) 
-points(IQData$Longitude, IQData$Latitude, pch=19,
-       col=c("blue","red")[sign(resid(model1))/2+1.5],
-       cex=abs(resid(model1))/max(resid(model1))*3)
+worldmap + 
+  geom_point(data = IQData, aes(Longitude, Latitude, color = ifelse(resid(model1) >= 0, "blue", "red"),
+                                         group = Continent, 
+                                         size=abs(resid(model1))/max(resid(model1))*3)) +
+  theme(legend.position = "none")
 ```
 
 <details>
   <summary>**Explanation of code**</summary>
-* `points()` the position of the residuals. Here given as latititude and longitude.
-* `col=` tells what colours to make the points. Here positive and negative residuals are blue and red respectively
-* `pch=19` tells R to plot circles            
-* `cex=` tells R how big to make the circles. Here we use the proportional size of the residuals relative to the the biggest (max) residual.
+* `aes(Longitude, Latitude,` the position of the residuals. Here given as longitude and latititude.
+* `color =` tells what colours to make the points. Here positive and negative residuals are blue and red respectively. Uses the ifelse function.
+* `size=` tells R how big to make the circles. Here we use the proportional size of the residuals relative to the the biggest (max) residual.
 </details>
 
 <br> 
@@ -221,8 +231,6 @@ Another way to visualise why there is a autocorrelation problem, is to plot IQ a
 
 ```{r}
 #| warning: false
-library(ggplot2) # make sure you have ggplot2 installed
-
 ggplot(IQData, aes(x=log(Disease), y=IQ, group = Continent)) + 
 geom_point(aes(shape=Continent))
 ```
@@ -322,7 +330,7 @@ Compare the results of this model where spatial autocorrelation is accounted for
 summary(model1)
 ```
 
-`Nutrition` is significant when autocorrelation is accounted for. `Disease` is still significant but to a lesser extend (p value is not as small).
+`Nutrition` is significant when autocorrelation is accounted for. `Disease` is still significant (even though p value is not as small).
 
 </details>
 

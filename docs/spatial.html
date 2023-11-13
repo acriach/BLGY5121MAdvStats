@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BLGY5121M Adv Stats - Spatial Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">BLGY5121M Adv Stats</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Advanced Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./aiandgraphs.html">
+ <span class="menu-text">Graphs and AI</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./lm.html">
+ <span class="menu-text">Linear Models</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./power.html">
+ <span class="menu-text">Power Analyses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./multivariatemethods.html">
+ <span class="menu-text">Multivariate Methods</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mixedmodels1.html">
+ <span class="menu-text">Mixed Models 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mixedmodels2.html">
+ <span class="menu-text">Mixed Models 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./spatial.html" aria-current="page">
+ <span class="menu-text">Spatial Data</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#iq-data" id="toc-iq-data" class="nav-link active" data-scroll-target="#iq-data">IQ Data</a>
+  <ul class="collapse">
+  <li><a href="#first-a-simple-lm-model" id="toc-first-a-simple-lm-model" class="nav-link" data-scroll-target="#first-a-simple-lm-model">First a simple lm model</a></li>
+  <li><a href="#assessing-autocorrelation" id="toc-assessing-autocorrelation" class="nav-link" data-scroll-target="#assessing-autocorrelation">Assessing Autocorrelation</a>
+  <ul class="collapse">
+  <li><a href="#correlograms" id="toc-correlograms" class="nav-link" data-scroll-target="#correlograms">Correlograms</a></li>
+  <li><a href="#interpreting-the-correlogram" id="toc-interpreting-the-correlogram" class="nav-link" data-scroll-target="#interpreting-the-correlogram">Interpreting the correlogram</a></li>
+  <li><a href="#moran.test" id="toc-moran.test" class="nav-link" data-scroll-target="#moran.test">moran.test</a></li>
+  </ul></li>
+  <li><a href="#mapping-the-data" id="toc-mapping-the-data" class="nav-link" data-scroll-target="#mapping-the-data">Mapping the Data</a></li>
+  <li><a href="#models-for-spatial-data" id="toc-models-for-spatial-data" class="nav-link" data-scroll-target="#models-for-spatial-data">Models for Spatial Data</a>
+  <ul class="collapse">
+  <li><a href="#gls-models" id="toc-gls-models" class="nav-link" data-scroll-target="#gls-models">GLS models</a></li>
+  </ul></li>
+  <li><a href="#evaluating-models-with-aics" id="toc-evaluating-models-with-aics" class="nav-link" data-scroll-target="#evaluating-models-with-aics">Evaluating models with AICs</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Spatial Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Spatial statistics is a huge area with many methods. This is a short introduction. <img src="./img/maps.png" class="img-fluid" alt="alt.text=Six maps of Asia, the world, Spain, an area of US. All of varying colours and styles."></p>
+<p>Examples of various maps created in R and published on <a href="https://www.r-bloggers.com/">R-bloggers</a>.</p>
+<section id="iq-data" class="level1">
+<h1>IQ Data</h1>
+<section id="first-a-simple-lm-model" class="level2">
+<h2 class="anchored" data-anchor-id="first-a-simple-lm-model">First a simple lm model</h2>
+<p>We will use country IQ data from <a href="https://doi.org/10.1016/j.intell.2011.05.001">Hassall and Sherratt’s (2011) paper</a>. Use this <a href="./data/IQData.txt">simplified form of the data</a>. Save in your data folder in your R project.</p>
+<p>Read in the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>IQData <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">"data/IQData.txt"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(IQData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Continent      Country IQ  Disease Nutrition Temperature   GDP DistEEA
+1    Africa      Algeria 83  1974.29    439.38       13.14  7100 4397.88
+2    Africa       Angola 68 19078.39   2142.56       18.79  8400 1154.33
+3    Africa        Benin 70 10870.93   1143.10       25.21  1500 2991.75
+4    Africa     Botswana 70 32483.12    532.08        3.90 12800 1915.18
+5    Africa Burkina_Faso 68 15706.29   1405.28       25.61  1200 3526.84
+6    Africa      Burundi 69 18706.93   1439.56       18.92   300  578.49
+  Longitude Latitude
+1     2.630   28.159
+2    17.541  -12.312
+3     2.338    9.628
+4    23.806  -22.185
+5    -1.765   12.265
+6    29.942   -3.336</code></pre>
+</div>
+</div>
+<p>Note that there are countries, their corresponding IQ, possible explanatory variables for IQ and longitude and latitude.</p>
+<p><br></p>
+<p>We can run a lm model to see if nutrition and disease predict the IQ of a country.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(IQ <span class="sc">~</span> <span class="fu">log</span>(Disease) <span class="sc">+</span> <span class="fu">log</span>(Nutrition), <span class="at">data=</span>IQData)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = IQ ~ log(Disease) + log(Nutrition), data = IQData)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-21.0732  -4.1154  -0.1215   3.9238  24.0464 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    128.6854     3.0463  42.244   &lt;2e-16 ***
+log(Disease)    -6.3655     0.6525  -9.755   &lt;2e-16 ***
+log(Nutrition)   0.6057     1.0594   0.572    0.568    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.544 on 171 degrees of freedom
+Multiple R-squared:  0.6915,    Adjusted R-squared:  0.6879 
+F-statistic: 191.6 on 2 and 171 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<details>
+<summary>
+<strong>Why disease and nutrition is logged</strong>
+</summary>
+<p>During data exploration, plots reveal <code>Disease</code> and <code>Nutrition</code> to be skewed:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(IQData<span class="sc">$</span>Disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(IQData<span class="sc">$</span>Nutrition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Taking the log of the data makes it more normally distributed:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(IQData<span class="sc">$</span>Disease))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(IQData<span class="sc">$</span>Nutrition))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This may improve the fit of the model.</p>
+</details>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>Identify the parts of the summary output that tell you what the effect of <code>Disease</code> and <code>Nutrition</code> is on <code>IQ</code>.</p>
+<details>
+<summary>
+<strong>Answer</strong>
+</summary>
+You could look at the p values under <code>Pr(&gt;|t|)</code>. For <code>log(Disease)</code> it is &lt;2e-16 suggesting significance. For <code>log(Nutrition)</code> it is 0.568 suggesting non significance. You may also look at the <code>Estimate</code> and <code>Adjusted R-squared</code>.
+</details>
+<p><br></p>
+<p>So there we have it - IQ is definitely caused by disease! Or is it…? Since this dataset is spatial it is likely to have the problem of <strong>autocorrelation</strong>!</p>
+<button type="button" class="btn btn-success">
+<p><strong>Spatial autocorrelation</strong> is where samples that are geographically closer to each other are more likely to be similar to each other. They are more likely to have similar values if measured.</p>
+</button>
+<p><br></p>
+</section>
+<section id="assessing-autocorrelation" class="level2">
+<h2 class="anchored" data-anchor-id="assessing-autocorrelation">Assessing Autocorrelation</h2>
+<p>Spatial autocorrelation can be measured using <strong>Moran’s I</strong> (I the letter not 1 the number).</p>
+<p><br></p>
+<section id="correlograms" class="level3">
+<h3 class="anchored" data-anchor-id="correlograms">Correlograms</h3>
+<p>We can use the function <code>spline.correlog()</code> in the package <code>ncf</code> to create a <strong>correlogram</strong>. This tells us if we have autocorrelation.</p>
+<p>Install and library load the <code>ncf</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ncf"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncf) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>Make an object called <code>correlog_object</code> containing information to plot a correlogram.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>correlog_object <span class="ot">&lt;-</span> <span class="fu">spline.correlog</span>(IQData<span class="sc">$</span>Longitude, IQData<span class="sc">$</span>Latitude, <span class="fu">residuals</span>(model1), <span class="at">resamp=</span><span class="dv">0</span>, <span class="at">latlon=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(correlog_object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<details>
+<summary>
+<strong>Explanation of code</strong>
+</summary>
+<ul>
+<li><code>spine.correlog()</code> is the function</li>
+<li><code>IQData$Longitude</code> and <code>IQData$Latitude</code> are the numbers the function used to calculate distances between countries</li>
+<li><code>residuals(model1)</code> is a list of the residuals from the lm model. This represents the data.</li>
+<li><code>resamp=0</code> tells R to do the calculation once. Try increasing this number (for example, <code>resamp = 100</code>) and plotting to see a confidence interval.</li>
+<li><code>latlon=TRUE</code> tells R the co-ordinates are latitude and longitude.</li>
+<li><code>plot(correlog_object)</code> passes the newly created object through the <code>plot()</code> function to make a correlogram graph.</li>
+</ul>
+</details>
+<p><br></p>
+</section>
+<section id="interpreting-the-correlogram" class="level3">
+<h3 class="anchored" data-anchor-id="interpreting-the-correlogram">Interpreting the correlogram</h3>
+<p>On the x axis, are the distances between countries (calculated from latitude and longitude). Moran’s I values are on the y axis labelled <code>Correlation</code>. There are high values if the data is very similar, low values closer to 0 if it is not.</p>
+<ul>
+<li>there <strong>is no</strong> spatial autocorrelation if the values of Moran’s I varies no matter what the distance</li>
+<li>there <strong>is</strong> spatial autocorrelation if Moran’s I values are higher for countries closer together (i.e.&nbsp;lower distance apart).</li>
+</ul>
+<p>Un-oh! Looks like we have spatial autocorrelation! (Moran’s I values are high on the left of the graph.)</p>
+<p><br></p>
+</section>
+<section id="moran.test" class="level3">
+<h3 class="anchored" data-anchor-id="moran.test">moran.test</h3>
+<p>We can also establish if there is autocorrelation by running the <code>moran.test()</code> in package <code>spdep</code>. It gives us a p value that suggests if the data is randomly dispersed.</p>
+<p>Load the package</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>First we must create a matrix of distances and weight them:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>IQnb <span class="ot">&lt;-</span> <span class="fu">dnearneigh</span>(<span class="fu">as.matrix</span>(IQData[<span class="dv">9</span><span class="sc">:</span><span class="dv">10</span>]), <span class="dv">0</span>, <span class="dv">10000</span>,<span class="at">longlat=</span><span class="cn">TRUE</span>) </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>IQlistw <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(IQnb) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+<strong>Explanation of code</strong>
+</summary>
+<ul>
+<li><code>dnearneigh()</code> is a function</li>
+<li><code>as.matrix</code> means our object will be a matrix</li>
+<li><code>IQData[9:10]</code> specifies columns 9 and 10 where the longitude and latitude values are.</li>
+<li><code>0, 10000</code> specify the lower and upper bounds of the distance class of interest (1 – 10000km is nearly global)</li>
+<li><code>IQlistw</code> is an object we create ready to pass through the <code>moran.test()</code></li>
+<li><code>nb2listw</code> is a function that turns our neighbourhood <code>IQnb</code> object into a weighted list</li>
+</ul>
+</details>
+<p><br></p>
+<p>Now perform the moran test:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">moran.test</span>(<span class="fu">residuals</span>(model1), <span class="at">listw=</span>IQlistw) </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Moran I test under randomisation
+
+data:  residuals(model1)  
+weights: IQlistw    
+
+Moran I statistic standard deviate = 11.706, p-value &lt; 2.2e-16
+alternative hypothesis: greater
+sample estimates:
+Moran I statistic       Expectation          Variance 
+     6.690929e-02     -5.780347e-03      3.855867e-05 </code></pre>
+</div>
+</div>
+<p>The p value suggests there is a difference in the Moran I’s values as the distances change. Therefore there is autocorrelation.</p>
+<p><br></p>
+</section>
+</section>
+<section id="mapping-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="mapping-the-data">Mapping the Data</h2>
+<p>Maps may help us understand why data is autocorrelated.</p>
+<p><strong>Challenge</strong></p>
+<p>Install and library load the package <code>ggplot2</code> and <code>ggmap</code> containing the <code>world</code> dataset which is the coordinates of a simple world map. Then pass the <code>world</code> dataset through the map_data function and assign it as an object that you call <code>world</code>.</p>
+<details>
+<summary>
+<strong>Answer</strong>
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggmap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap) </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<p><br></p>
+<p>Now plot world using ggplot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>worldmap <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(world, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y=</span>lat, <span class="at">group=</span>group)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>worldmap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can plot the residuals of our <code>model1</code> on top of this simple map of the world, to see where the spatial autocorrelation occurs.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>worldmap <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> IQData, <span class="fu">aes</span>(Longitude, Latitude, <span class="at">color =</span> <span class="fu">ifelse</span>(<span class="fu">resid</span>(model1) <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">group =</span> Continent, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">size=</span><span class="fu">abs</span>(<span class="fu">resid</span>(model1))<span class="sc">/</span><span class="fu">max</span>(<span class="fu">resid</span>(model1))<span class="sc">*</span><span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<details>
+<summary>
+<strong>Explanation of code</strong>
+</summary>
+<ul>
+<li><code>aes(Longitude, Latitude,</code> the position of the residuals. Here given as longitude and latititude.</li>
+<li><code>color =</code> tells what colours to make the points. Here positive and negative residuals are blue and red respectively. Uses the ifelse function.</li>
+<li><code>size=</code> tells R how big to make the circles. Here we use the proportional size of the residuals relative to the the biggest (max) residual.</li>
+</ul>
+</details>
+<p><br></p>
+<p>The large blue circles on the map are where the countries are most similar. There is also negative correlation where the big red circles are.</p>
+<p><br></p>
+<p>Another way to visualise why there is a autocorrelation problem, is to plot IQ and disease according to the continent of the country (similar to Figure 1 from <a href="https://reader.elsevier.com/reader/sd/pii/S0160289611000572?token=7B8DFAD8896C1FBA0AA9B2EF7ACA41509969C6894A95E31DF179E376D3DAEEFADD3E503B5D1366C185330CEDBC41FFB3&amp;originRegion=eu-west-1&amp;originCreation=20220902125737">Hassall and Sherratt, 2011</a>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(IQData, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(Disease), <span class="at">y=</span>IQ, <span class="at">group =</span> Continent)) <span class="sc">+</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>Continent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="spatial_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>You can see the data clusters by continent.</p>
+<p><br></p>
+</section>
+<section id="models-for-spatial-data" class="level2">
+<h2 class="anchored" data-anchor-id="models-for-spatial-data">Models for Spatial Data</h2>
+<p>Having established that we need to account for the spatial autocorrelation, we can run a model. However, there are many models to choose from.</p>
+<button type="button" class="btn btn-success">
+<p>If you need to analyse spatial data you will need to spend time looking into the most appropriate method. For more guidance try Bivand et al.&nbsp;(2013) <a href="https://asdar-book.org/">Applied Spatial Data Analysis in R</a> or Pebesma and Bivand (2022) <a href="https://keen-swartz-3146c4.netlify.app/">Spatial Data Science online book</a></p>
+</button>
+<p><br></p>
+<p>As an example, we will use a GLS (Generalized Least Squares) model to show how spatial data is included in the model code to account for spatial autocorrelation.</p>
+<p><br></p>
+<section id="gls-models" class="level3">
+<h3 class="anchored" data-anchor-id="gls-models">GLS models</h3>
+<p>The function <code>gls()</code> in the <code>nlme</code> package will run a GLS model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlme)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>gls()</code> uses similar code to lm but the argument <code>correlation=</code> allows the latitude and longitude data to be included. R will automatically create a spatial correlation structure to include in the model using the longitude and latitude values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">gls</span>(IQ <span class="sc">~</span> <span class="fu">log</span>(Disease) <span class="sc">+</span> <span class="fu">log</span>(Nutrition), <span class="at">data=</span>IQData, <span class="at">correlation=</span><span class="fu">corExp</span>(<span class="at">form=</span><span class="sc">~</span>Longitude<span class="sc">+</span>Latitude)) </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the correlation argument we have specified the spatial structure of our data to be <code>corExp</code> in the <code>correlation=</code> argument. However, there are <a href="https://stat.ethz.ch/R-manual/R-devel/library/nlme/html/corClasses.html">many options</a> with <code>corExp</code>, <code>corGaus</code>, <code>corLin</code>, <code>corRatio</code>, and <code>corSpher</code> most commonly used for spatial autocorrelation.</p>
+<button type="button" class="btn btn-success">
+<p>It is common for there to be many options to choose from in arguments when running analyses. Be prepared to dedicate time to reading about functions and their arguments so you can confidently decide which is best for your data.</p>
+</button>
+<p><br></p>
+</section>
+</section>
+<section id="evaluating-models-with-aics" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-models-with-aics">Evaluating models with AICs</h2>
+<p>One way we could choose which spatial structure option to use, is to run many models with the different options and evaluate the fit of the models. We can evaluate them using an <strong>AIC</strong> value (this can be used on all sorts of models not just gls models).</p>
+<p>Run the models with the different structures <code>corExp</code>, <code>corGaus</code>, <code>corLin</code>, <code>corRatio</code>, and <code>corSpher</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>model_corExp <span class="ot">&lt;-</span> <span class="fu">gls</span>(IQ <span class="sc">~</span> <span class="fu">log</span>(Disease) <span class="sc">+</span> <span class="fu">log</span>(Nutrition), <span class="at">data=</span>IQData, <span class="at">correlation=</span><span class="fu">corExp</span>(<span class="at">form=</span><span class="sc">~</span>Longitude<span class="sc">+</span>Latitude)) </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>model_corGaus <span class="ot">&lt;-</span> <span class="fu">gls</span>(IQ <span class="sc">~</span> <span class="fu">log</span>(Disease) <span class="sc">+</span> <span class="fu">log</span>(Nutrition), <span class="at">data=</span>IQData, <span class="at">correlation=</span><span class="fu">corGaus</span>(<span class="at">form=</span><span class="sc">~</span>Longitude<span class="sc">+</span>Latitude)) </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>model_corLin <span class="ot">&lt;-</span> <span class="fu">gls</span>(IQ <span class="sc">~</span> <span class="fu">log</span>(Disease) <span class="sc">+</span> <span class="fu">log</span>(Nutrition), <span class="at">data=</span>IQData, <span class="at">correlation=</span><span class="fu">corLin</span>(<span class="at">form=</span><span class="sc">~</span>Longitude<span class="sc">+</span>Latitude)) </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>model_corRatio <span class="ot">&lt;-</span> <span class="fu">gls</span>(IQ <span class="sc">~</span> <span class="fu">log</span>(Disease) <span class="sc">+</span> <span class="fu">log</span>(Nutrition), <span class="at">data=</span>IQData, <span class="at">correlation=</span><span class="fu">corRatio</span>(<span class="at">form=</span><span class="sc">~</span>Longitude<span class="sc">+</span>Latitude))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>model_corSpher <span class="ot">&lt;-</span> <span class="fu">gls</span>(IQ <span class="sc">~</span> <span class="fu">log</span>(Disease) <span class="sc">+</span> <span class="fu">log</span>(Nutrition), <span class="at">data=</span>IQData, <span class="at">correlation=</span><span class="fu">corSpher</span>(<span class="at">form=</span><span class="sc">~</span>Longitude<span class="sc">+</span>Latitude))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>View the AIC values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(model_corExp, model_corGaus, model_corLin, model_corRatio, model_corSpher)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               df      AIC
+model_corExp    5 1019.224
+model_corGaus   5 1089.618
+model_corLin    5 1031.139
+model_corRatio  5 1054.716
+model_corSpher  5 1031.139</code></pre>
+</div>
+</div>
+<p><code>model_corExp</code> has the lowest AIC value so it fits the data best.</p>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>View the output of the model by passing it through <code>summary()</code>.</p>
+<details>
+<summary>
+<strong>Answer</strong>
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_corExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</details>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>Compare the results of this model where spatial autocorrelation is accounted for with the original lm <code>model1</code> where it was not. What are the differences?</p>
+<details>
+<summary>
+<strong>Answer</strong>
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>Nutrition</code> is significant when autocorrelation is accounted for. <code>Disease</code> is still significant (even though p value is not as small).</p>
+</details>
+<p><br></p>
+<p>References</p>
+<p>Hassall C, Sherratt TN (2011) Statistical inference and spatial patterns in correlates of IQ. Intelligence, 39, 303-310.</p>
+<p><br></p>
+<p><br></p>
+<p>Adapted from Christopher Hassall’s Introduction to Spatial Statistics and Mike Treglia’s <a href="https://mltconsecol.github.io/TU_LandscapeAnalysis_Documents/Assignments_web/Assignment07_Mantel_SpRegress.html">Landscape Analysis and Modeling</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://creativecommons.org/">CC Licensed</a></div>   
+    <div class="nav-footer-right"><a href="https://github.com/acriach/BLGY5121MAdvStats">Source</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

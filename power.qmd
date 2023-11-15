@@ -11,9 +11,9 @@ execute:
 
 ## Effect Size
 
-![alt.text=Two geese swimming on blue water with a swan swimming in the background.](./img/geese_and_swan.jpg)
+![](./img/geese_and_swan.jpg){fig-alt="Two geese swimming on blue water with a swan swimming in the background."}
 
-![alt.text=A robin sitting on the post of a fence with snow on the fence and surrounding foliage](./img/robin.jpg)
+![](./img/robin.jpg){fig-alt="A robin sitting on the post of a fence with snow on the fence and surrounding foliage"}
 
 Experiment 1 Measures the weights of **swans** and **geese**.
 
@@ -39,7 +39,7 @@ Effect sizes can be measured. The effect size in a correlation is r. In a t test
 
 ## Sample Size (n)
 
-![alt.text=A giraffe striding across a grassy landscape.](./img/giraffe.jpg)
+![](./img/giraffe.jpg){fig-alt="A giraffe striding across a grassy landscape."}
 
 Experiment 1 - Measures the heights of **10** female and **10** male giraffes.
 
@@ -75,7 +75,7 @@ Group A because the p values do not have to be as small to be below 0.05 and to 
 
 ## Type I Errors
 
-![alt.text=Table of error types. If null hypothesis is true and the decision about null hypothesis is don't reject, then this is the correct inference (true negative) (probability = 1 - alpha). If null hypothesis is true and the decision about the null hypothesis is reject, this is a type 1 error (false positive) (probability = alpha). If null hypothesis is false and the decision about null hypothesis is don't reject, then this is a type two error (false negative) (probability = beta). If null hypothesis is false and the decision about the null hypothesis is reject, this is the correct inference (true positive) (probability = 1 - beta).](./img/error_table.png)
+![](./img/error_table.png){fig-alt="Table of error types. If null hypothesis is true and the decision about null hypothesis is don't reject, then this is the correct inference (true negative) (probability = 1 - alpha). If null hypothesis is true and the decision about the null hypothesis is reject, this is a type 1 error (false positive) (probability = alpha). If null hypothesis is false and the decision about null hypothesis is don't reject, then this is a type two error (false negative) (probability = beta). If null hypothesis is false and the decision about the null hypothesis is reject, this is the correct inference (true positive) (probability = 1 - beta)."}
 
 
 
@@ -106,7 +106,7 @@ Group A because the higher alpha level means they are more likely to reject the 
 
 A type two error is when you mistakenly accept the null hypothesis. You conclude there is no difference or effect when there really is. 
 
-![alt.text=A big silverback gorilla sitting in the foreground with a smaller gorilla walking behind.](./img/gorillas.jpg)
+![](./img/gorillas.jpg){fig-alt="A big silverback gorilla sitting in the foreground with a smaller gorilla walking behind."}
 
 
 > Example: you measure the weights of male and female gorillas and find no significant difference. In reality males are a 
@@ -193,7 +193,7 @@ The function `pwr.anova.test()` performs a power analysis for a balanced anova (
 
 You are planning a project to measure the pollution concentration in fish from three lakes (three groups). Use an effect size of 0.2, significance level of 0.05 and power of 0.8.  How many fish do you need to catch from each lake?
 
-![alt.text=A view looking into swallow water with 4 trout swimming.](./img/rainbow_trout.jpg)
+![](./img/rainbow_trout.jpg){fig-alt="A view looking into swallow water with 4 trout swimming."}
 
 
 <details>
@@ -291,7 +291,7 @@ Study 2 Imagine you are planning to measure **inhibitory control** of zebra finc
 
 Would you change the number of birds that you initially thought you would test after doing a power analysis?
 
-![alt.text=A small bird with bright red beak, orange check, dull boay and black and white tail.](./img/zebra_finch.jpg)
+![](./img/zebra_finch.jpg){fig-alt="A small bird with bright red beak, orange check, dull boay and black and white tail."}
 
 
 <details>

@@ -162,6 +162,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="./multivariatemethods.html">
  <span class="menu-text">Multivariate Methods</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mixedmodels1.html">
+ <span class="menu-text">Mixed Models 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mixedmodels2.html">
+ <span class="menu-text">Mixed Models 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./spatial.html">
+ <span class="menu-text">Spatial Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./metaanalyses.html">
+ <span class="menu-text">Meta-analyses</span></a>
+  </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -244,7 +260,7 @@ Alternative terminology - another name for a response is the dependent variable.
 <h1>Continuous Response, Continuous Predictor (Regression)</h1>
 <p>A regression is just a special case of a linear model, where both the response and predictor variables are continuous.</p>
 <p>The relationship between a response (also called dependent) variable <span class="math inline">\(y\)</span> and one or more predictor variables <span class="math inline">\(x_{1}\)</span>,<span class="math inline">\(x_{2}\)</span>…<span class="math inline">\(x_{n}\)</span> is modelled. For example, we could use linear regression to test whether temperature (the predictor variable) effects plant height (the response variable).</p>
-<p><img src="./img/Linear_regression_image.jpg" class="img-fluid"></p>
+<p><img src="./img/Linear_regression_image.jpg" class="img-fluid" alt="green plants including lots of ferns in a forest"></p>
 <p><br> Follow this link to a data set on plant heights around the world, <a href="./data/Plant_height.csv">Plant_height.csv</a>. Right click to “Save as” in your Rproj <code>data</code> folder and import into R.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Plant_height <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"data/Plant_height.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -514,7 +530,7 @@ mean in group A mean in group B
 </section>
 <section id="continuous-response-one-predictor-with-three-or-more-categories-anova" class="level1">
 <h1>Continuous Response, One Predictor with Three or More Categories (ANOVA)</h1>
-<p><img src="./img/ANOVA_single_factor_image.png" class="img-fluid"></p>
+<p><img src="./img/ANOVA_single_factor_image.png" class="img-fluid" alt="aerial view of baby turtles on a beach"></p>
 <p>For this example, compare hatching times of turtle eggs (continuous response) incubated at four different temperatures - 15°C, 20°C, 25°C and 30°C (categorical predictor with four levels).</p>
 <button type="button" class="btn btn-success">
 Note that an ANOVA is a linear model, just like linear regression except that the predictor variables are categorical rather than continuous.
@@ -652,7 +668,7 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
 </section>
 <section id="binomial-response" class="level1">
 <h1>Binomial Response</h1>
-<p><img src="./img/GLM1_binary_image.jpg" class="img-fluid"></p>
+<p><img src="./img/GLM1_binary_image.jpg" class="img-fluid" alt="three brown crabs around rocks"></p>
 <p>Save this <a href="./data/crabs.csv">crabs.csv</a> and read into R. The <code>CrabPres</code> column is whether a crab was present in that area of the beach surveyed. This response variable is binomial: the presence or absence of a crab.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>crabs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/crabs.csv"</span>, <span class="at">header =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -848,7 +864,7 @@ Tip if the odds ratio is below 1 try recoding the explanatory variables so that 
 <h1>Count Response</h1>
 <section id="running-the-analysis-3" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-analysis-3">Running the analysis</h2>
-<p><img src="./img/GLM2_counts_image.jpg" class="img-fluid"></p>
+<p><img src="./img/GLM2_counts_image.jpg" class="img-fluid" alt="a close up photograph of a snail"></p>
 <p>This example has counts of different animal groups at control sites and sites where bush regeneration has been carried out (treatment). We will use only one group of animals - slugs (Soleolifera is the order name of terrestrial slugs) to see if the the bush regeneration activities have affected slug abundance.</p>
 <p>Save <a href="./data/revegetation.csv">revegetation.csv</a> and import into R and view the data.</p>
 <div class="cell">

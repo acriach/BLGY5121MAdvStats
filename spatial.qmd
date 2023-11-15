@@ -7,7 +7,7 @@ execute:
 ---
 
 Spatial statistics is a huge area with many methods.  This is a short introduction.
-![alt.text=Six maps of Asia, the world, Spain, an area of US. All of varying colours and styles.](./img/maps.png)
+![](./img/maps.png){fig-alt="Six maps of Asia, the world, Spain, an area of US. All of varying colours and styles."}
 
 Examples of various maps created in R and published on [R-bloggers](https://www.r-bloggers.com/).
 

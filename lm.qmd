@@ -21,7 +21,7 @@ A regression is just a special case of a linear model, where both the response a
 
 The relationship between a response (also called dependent) variable $y$ and one or more predictor  variables $x_{1}$,$x_{2}$...$x_{n}$ is modelled. For example, we could use linear regression to test whether temperature (the predictor variable) effects plant height (the response variable).
 
-![](./img/Linear_regression_image.jpg)
+![](./img/Linear_regression_image.jpg){fig-alt="green plants including lots of ferns in a forest"}
 
 
 <br>
@@ -357,7 +357,7 @@ A linear relationship is not relevant here as the predictor is categorical not n
 
 # Continuous Response, One Predictor with Three or More Categories (ANOVA)
 
-![](./img/ANOVA_single_factor_image.png)
+![](./img/ANOVA_single_factor_image.png){fig-alt="aerial view of baby turtles on a beach"}
 
 
 For this example, compare hatching times of turtle eggs (continuous response) incubated at four different temperatures - 15°C, 20°C, 25°C and 30°C (categorical predictor with four levels). 
@@ -468,7 +468,7 @@ Generalised linear models need link functions. In simple terms, these vary with 
 
 # Binomial Response
 
-![](./img/GLM1_binary_image.jpg)
+![](./img/GLM1_binary_image.jpg){fig-alt="three brown crabs around rocks"}
 
 
 Save this [crabs.csv](./data/crabs.csv) and read into R. The `CrabPres` column is whether a crab was present in that area of the beach surveyed. This response variable is binomial: the presence or absence of a crab.
@@ -628,7 +628,7 @@ What plots do you think could be used to present this data?
 ## Running the analysis
  
 
-![](./img/GLM2_counts_image.jpg)
+![](./img/GLM2_counts_image.jpg){fig-alt="a close up photograph of a snail"}
 
 This example has counts of different animal groups at control sites and sites where bush regeneration has been carried out (treatment). We will use only one group of animals - slugs (Soleolifera is the order name of terrestrial slugs) to see if the the bush regeneration activities have affected slug abundance. 
 

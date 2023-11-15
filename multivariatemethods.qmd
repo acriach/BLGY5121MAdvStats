@@ -47,7 +47,7 @@ Now imagine fitting those lines in more than three dimensions!
 
 Consider a plant physiologist attempting to quantify differences in leaf shape between two species of tree. They record total length (leaf + petiole), leaf length, width at the widest point, width half way along the leaf and petiole length from ten leaves of each species. These data are five dimensional (i.e., five measured variables) and we can use PCA to extract two new variables (PCs) that will allow us to visualise the data in fewer dimensions.
 
-![alt.text=A grenn leaf with double ended arrows indicating the total length, leaf length, width at the widest point, width half way along the leaf and petiole length.](./img/leaf.png)
+![](./img/leaf.png){fig-alt="A grenn leaf with double ended arrows indicating the total length, leaf length, width at the widest point, width half way along the leaf and petiole length."}
 
 
 It is highly likely that there are strong relationships between variables in our example data set (e.g., leaf length vs total length). This means that the principal components are likely to explain a fair bit of the variation (imagine fitting a straight line along a sausage-shaped collection of points in multivariate space). If all variables were completely uncorrelated with each other, then PCA is not going to work very well (imagine trying to fit a line of best fit along a ball-shaped collection of points in multivariate space).
@@ -211,7 +211,7 @@ Each sample in [Mühlbauer et al., 2021](https://doi.org/10.1016/j.baae.2021.05.
 
 In the figure below each sampled area is a dot (with colours representing different seasons), bird species in black text and environmental characteristics in grey text. The grey arrows show which environmental characteristics correspond with birds in those areas.
 
-![alt.text=a box with many dots and polygons in coloured light blue, orange or green. Most dots are clustered in the bottom right. Grey arrows from the centre of the cluster go left and right labelled with abbreviations of environmental measurements such as sap, water, svol. Black text indicates abbreviations of bird species such as CoF, CoL, PyP. x axis label is "Axis 1 (10%)" and y is "Axis 2 (7%)".](./img/bird_ca.jpg)
+![](./img/bird_ca.jpg){fig-alt="a box with many dots and polygons in coloured light blue, orange or green. Most dots are clustered in the bottom right. Grey arrows from the centre of the cluster go left and right labelled with abbreviations of environmental measurements such as sap, water, svol. Black text indicates abbreviations of bird species such as CoF, CoL, PyP. x axis label is "Axis 1 (10%)" and y is "Axis 2 (7%)"."}
 
 <br>
 
@@ -221,7 +221,7 @@ In the figure below each sampled area is a dot (with colours representing differ
 
 Red arrows are water characteristics, blue triangles are insect species and red circles are sites.
 
-![alt.text=two boxes divided into quadrants. The top box has red arrows radiating out from a centre point labbelled with abbrviations of physical water qualities. There is a scatter of blue triangles with abbrviations representing insect species. The bottom quadrant box has the same red arrows but a scatter of red circles labelled with the abbreviations of sites.](./img/insect_ca.png)
+![](./img/insect_ca.png){fig-alt="two boxes divided into quadrants. The top box has red arrows radiating out from a centre point labbelled with abbrviations of physical water qualities. There is a scatter of blue triangles with abbrviations representing insect species. The bottom quadrant box has the same red arrows but a scatter of red circles labelled with the abbreviations of sites."}
 
 
 <br>
@@ -240,7 +240,7 @@ Cluster analysis is used to group samples based on multiple variables that have 
 
 The graph in (c) below, demonstrates how cluster analysis grouped these 100,000 genes into 19 "modules". Further analyses could then narrow down what groups of genes were associated with higher wax secretions. 
 
-![alt.text=four images from a paper. The top diagram is a dendrogram ending in the names of samples such as FF2, FF1, FF3, FM3, FM2 etc. A table on the right is alligned to show the sex and amount of wax secreted by the samples. The middle graphs are not relevant to cluster analysis. The bottom graph is a dendrogram ending in over 100,000 lines. A wide horizontal bar underneath is divided into 19 repeating colours corresponding to 19 groups of genes.](./img/genes_dendrogram.jpg)
+![](./img/genes_dendrogram.jpg){fig-alt="four images from a paper. The top diagram is a dendrogram ending in the names of samples such as FF2, FF1, FF3, FM3, FM2 etc. A table on the right is alligned to show the sex and amount of wax secreted by the samples. The middle graphs are not relevant to cluster analysis. The bottom graph is a dendrogram ending in over 100,000 lines. A wide horizontal bar underneath is divided into 19 repeating colours corresponding to 19 groups of genes."}
 
 <br>
 
@@ -250,7 +250,7 @@ The graph in (c) below, demonstrates how cluster analysis grouped these 100,000 
 
 [Sivaprakasam Padmanaban et al., 2022](https://doi.org/10.3390/metabo12020093) measured the quantities of many small chemicals called metabolites in popular tree leaves. Cluster analysis separates the old and young leaves in the dendrogram in (b). PCA is also used (a).
 
-![alt.text=three images from a paper. The first is a circle within a square with a scatterplot of pink dots on teh right and black dots on teh left. The second is a dedrogram separating black and pink samples with a heat mat in green and red below. The third is a venn diagram with 4 main areas and numbers in the overlapping areas.](./img/metabolites_dendrogram.jpg)
+![](./img/metabolites_dendrogram.jpg){fig-alt="three images from a paper. The first is a circle within a square with a scatterplot of pink dots on teh right and black dots on teh left. The second is a dedrogram separating black and pink samples with a heat mat in green and red below. The third is a venn diagram with 4 main areas and numbers in the overlapping areas."}
 
 
 <br>

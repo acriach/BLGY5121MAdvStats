@@ -12,7 +12,7 @@ execute:
 
 We will use a fictional study system - dragons! If you are using R for yourself, click this [link to the dragon data](https://raw.githubusercontent.com/acriach/BLGY5112M/main/data/dragons.csv) and right click to save it in your data file in your R project.
 
-![alt.text=Three colourful cartoon dragons.](./img/dragons.png)
+![](./img/dragons.png){fig-alt="Three colourful cartoon dragons."}
 
 
 Imagine we went to eight mountain ranges (`mountainRange`) and collected data on the intelligence (`testScore`) and size (`bodyLength`) of 480 dragons. We want to know if size affects their intelligence since we want intelligent dragons that we can train but that aren't too big and scary!
@@ -290,7 +290,7 @@ Generally, if models are within 2 AICc units of each other they are very similar
 
 <br>
 
-![alt.text=one blue cartoon dragon](./img/blue_dragon.png)
+![](./img/blue_dragon.png){fig-alt="one blue cartoon dragon}"
 
 
 So we can conclude that body size has no effect on dragon intelligence and therefore we will be able to train the small ones and not use the big scary ones!
@@ -318,7 +318,7 @@ If you get stuck, scroll down to read the Random Effect Check List box.
 
 ## Barley yield example
 
-![alt.text=a close up of barley growing with a black background.](./img/barley.jpg)
+![](./img/barley.jpg){fig-alt="a close up of barley growing with a black background."}
 
 
 The effect of `variety` and type of nitrogen fertiliser `fertType` on the `yield` of barley plants, was tested in a field trial. The plants were grown in 20 different areas of the field called `area`, that were likely to vary in soil and water qualities that affected yield.
@@ -338,7 +338,7 @@ model <- lmer(yield ~ variety + fertType +(1|area), data = barley)
 
 ## Caterpillar example
 
-![alt.text=a swallowtail caterpillar with green and black stripes with orange spots](./img/cat.jpg)
+![](./img/cat.jpg){fig-alt="a swallowtail caterpillar with green and black stripes with orange spots"}
 
 
 We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We can only get 10 caterpillars from each female butterfly so use 14 females. For each of the 140 caterpillars, we note down which 1 to 14 `female` butterfly laid it, the development time `devTime` in hours and weight `wgt` in mg and call the dataset `butterflies`.
@@ -357,7 +357,7 @@ model <- lmer(wgt ~ devTime +(1|female), data = butterflies)
 
 ## Petri dish example
 
-![alt.text=a diagram of a cartoon petri dish with 10 yellow spots on it](./img/petri.png)
+![](./img/petri.png){fig-alt="a diagram of a cartoon petri dish with 10 yellow spots on it"}
 
 
 The effect of two bacterial inhibitors `inhib` on bacterial `growth` is tested by growing 10 spots of bacteria per 20 petri dishes `dish`. Bacterial growth seemed to vary among the petri dishes. Data was called `bacteria`.

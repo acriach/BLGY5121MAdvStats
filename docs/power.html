@@ -161,6 +161,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="./multivariatemethods.html">
  <span class="menu-text">Multivariate Methods</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mixedmodels1.html">
+ <span class="menu-text">Mixed Models 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mixedmodels2.html">
+ <span class="menu-text">Mixed Models 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./spatial.html">
+ <span class="menu-text">Spatial Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./metaanalyses.html">
+ <span class="menu-text">Meta-analyses</span></a>
+  </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -220,18 +236,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Some Concepts to understand</h1>
 <section id="effect-size" class="level2">
 <h2 class="anchored" data-anchor-id="effect-size">Effect Size</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/geese_and_swan.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=Two geese swimming on blue water with a swan swimming in the background.</figcaption><p></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/robin.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=A robin sitting on the post of a fence with snow on the fence and surrounding foliage</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/geese_and_swan.jpg" class="img-fluid" alt="Two geese swimming on blue water with a swan swimming in the background."></p>
+<p><img src="./img/robin.jpg" class="img-fluid" alt="A robin sitting on the post of a fence with snow on the fence and surrounding foliage"></p>
 <p>Experiment 1 Measures the weights of <strong>swans</strong> and <strong>geese</strong>.</p>
 <p>Experiment 2 Measures the weights of <strong>swans</strong> and <strong>robins</strong>.</p>
 <p><strong>What experiment is most likely to find a significant difference in weight between species?</strong></p>
@@ -249,12 +255,7 @@ Effect sizes can be measured. The effect size in a correlation is r. In a t test
 </section>
 <section id="sample-size-n" class="level2">
 <h2 class="anchored" data-anchor-id="sample-size-n">Sample Size (n)</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/giraffe.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=A giraffe striding across a grassy landscape.</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/giraffe.jpg" class="img-fluid" alt="A giraffe striding across a grassy landscape."></p>
 <p>Experiment 1 - Measures the heights of <strong>10</strong> female and <strong>10</strong> male giraffes.</p>
 <p>Experiment 2 - Measures the heights of <strong>100</strong> female and <strong>100</strong> male giraffes.</p>
 <p><strong>What experiment is most likely to find a significant difference in height?</strong></p>
@@ -281,12 +282,7 @@ Effect sizes can be measured. The effect size in a correlation is r. In a t test
 </section>
 <section id="type-i-errors" class="level2">
 <h2 class="anchored" data-anchor-id="type-i-errors">Type I Errors</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/error_table.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=Table of error types. If null hypothesis is true and the decision about null hypothesis is don’t reject, then this is the correct inference (true negative) (probability = 1 - alpha). If null hypothesis is true and the decision about the null hypothesis is reject, this is a type 1 error (false positive) (probability = alpha). If null hypothesis is false and the decision about null hypothesis is don’t reject, then this is a type two error (false negative) (probability = beta). If null hypothesis is false and the decision about the null hypothesis is reject, this is the correct inference (true positive) (probability = 1 - beta).</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/error_table.png" class="img-fluid" alt="Table of error types. If null hypothesis is true and the decision about null hypothesis is don't reject, then this is the correct inference (true negative) (probability = 1 - alpha). If null hypothesis is true and the decision about the null hypothesis is reject, this is a type 1 error (false positive) (probability = alpha). If null hypothesis is false and the decision about null hypothesis is don't reject, then this is a type two error (false negative) (probability = beta). If null hypothesis is false and the decision about the null hypothesis is reject, this is the correct inference (true positive) (probability = 1 - beta)."></p>
 <p>A type one error is when you find a significant result but in reality there is no significant effect or difference.</p>
 <blockquote class="blockquote">
 <p>Example: a student project finds there is a difference in maths performance between girls and boys. But in reality this is unlikely to be the case since other researchers have not found this (<a href="https://doi.org/10.1111/bjep.12203">Li et al., 2018</a>, <a href="https://doi.org/10.1037/A0021276">Lindberg et al., 2010</a>, <a href="https://doi.org/10.1007/s11165-017-9630-6">Reilly et al., 2019</a>). The student would have made a <strong>type 1 error</strong>.</p>
@@ -306,12 +302,7 @@ Effect sizes can be measured. The effect size in a correlation is r. In a t test
 <section id="type-ii-errors" class="level2">
 <h2 class="anchored" data-anchor-id="type-ii-errors">Type II Errors</h2>
 <p>A type two error is when you mistakenly accept the null hypothesis. You conclude there is no difference or effect when there really is.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/gorillas.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=A big silverback gorilla sitting in the foreground with a smaller gorilla walking behind.</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/gorillas.jpg" class="img-fluid" alt="A big silverback gorilla sitting in the foreground with a smaller gorilla walking behind."></p>
 <blockquote class="blockquote">
 <p>Example: you measure the weights of male and female gorillas and find no significant difference. In reality males are a lot heavier. You would have made a <strong>type two error</strong>.</p>
 </blockquote>
@@ -419,12 +410,7 @@ If you have a good reason to expect a difference in a particular <strong>directi
 <p><strong>Challenge</strong></p>
 <p>The function <code>pwr.anova.test()</code> performs a power analysis for a balanced anova (balanced is when all the groups have the same sample size). k is the number of groups to be compared and f is the effect size.</p>
 <p>You are planning a project to measure the pollution concentration in fish from three lakes (three groups). Use an effect size of 0.2, significance level of 0.05 and power of 0.8. How many fish do you need to catch from each lake?</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/rainbow_trout.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=A view looking into swallow water with 4 trout swimming.</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/rainbow_trout.jpg" class="img-fluid" alt="A view looking into swallow water with 4 trout swimming."></p>
 <details>
 <summary>
 <strong>Answer</strong>
@@ -539,12 +525,7 @@ Effect sizes should be reported in results. If a effect size is not given, it ca
 <p>Study 1 If you remember doing a t test for a project you did in the past and you have the results or data saved, calculate power for that study</p>
 <p>Study 2 Imagine you are planning to measure <strong>inhibitory control</strong> of zebra finches while in either a quiet environment or exposed to traffic noise. Decide how many birds you might have the resources to test and use that as n.&nbsp;Use a significance level of 0.05. Then estimate an effect size from the first paragraph of the Results section of <a href="https://doi.org/10.1098/rspb.2020.2851">Osbrink et al, 2021</a>. Use these numbers to calculate what the power would be for a t test.</p>
 <p>Would you change the number of birds that you initially thought you would test after doing a power analysis?</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/zebra_finch.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=A small bird with bright red beak, orange check, dull boay and black and white tail.</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/zebra_finch.jpg" class="img-fluid" alt="A small bird with bright red beak, orange check, dull boay and black and white tail."></p>
 <details>
 <summary>
 <strong>Possible Answer to Study 2</strong>

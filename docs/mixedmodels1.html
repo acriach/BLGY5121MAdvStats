@@ -161,6 +161,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="./multivariatemethods.html">
  <span class="menu-text">Multivariate Methods</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./mixedmodels1.html" aria-current="page">
+ <span class="menu-text">Mixed Models 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mixedmodels2.html">
+ <span class="menu-text">Mixed Models 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./spatial.html">
+ <span class="menu-text">Spatial Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./metaanalyses.html">
+ <span class="menu-text">Meta-analyses</span></a>
+  </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -229,12 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="linear-models-reminder" class="level2">
 <h2 class="anchored" data-anchor-id="linear-models-reminder">Linear models reminder</h2>
 <p>We will use a fictional study system - dragons! If you are using R for yourself, click this <a href="https://raw.githubusercontent.com/acriach/BLGY5112M/main/data/dragons.csv">link to the dragon data</a> and right click to save it in your data file in your R project.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/dragons.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=Three colourful cartoon dragons.</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/dragons.png" class="img-fluid" alt="Three colourful cartoon dragons."></p>
 <p>Imagine we went to eight mountain ranges (<code>mountainRange</code>) and collected data on the intelligence (<code>testScore</code>) and size (<code>bodyLength</code>) of 480 dragons. We want to know if size affects their intelligence since we want intelligent dragons that we can train but that aren’t too big and scary!</p>
 <p>Load the csv dataset</p>
 <div class="cell">
@@ -518,12 +529,7 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 </div>
 <p>Generally, if models are within 2 AICc units of each other they are very similar. Within 5 units they are quite similar, over 10 units difference and you can probably be happy with the model with lower AICc. As with p-values though, there is no “hard line” that’s always correct.</p>
 <p><br></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/blue_dragon.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=one blue cartoon dragon</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/blue_dragon.png" class="img-fluid">{fig-alt=“one blue cartoon dragon}”</p>
 <p>So we can conclude that body size has no effect on dragon intelligence and therefore we will be able to train the small ones and not use the big scary ones!</p>
 <p>If we had not accounted for mountain range in a mixed model we may have came to the wrong conclusion.</p>
 <p><br></p>
@@ -544,12 +550,7 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 <p><br></p>
 <section id="barley-yield-example" class="level2">
 <h2 class="anchored" data-anchor-id="barley-yield-example">Barley yield example</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/barley.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=a close up of barley growing with a black background.</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/barley.jpg" class="img-fluid" alt="a close up of barley growing with a black background."></p>
 <p>The effect of <code>variety</code> and type of nitrogen fertiliser <code>fertType</code> on the <code>yield</code> of barley plants, was tested in a field trial. The plants were grown in 20 different areas of the field called <code>area</code>, that were likely to vary in soil and water qualities that affected yield. The data was called <code>barley</code></p>
 <details>
 <summary>
@@ -564,12 +565,7 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 </section>
 <section id="caterpillar-example" class="level2">
 <h2 class="anchored" data-anchor-id="caterpillar-example">Caterpillar example</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/cat.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=a swallowtail caterpillar with green and black stripes with orange spots</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/cat.jpg" class="img-fluid" alt="a swallowtail caterpillar with green and black stripes with orange spots"></p>
 <p>We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We can only get 10 caterpillars from each female butterfly so use 14 females. For each of the 140 caterpillars, we note down which 1 to 14 <code>female</code> butterfly laid it, the development time <code>devTime</code> in hours and weight <code>wgt</code> in mg and call the dataset <code>butterflies</code>.</p>
 <details>
 <summary>
@@ -584,12 +580,7 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 </section>
 <section id="petri-dish-example" class="level2">
 <h2 class="anchored" data-anchor-id="petri-dish-example">Petri dish example</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/petri.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">alt.text=a diagram of a cartoon petri dish with 10 yellow spots on it</figcaption><p></p>
-</figure>
-</div>
+<p><img src="./img/petri.png" class="img-fluid" alt="a diagram of a cartoon petri dish with 10 yellow spots on it"></p>
 <p>The effect of two bacterial inhibitors <code>inhib</code> on bacterial <code>growth</code> is tested by growing 10 spots of bacteria per 20 petri dishes <code>dish</code>. Bacterial growth seemed to vary among the petri dishes. Data was called <code>bacteria</code>.</p>
 <details>
 <summary>

@@ -223,21 +223,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="using-ai-for-r-coding" class="level2">
 <h2 class="anchored" data-anchor-id="using-ai-for-r-coding">Using AI for R coding</h2>
-<div class="alert alert-dismissible alert-warning">
-<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-<p class="mb-0">
-AI can be used to write code to solve problems you have with your data but you need to know what variables and numbers go where and exactly what you want to achieve.
-</p>
-<p>
-Treat AI like a peer - they could be right but they may have misunderstood.
-</p>
-<p>
-You MUST credit AI software when you use it. Not doing so is a form of plagiarism.
-</p>
-<p>
+<button type="button" class="btn btn-success">
+<p>AI can be used to write code to solve problems you have with your data but you need to know what variables and numbers go where and exactly what you want to achieve.</p>
+<p>Treat AI like a peer - they could be right but they may have misunderstood.</p>
+<p>You MUST credit AI software when you use it. Not doing so is a form of plagiarism.</p>
 You MUST NOT use AI to write text for your assignments!
-</p>
-</div>
+</button>
 <p><br></p>
 <p><strong>Challenge</strong></p>
 <p>Create an account with <a href="https://openai.com/">ChatGPT3.5</a> (freeversion), <a href="https://bard.google.com/">Google bard</a> or similar AI. Use it in the challenges below to help you write code.</p>
@@ -255,11 +246,7 @@ You MUST NOT use AI to write text for your assignments!
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Recreate this graph using the variables miles per gallon <code>mpg</code>, weight <code>wt</code>, displacement <code>disp</code> and automatic or manual <code>am</code>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="aiandgraphs_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
+<p><img src="./img/graphmtcars.png" class="img-fluid" alt="a scatterplot with size of circles representing displacement and red and blue for automatic or manual"></p>
 <details>
 <summary>
 <strong>Hints</strong>
@@ -275,11 +262,7 @@ If something doesn’t work don’t be afraid to look for alternative code.</p>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ToothGrowth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Recreate this graph using the variable <code>len</code> and <code>dose</code>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="aiandgraphs_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
+<img src="./img/graphtoothgrowth.png" class="img-fluid" alt="A mean and error bars in blue for each dose with jittered scatters for teeth length.">
 <details>
 <summary>
 <strong>Hints</strong>
@@ -288,6 +271,22 @@ If something doesn’t work don’t be afraid to look for alternative code.</p>
 The raw data is needed for the jitter part but the mean and standard deviation values are needed for the errorbars. Therefore you may need to summarise the data.<br>
 R sometimes thinks <code>dose</code> is a continuous variable not a factor.</p>
 </details>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>Use the iris dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Recreate this graph using the variables <code>species</code>, <code>sepal width</code> and <code>sepal length</code>.</p>
+<p><img src="./img/graphiris.png" class="img-fluid" alt="Three graphs in a row labelled A to C"></p>
+<details>
+<summary>
+<strong>Hints</strong>
+</summary>
+<p>The first graph is a histogram, the second violin and jittered points and the third a scatter plot with a regression line.<br>
+Graph arrangements like this might be called subplots, panels or grids.</p>
+</details>
+<p><br></p>
 <p><br></p>
 <section id="reflect-on-using-ai" class="level3">
 <h3 class="anchored" data-anchor-id="reflect-on-using-ai">Reflect on using AI</h3>

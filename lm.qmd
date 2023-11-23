@@ -440,6 +440,8 @@ Given the output, write out how you could report these results. There will be ma
 
 Hint: Look at how we reported the examples before. Look at how a paper in your discipline reported results. Look at how ANOVA is reported.
 
+<br>
+
 **Challenge**
 
 Run a lm model to test the effect of penguin `species` on `body_mass_g`. Report the results.
@@ -448,12 +450,12 @@ Run a lm model to test the effect of penguin `species` on `body_mass_g`. Report 
 
 <button type="button" class="btn btn-success">
 You might have previously been taught to run an anova and post hoc Tukey test on continuous data with 3 or more factors. If you run those tests using the code below you get the same result.
-
-<kbd>`Turtle_aov <- aov(Days ~ Temperature, data = Turtles)` </kbd>  
-<kbd>`summary(Turtle_aov)`</kbd>  
-<kbd>`TukeyHSD(Turtle_aov)`</kbd>
 </button>
-
+```{r}
+Turtle_aov <- aov(Days ~ Temperature, data = Turtles)
+summary(Turtle_aov)
+TukeyHSD(Turtle_aov)
+```
 <br>
 
 <br>
@@ -477,15 +479,29 @@ Save this [crabs.csv](./data/crabs.csv) and read into R. The `CrabPres` column i
 #| echo: true
 crabs <- read.csv("data/crabs.csv", header = T)
 ```
-  
-## Running the analysis
 
-We can fit a model to test whether the probability of crab presence changes with time (a factor) and distance (a continuous variable). 
+We use the functions `str` and `table` to check the type of data. Plus how many levels there are in the variables.
 
-First make sure R thinks `Time` is a factor.
+```{r}
+#| echo: true
+#| eval: false
+str(crabs)
+table(crabs$Dist) # shows n for each level too
+table(crabs$Time)
+table(crabs$CrabPres)
+```
+
+
+We can make sure R thinks `Time` is a factor.
 ```{r}
 crabs$Time <- factor(crabs$Time)
 ```
+
+<br>
+
+## Running the analysis
+
+We can fit a model to test whether the probability of crab presence changes with time (a factor) and distance (a continuous variable). 
 
 The response variable (presence/absence of crabs) is binomial, so we use `family=binomial` in the glm.
 ```{r}

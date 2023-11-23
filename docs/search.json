@@ -81,14 +81,14 @@
     "href": "lm.html#interpreting-the-results-1",
     "title": "Linear Models",
     "section": "Interpreting the results",
-    "text": "Interpreting the results\nChallenge\nGiven the output, write out how you could report these results. There will be many ways.\nHint: Look at how we reported the examples before. Look at how a paper in your discipline reported results. Look at how ANOVA is reported.\nChallenge\nRun a lm model to test the effect of penguin species on body_mass_g. Report the results.\n\n\nYou might have previously been taught to run an anova and post hoc Tukey test on continuous data with 3 or more factors. If you run those tests using the code below you get the same result.\nTurtle_aov <- aov(Days ~ Temperature, data = Turtles) \nsummary(Turtle_aov)\nTukeyHSD(Turtle_aov)"
+    "text": "Interpreting the results\nChallenge\nGiven the output, write out how you could report these results. There will be many ways.\nHint: Look at how we reported the examples before. Look at how a paper in your discipline reported results. Look at how ANOVA is reported.\n\nChallenge\nRun a lm model to test the effect of penguin species on body_mass_g. Report the results.\n\n\nYou might have previously been taught to run an anova and post hoc Tukey test on continuous data with 3 or more factors. If you run those tests using the code below you get the same result.\n\n\nTurtle_aov <- aov(Days ~ Temperature, data = Turtles)\nsummary(Turtle_aov)\n\n            Df Sum Sq Mean Sq F value   Pr(>F)    \nTemperature  3   8025  2675.2   15.98 9.08e-07 ***\nResiduals   36   6027   167.4                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nTukeyHSD(Turtle_aov)\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = Days ~ Temperature, data = Turtles)\n\n$Temperature\n       diff       lwr        upr     p adj\n20-15 -13.8 -29.38469   1.784689 0.0982694\n25-15  -9.2 -24.78469   6.384689 0.3969971\n30-15 -38.3 -53.88469 -22.715311 0.0000006\n25-20   4.6 -10.98469  20.184689 0.8562615\n30-20 -24.5 -40.08469  -8.915311 0.0008384\n30-25 -29.1 -44.68469 -13.515311 0.0000785"
   },
   {
     "objectID": "lm.html#running-the-analysis-2",
     "href": "lm.html#running-the-analysis-2",
     "title": "Linear Models",
     "section": "Running the analysis",
-    "text": "Running the analysis\nWe can fit a model to test whether the probability of crab presence changes with time (a factor) and distance (a continuous variable).\nFirst make sure R thinks Time is a factor.\n\ncrabs$Time <- factor(crabs$Time)\n\nThe response variable (presence/absence of crabs) is binomial, so we use family=binomial in the glm.\n\ncrab_glm <- glm(CrabPres ~ Time * Dist, family = \"binomial\", data = crabs)"
+    "text": "Running the analysis\nWe can fit a model to test whether the probability of crab presence changes with time (a factor) and distance (a continuous variable).\nThe response variable (presence/absence of crabs) is binomial, so we use family=binomial in the glm.\n\ncrab_glm <- glm(CrabPres ~ Time * Dist, family = \"binomial\", data = crabs)"
   },
   {
     "objectID": "lm.html#assumptions-to-check-2",

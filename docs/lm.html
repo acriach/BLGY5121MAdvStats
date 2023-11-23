@@ -647,15 +647,40 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
 <p><strong>Challenge</strong></p>
 <p>Given the output, write out how you could report these results. There will be many ways.</p>
 <p>Hint: Look at how we reported the examples before. Look at how a paper in your discipline reported results. Look at how ANOVA is reported.</p>
+<p><br></p>
 <p><strong>Challenge</strong></p>
 <p>Run a lm model to test the effect of penguin <code>species</code> on <code>body_mass_g</code>. Report the results.</p>
 <p><br></p>
 <button type="button" class="btn btn-success">
-<p>You might have previously been taught to run an anova and post hoc Tukey test on continuous data with 3 or more factors. If you run those tests using the code below you get the same result.</p>
-<kbd><code>Turtle_aov &lt;- aov(Days ~ Temperature, data = Turtles)</code> </kbd><br>
-<kbd><code>summary(Turtle_aov)</code></kbd><br>
-<kbd><code>TukeyHSD(Turtle_aov)</code></kbd>
+You might have previously been taught to run an anova and post hoc Tukey test on continuous data with 3 or more factors. If you run those tests using the code below you get the same result.
 </button>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>Turtle_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Days <span class="sc">~</span> Temperature, <span class="at">data =</span> Turtles)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Turtle_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+Temperature  3   8025  2675.2   15.98 9.08e-07 ***
+Residuals   36   6027   167.4                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(Turtle_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Days ~ Temperature, data = Turtles)
+
+$Temperature
+       diff       lwr        upr     p adj
+20-15 -13.8 -29.38469   1.784689 0.0982694
+25-15  -9.2 -24.78469   6.384689 0.3969971
+30-15 -38.3 -53.88469 -22.715311 0.0000006
+25-20   4.6 -10.98469  20.184689 0.8562615
+30-20 -24.5 -40.08469  -8.915311 0.0008384
+30-25 -29.1 -44.68469 -13.515311 0.0000785</code></pre>
+</div>
+</div>
 <p><br></p>
 <p><br></p>
 </section>
@@ -671,18 +696,26 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
 <p><img src="./img/GLM1_binary_image.jpg" class="img-fluid" alt="three brown crabs around rocks"></p>
 <p>Save this <a href="./data/crabs.csv">crabs.csv</a> and read into R. The <code>CrabPres</code> column is whether a crab was present in that area of the beach surveyed. This response variable is binomial: the presence or absence of a crab.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>crabs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/crabs.csv"</span>, <span class="at">header =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>crabs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/crabs.csv"</span>, <span class="at">header =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>We use the functions <code>str</code> and <code>table</code> to check the type of data. Plus how many levels there are in the variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(crabs)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(crabs<span class="sc">$</span>Dist) <span class="co"># shows n for each level too</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(crabs<span class="sc">$</span>Time)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(crabs<span class="sc">$</span>CrabPres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can make sure R thinks <code>Time</code> is a factor.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>crabs<span class="sc">$</span>Time <span class="ot">&lt;-</span> <span class="fu">factor</span>(crabs<span class="sc">$</span>Time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
 <section id="running-the-analysis-2" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-analysis-2">Running the analysis</h2>
 <p>We can fit a model to test whether the probability of crab presence changes with time (a factor) and distance (a continuous variable).</p>
-<p>First make sure R thinks <code>Time</code> is a factor.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>crabs<span class="sc">$</span>Time <span class="ot">&lt;-</span> <span class="fu">factor</span>(crabs<span class="sc">$</span>Time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>The response variable (presence/absence of crabs) is binomial, so we use <code>family=binomial</code> in the glm.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>crab_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(CrabPres <span class="sc">~</span> Time <span class="sc">*</span> Dist, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> crabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>crab_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(CrabPres <span class="sc">~</span> Time <span class="sc">*</span> Dist, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> crabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 </section>
@@ -691,9 +724,9 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
 <p><strong>Assumption - There is a straight line relationship between the logit function of the mean of <span class="math inline">\(y\)</span> and the predictors <span class="math inline">\(x\)</span></strong></p>
 <p>For this assumption, we check the residual plot for non-linearity, or a U-shape.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(crab_glm, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(crab_glm, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="lm_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+<p><img src="lm_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Unfortunately, passing the <code>glm</code> object through the plot function gives us a very odd looking plot due to the discreteness of the data (i.e., many points on top of each other).</p>
@@ -702,11 +735,11 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
 
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvabund)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>crab_manyglm <span class="ot">&lt;-</span> <span class="fu">manyglm</span>(CrabPres <span class="sc">~</span> Time <span class="sc">*</span> Dist, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> crabs)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(crab_manyglm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvabund)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>crab_manyglm <span class="ot">&lt;-</span> <span class="fu">manyglm</span>(CrabPres <span class="sc">~</span> Time <span class="sc">*</span> Dist, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> crabs)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(crab_manyglm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="lm_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+<p><img src="lm_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>In our case there is no evidence of non-linearity.</p>
@@ -717,7 +750,7 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
 <h2 class="anchored" data-anchor-id="interpreting-the-results-2">Interpreting the results</h2>
 <p>For binomial models in particular the p-values from the <code>summary</code> function are not reliable, and we prefer to use the <code>anova</code> function to see if predictors are significant.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(crab_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(crab_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -740,7 +773,7 @@ AIC: 71.466
 
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(crab_glm, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(crab_glm, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Deviance Table
 
@@ -767,9 +800,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>When there is more than one predictor, the maths ANOVA uses can be done in three different ways. These ways are named type I, II and III. This <a href="https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/">R bloggers article</a> explains the differences.</p>
 <p>Our crab example is approximately balanced (even sample numbers in each group) so whatever version of ANOVA R uses we’ll get the same results. However, if you have unbalanced data you could compare differences among type I, II and III ANOVAs using the function <code>Anova()</code> in the <code>car</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm_model) <span class="co"># default is type 1</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(lm_model, <span class="at">type =</span> <span class="dv">2</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(lm_model, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm_model) <span class="co"># default is type 1</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(lm_model, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(lm_model, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </details>
 <p><br></p>
@@ -784,7 +817,7 @@ In this case the results are quite similar, but in small samples it can often ma
 </summary>
 <p>When there is more than one predictor you can try reducing the model by removing predictors and comparing models. We can use a number called the AIC to compare. Lower AICs are better.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(crab_glm, <span class="at">test =</span> <span class="st">"Chi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(crab_glm, <span class="at">test =</span> <span class="st">"Chi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=71.47
 CrabPres ~ Time * Dist
@@ -841,7 +874,7 @@ Tip: People get stuck interpreting binomial results because they do not have a c
 <p>The coefficients for numeric predictors can show negative or positive relationships with the response.</p>
 <p>The coefficient numbers (called log odds) are difficult for you (and your readers) to interpret. Many people convert them into effect sizes called <strong>odds ratios</strong> to report them.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(crab_glm)) <span class="co"># calculates the exponential of the coefficients in the model i.e. turns log odds into odds ratios</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(crab_glm)) <span class="co"># calculates the exponential of the coefficients in the model i.e. turns log odds into odds ratios</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)      Time10        Dist Time10:Dist 
   0.1800871   3.6390656   1.0255455   1.0588183 </code></pre>
@@ -868,13 +901,13 @@ Tip if the odds ratio is below 1 try recoding the explanatory variables so that 
 <p>This example has counts of different animal groups at control sites and sites where bush regeneration has been carried out (treatment). We will use only one group of animals - slugs (Soleolifera is the order name of terrestrial slugs) to see if the the bush regeneration activities have affected slug abundance.</p>
 <p>Save <a href="./data/revegetation.csv">revegetation.csv</a> and import into R and view the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>reveg <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/revegetation.csv"</span>, <span class="at">header =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>reveg <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/revegetation.csv"</span>, <span class="at">header =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you view the frequency histogram of the slug counts, you will see that it is very skewed, with many small values and few large counts.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(reveg<span class="sc">$</span>Soleolifera)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(reveg<span class="sc">$</span>Soleolifera)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="lm_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="500"></p>
+<p><img src="lm_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="500"></p>
 </div>
 </div>
 <button type="button" class="btn btn-success">
@@ -884,8 +917,8 @@ The default distribution for count data is the Poisson. The Poisson distribution
 <p>We can use a GLM to test whether the counts of slugs (from the order Soleolifera) differ between control and regenerated sites. To fit the GLM, we will use the <code>manyglm</code> function instead of <code>glm</code> so we have access to more useful residual plots.</p>
 <p>To fit the GLM, load the mvabund package then fit the following model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvabund)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>slug_glm <span class="ot">&lt;-</span> <span class="fu">manyglm</span>(Soleolifera <span class="sc">~</span> Treatment, <span class="at">family =</span> <span class="st">"poisson"</span>, <span class="at">data =</span> reveg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvabund)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>slug_glm <span class="ot">&lt;-</span> <span class="fu">manyglm</span>(Soleolifera <span class="sc">~</span> Treatment, <span class="at">family =</span> <span class="st">"poisson"</span>, <span class="at">data =</span> reveg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Treatment is the predictor variable with two levels, control and revegetated.</p>
 <p><br></p>
@@ -894,22 +927,22 @@ The default distribution for count data is the Poisson. The Poisson distribution
 <h2 class="anchored" data-anchor-id="assumptions-to-check-3">Assumptions to check</h2>
 <p>Before looking at the results, look at the residual plot to check the assumptions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(slug_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(slug_glm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="lm_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid" width="500"></p>
+<p><img src="lm_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="500"></p>
 </div>
 </div>
 <p>It’s hard to say whether there is any non-linearity in this plot, this is because the predictor is binary (control vs revegetated).</p>
 <p>Looking at the mean-variance assumption, it does appear as though there is a fan shape. The residuals are more spread out on the right than the left - we call this <strong>overdispersion</strong>.</p>
 <p>This tells us the mean-variance assumption of the Poisson is probably violated. We should try a different distribution. We can instead fit a negative-binomial distribution in <code>manyglm</code> by changing the family argument to <code>family="negative binomial"</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>slug_glm2 <span class="ot">&lt;-</span> <span class="fu">manyglm</span>(Soleolifera <span class="sc">~</span> Treatment, <span class="at">family =</span> <span class="st">"negative binomial"</span>, <span class="at">data =</span> reveg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>slug_glm2 <span class="ot">&lt;-</span> <span class="fu">manyglm</span>(Soleolifera <span class="sc">~</span> Treatment, <span class="at">family =</span> <span class="st">"negative binomial"</span>, <span class="at">data =</span> reveg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Look again at the residual plot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(slug_glm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(slug_glm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="lm_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="500"></p>
+<p><img src="lm_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="500"></p>
 </div>
 </div>
 <p>This seems to have improved the residual plot. There is no longer a strong fan shape, so we can go ahead and look at the results.</p>
@@ -919,7 +952,7 @@ The default distribution for count data is the Poisson. The Poisson distribution
 <h2 class="anchored" data-anchor-id="interpreting-the-results-3">Interpreting the results</h2>
 <p>We can use <code>summary</code> and <code>anova</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(slug_glm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(slug_glm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time elapsed: 0 hr 0 min 0 sec</code></pre>
 </div>
@@ -936,7 +969,7 @@ Treatment       47       1 10.52    0.004 **
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Arguments: P-value calculated using 999 iterations via PIT-trap resampling.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(slug_glm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(slug_glm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Test statistics:
@@ -965,9 +998,9 @@ Arguments: P-value calculated using 999 resampling iterations via pit.trap resam
 </summary>
 <p>There are various solutions. Boxplot is one.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Soleolifera <span class="sc">~</span> Treatment, <span class="at">ylab =</span> <span class="st">"Count"</span>, <span class="at">xlab =</span> <span class="st">"Treatment"</span>, <span class="at">data =</span> reveg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Soleolifera <span class="sc">~</span> Treatment, <span class="at">ylab =</span> <span class="st">"Count"</span>, <span class="at">xlab =</span> <span class="st">"Treatment"</span>, <span class="at">data =</span> reveg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="lm_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="500"></p>
+<p><img src="lm_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="500"></p>
 </div>
 </div>
 </details>

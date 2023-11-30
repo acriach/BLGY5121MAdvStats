@@ -208,7 +208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#choosing-an-effect-size-before-the-experiment" id="toc-choosing-an-effect-size-before-the-experiment" class="nav-link" data-scroll-target="#choosing-an-effect-size-before-the-experiment">Choosing an Effect Size Before the Experiment</a></li>
   <li><a href="#power-analysis-for-estimating-power" id="toc-power-analysis-for-estimating-power" class="nav-link" data-scroll-target="#power-analysis-for-estimating-power">Power Analysis for Estimating Power</a></li>
   </ul></li>
-  <li><a href="#run-a-power-analysis" id="toc-run-a-power-analysis" class="nav-link" data-scroll-target="#run-a-power-analysis">Run a power analysis</a></li>
+  <li><a href="#run-power-analyses" id="toc-run-power-analyses" class="nav-link" data-scroll-target="#run-power-analyses">Run power analyses</a></li>
   </ul>
 </nav>
     </div>
@@ -325,7 +325,7 @@ In the future (and already in some disciplines) conventions might change to use,
 </section>
 <section id="power-analyses-in-r" class="level1">
 <h1>Power analyses in R</h1>
-<p>There are various packages which do power analysis in R. <a href="https://cran.r-project.org/web/packages/pwr/index.html">pwr</a> is for simpler analyses such as t tests and ANOVAs, up to <code>lm</code> and <a href="https://cran.r-project.org/web/packages/simr/index.html">simR</a> is for more complex mixed models and glms.</p>
+<p>There are various packages which do power analysis in R. <a href="https://cran.r-project.org/web/packages/pwr/index.html">pwr</a> is for simpler analyses such as t tests and ANOVAs, up to <code>lm</code> and <a href="https://cran.r-project.org/web/packages/simr/index.html">simR</a> is for more complex mixed model glms.</p>
 <p>First, download and install the package.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -518,17 +518,16 @@ Effect sizes should be reported in results. If a effect size is not given, it ca
 <p><br></p>
 </section>
 </section>
-<section id="run-a-power-analysis" class="level1">
-<h1>Run a power analysis</h1>
+<section id="run-power-analyses" class="level1">
+<h1>Run power analyses</h1>
 <p><strong>Challenge</strong></p>
-<p>Calculate the power for the t test in one of these studies.</p>
-<p>Study 1 If you remember doing a t test for a project you did in the past and you have the results or data saved, calculate power for that study</p>
-<p>Study 2 Imagine you are planning to measure <strong>inhibitory control</strong> of zebra finches while in either a quiet environment or exposed to traffic noise. Decide how many birds you might have the resources to test and use that as n.&nbsp;Use a significance level of 0.05. Then estimate an effect size from the first paragraph of the Results section of <a href="https://doi.org/10.1098/rspb.2020.2851">Osbrink et al, 2021</a>. Use these numbers to calculate what the power would be for a t test.</p>
+<p>Calculate the power for the t test in this study.</p>
+<p>Imagine you are planning to measure <strong>inhibitory control</strong> of zebra finches while in either a quiet environment or exposed to traffic noise. Decide how many birds you might have the resources to test and use that as n.&nbsp;Use a significance level of 0.05. Then estimate an effect size from the first paragraph of the Results section of <a href="https://doi.org/10.1098/rspb.2020.2851">Osbrink et al, 2021</a>. Use these numbers to calculate what the power would be for a t test.</p>
 <p>Would you change the number of birds that you initially thought you would test after doing a power analysis?</p>
 <p><img src="./img/zebra_finch.jpg" class="img-fluid" alt="A small bird with bright red beak, orange check, dull boay and black and white tail."></p>
 <details>
 <summary>
-<strong>Possible Answer to Study 2</strong>
+<strong>Possible Answer</strong>
 </summary>
 <p>Suppose you planned to test 50 birds (n = 25 per group). And used the effect size d = 0.29 as reported in <a href="https://doi.org/10.1098/rspb.2020.2851">Osbrink et al, 2021</a>.</p>
 <div class="cell">
@@ -548,6 +547,45 @@ NOTE: n is number in *each* group</code></pre>
 </div>
 <p>Power would be 0.17 so it would only be worthwhile doing the study if it was feasible to increase the number of birds.</p>
 </details>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p><img src="./img/Linear_regression_image.jpg" class="img-fluid" alt="green plants including lots of ferns in a forest"></p>
+<p>Calculate the power for the lm in the plant height study.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Plant_height <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"data/Plant_height.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(loght <span class="sc">~</span> temp, <span class="at">data =</span> Plant_height)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+<strong>Hints</strong>
+</summary>
+<p>Choose an appropriate power function.<br>
+Make sure you are using the correct effect size.<br>
+Search the internet for functions that calculate effect size.</p>
+</details>
+<div class="cell">
+
+</div>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>Calculate the power for the binomial model in the crab study.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>crabs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/crabs.csv"</span>, <span class="at">header =</span> T)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>crabs<span class="sc">$</span>Time <span class="ot">&lt;-</span> <span class="fu">factor</span>(crabs<span class="sc">$</span>Time)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>crab_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(CrabPres <span class="sc">~</span> Time <span class="sc">*</span> Dist, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> crabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+<strong>Hints</strong>
+</summary>
+<p>You will have to find out what function is suitable for binomial regression (sometimes called logistic regression).<br>
+The effect sizes for a bionomial regressions are odds ratios.<br>
+There may be more than one odds ratio since there are two independent variables (Time and Distance).</p>
+</details>
+<div class="cell">
+
+</div>
 <p><br></p>
 <p><br></p>
 <p>Adapted from <a href="https://www.andywills.info/rminr/power.html">Statistical Power</a> by Andy Wills, Clare Walsh and Chris Longmore and <a href="https://github.com/nicercode/EnvironmentalComputing">EnvironmentalComputing</a>.</p>

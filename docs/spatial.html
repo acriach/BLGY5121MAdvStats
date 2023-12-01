@@ -207,6 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#gls-models" id="toc-gls-models" class="nav-link" data-scroll-target="#gls-models">GLS models</a></li>
   </ul></li>
   <li><a href="#evaluating-models-with-aics" id="toc-evaluating-models-with-aics" class="nav-link" data-scroll-target="#evaluating-models-with-aics">Evaluating models with AICs</a></li>
+  <li><a href="#cleaning-seabirds" id="toc-cleaning-seabirds" class="nav-link" data-scroll-target="#cleaning-seabirds">Cleaning seabirds</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -544,14 +545,9 @@ model_corSpher  5 1031.139</code></pre>
 <p><br></p>
 <p><strong>Challenge</strong></p>
 <p>View the output of the model by passing it through <code>summary()</code>.</p>
-<details>
-<summary>
-<strong>Answer</strong>
-</summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_corExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</details>
 <p><br></p>
 <p><strong>Challenge</strong></p>
 <p>Compare the results of this model where spatial autocorrelation is accounted for with the original lm <code>model1</code> where it was not. What are the differences?</p>
@@ -560,14 +556,34 @@ model_corSpher  5 1031.139</code></pre>
 <strong>Answer</strong>
 </summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>Nutrition</code> is significant when autocorrelation is accounted for. <code>Disease</code> is still significant (even though p value is not as small).</p>
 </details>
 <p><br></p>
+</section>
+<section id="cleaning-seabirds" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-seabirds">Cleaning seabirds</h2>
+<p><strong>Challenge</strong></p>
+<p>It is useful to learn how to download datasets from various sources. Try downloading the seabird data from <a href="https://www.kaggle.com/datasets/saurabhshahane/predicting-animal-behavior-using-gps/">Kaggle</a></p>
+<p>If you get stuck you can use this source -<a href="./data/seabirds.csv">seabird dataset</a></p>
+<div class="cell">
+
+</div>
+<p>This data needs cleaning for example, you only need the variables <code>lat</code>, <code>lon</code>, <code>species</code>, <code>max_depth.m</code> so make a dataset only containing them.</p>
+<p><br></p>
+<p>Next, practice renaming the variable <code>max_depth.m</code> to <code>maxDepth</code>.</p>
+<p><br></p>
+<p>Now run an analysis to understand if the data is spatially autocorrelated.</p>
+<p>Then decide if you need to control for spatial autocorrelation when you test the effect of the <code>species</code> on the <code>maxDepth</code> dived.</p>
+<p><br></p>
+<button type="button" class="btn btn-success">
+If you run into any unexpected problems take the time to think about the possible solutions and how to implement them.
+</button>
+<p><br></p>
+<p><br></p>
 <p>References</p>
 <p>Hassall C, Sherratt TN (2011) Statistical inference and spatial patterns in correlates of IQ. Intelligence, 39, 303-310.</p>
-<p><br></p>
 <p><br></p>
 <p>Adapted from Christopher Hassall’s Introduction to Spatial Statistics and Mike Treglia’s <a href="https://mltconsecol.github.io/TU_LandscapeAnalysis_Documents/Assignments_web/Assignment07_Mantel_SpRegress.html">Landscape Analysis and Modeling</a></p>
 

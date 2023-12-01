@@ -150,7 +150,8 @@ Note: in the example dataset `dat` the columns for the sample sizes, means and s
 
 The `SMD` object created has an effect size (yi) and its variance (vi) for each study.
 
-```{r,echo=F}
+```{r}
+#| echo: false
 head(SMD)
 ```
 
@@ -261,6 +262,11 @@ Comparing the forest plots, there does seem to be differences. Keep in mind that
 
 </details>
 
+
+<button type="button" class="btn btn-success">
+
+Be careful that you don't end up with two lots of `yi` and `vi` values since you have already created these when you did the lnRR methods. Don't get confused!
+</button>
 
 <br>
 
@@ -599,6 +605,12 @@ Adapt the code remembering to change the names of the variables and dataset.
 You may have to wrangle your data if a variable is not in the format a function expects it to be in. For example, remove units such as days or change text into categorical data.
 
 </details>
+
+<button type="button" class="btn btn-success">
+
+If you seem to be spending lots of time cleaning the data don't worry - that's normal! Most data scientists would say two-thirds of their time would typically be spend cleaning the data and one third analysing it.
+</button>
+ 
 
 <br>
 

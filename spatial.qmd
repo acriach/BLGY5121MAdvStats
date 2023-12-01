@@ -308,14 +308,13 @@ AIC(model_corExp, model_corGaus, model_corLin, model_corRatio, model_corSpher)
 
 View the output of the model by passing it through `summary()`.
 
-<details>
-  <summary>**Answer**</summary>
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+#| echo: false
 summary(model_corExp)
 ```
 
 
-</details>
 
 <br>
 
@@ -336,14 +335,64 @@ summary(model1)
 
 <br>
 
+## Cleaning seabirds
+
+**Challenge**
+
+It is useful to learn how to download datasets from various sources. Try downloading the seabird data from [Kaggle](https://www.kaggle.com/datasets/saurabhshahane/predicting-animal-behavior-using-gps/)
+
+If you get stuck you can use this source -[seabird dataset](./data/seabirds.csv)
+
+
+```{r}
+#| echo: false
+#| eval: false
+seabirds <- read.table(file = "data/seabirds.csv", header = TRUE, sep = ",")
+seabirds$maxDepth <- seabirds$max_depth.m
+seabirds <- subset(seabirds, select = -max_depth.m) # change variable name
+library(ncf) 
+model1 <- lm(maxDepth ~ species, data=seabirds)
+summary(model1)
+# take a subset of data so it can run as dataset is massive
+set.seed(123)  # Set a seed for reproducibility
+sampled_seabirds <- seabirds[sample(nrow(seabirds), 10000, replace = FALSE), ]
+model2 <- lm(maxDepth ~ species, data=sampled_seabirds)
+summary(model2)
+correlog_object <- spline.correlog(sampled_seabirds$lat, sampled_seabirds$lon, residuals(model2), resamp=0, latlon=TRUE)
+plot(correlog_object)
+# no spatial autocorrelation so would decide not to go any further.
+```
+
+This data needs cleaning for example, you only need the variables `lat`, `lon`, `species`, `max_depth.m` so make a dataset only containing them.
+
+<br>
+
+Next, practice renaming the variable `max_depth.m` to `maxDepth`.
+
+<br>
+
+Now run an analysis to understand if the data is spatially autocorrelated.
+
+Then decide if you need to control for spatial autocorrelation when you test the effect of the `species` on the `maxDepth` dived.
+
+<br>
+
+<button type="button" class="btn btn-success">
+
+If you run into any unexpected problems take the time to think about the possible solutions and how to implement them.
+</button>
+
+
+
+<br>
+
+<br>
+
 References 
 
 Hassall C, Sherratt TN (2011) Statistical inference and spatial patterns in correlates of IQ. Intelligence, 39, 303-310. 
 
 <br>
 
-<br>
-
-Adapted from Christopher Hassall's Introduction to Spatial Statistics
-and
+Adapted from Christopher Hassall's Introduction to Spatial Statistics and
 Mike Treglia's [Landscape Analysis and Modeling](https://mltconsecol.github.io/TU_LandscapeAnalysis_Documents/Assignments_web/Assignment07_Mantel_SpRegress.html)

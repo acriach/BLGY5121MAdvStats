@@ -357,6 +357,7 @@ Calculate the power for the binomial model in the crab study.
 #| echo: true
 crabs <- read.csv("data/crabs.csv", header = T)
 crabs$Time <- factor(crabs$Time)
+crabs$Dist <- factor(crabs$Dist)
 crab_glm <- glm(CrabPres ~ Time * Dist, family = "binomial", data = crabs)
 ```
 
@@ -364,8 +365,8 @@ crab_glm <- glm(CrabPres ~ Time * Dist, family = "binomial", data = crabs)
   <summary>**Hints**</summary>
 
 You will have to find out what function is suitable for binomial regression (sometimes called logistic regression).  
-The effect sizes for a bionomial regressions are odds ratios.  
-There may be more than one odds ratio since there are two independent variables (Time and Distance).  
+The effect size for a bionomial regression is odds ratios. The coefficient given by R is the log odds.    
+There may be more than one log odds since there are two independent variables (Time and Distance) with multiple levels.  
 
 </details>
 
@@ -374,17 +375,35 @@ There may be more than one odds ratio since there are two independent variables 
 #| echo: false
 #| eval: false
 library(pwr)
-odds_ratio <- exp(coef(crab_glm)) # this doesn't work as there are 3 intercepts for each of two indepedents and interaction
-odds_ratio_Dist <- exp(0.2522465) # odds ratio for Dsitance
-pwr.2p.test(h = log(odds_ratio_Dist), # use the log of the odds ratio
+coef(crab_glm)
+odds_ratio_Dist0vs2 <- exp(-8.109302e-01) # odds ratio for Distance which has 3 levels
+pwr.2p.test(h = log(odds_ratio_Dist0vs2), # use the log of the log odds to get odds ratio
             sig.level = 0.05,
-            power = 0.8)
-
-odds_ratio_Time10 <- exp(1.29172695) # odds ratio for time but time is a factor with more than two levels
-pwr.2p.test(h = log(odds_ratio_Time10), # use the log of the odds ratio
+            n = 57, # if take n to be total samples
+            power = NULL) # power = 0.99
+pwr.2p.test(h = log(odds_ratio_Dist0vs2), # use the log of the log odds to get odds ratio
             sig.level = 0.05,
-            power = 0.8)
+            n = 20, # if take n to be number of crabs at each distance
+            power = NULL) # power = 0.72
+odds_ratio_Dist0vs10 <- exp(4.304084e-15)
+pwr.2p.test(h = log(odds_ratio_Dist0vs10), 
+            sig.level = 0.05,
+            n = 57, # if take n to be total samples
+            power = NULL) # power = 0.05
+pwr.2p.test(h = log(odds_ratio_Dist0vs10), 
+            sig.level = 0.05,
+            n = 20, # if take n to be number of crabs at each distance
+            power = NULL) # power = 0.05
 
+odds_ratio_Time10 <- exp(9.808293e-01) # odds ratio for time but time is a factor with two levels
+pwr.2p.test(h = log(odds_ratio_Time10), 
+            sig.level = 0.05,
+            n = 57, # if n is total
+            power = NULL) # 0.999999
+pwr.2p.test(h = log(odds_ratio_Time10), 
+            sig.level = 0.05,
+            n = 30, # if n is per level
+            power = NULL) # 0.967
 ```
 
 <br>  

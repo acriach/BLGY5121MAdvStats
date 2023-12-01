@@ -207,11 +207,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example 1</a></li>
   <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example 2</a></li>
+  <li><a href="#running-in-r" id="toc-running-in-r" class="nav-link" data-scroll-target="#running-in-r">Running in R</a></li>
   </ul></li>
   <li><a href="#cluster-analysis" id="toc-cluster-analysis" class="nav-link" data-scroll-target="#cluster-analysis">Cluster Analysis</a>
   <ul class="collapse">
   <li><a href="#example-1-1" id="toc-example-1-1" class="nav-link" data-scroll-target="#example-1-1">Example 1</a></li>
   <li><a href="#example-2-1" id="toc-example-2-1" class="nav-link" data-scroll-target="#example-2-1">Example 2</a></li>
+  <li><a href="#running-in-r-1" id="toc-running-in-r-1" class="nav-link" data-scroll-target="#running-in-r-1">Running in R</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -379,8 +381,8 @@ Cumulative Var    0.2    0.4    0.6    0.8    1.0</code></pre>
 <p><strong>Visual.</strong> PCA results are best presented visually as a 2-dimensional plot of PCs. It is common to label the points in some way to seek patterns on the plot (like how we labelled leaves by species above).</p>
 <p><br></p>
 <p><br></p>
-<p><strong>Challenge</strong></p>
-<p>Choose dataset 1) or 2)</p>
+<p><strong>Challenges</strong></p>
+<p>Analyse these datasets and create graphs to present your findings.</p>
 <p><strong>1) Blue whale genomic data</strong></p>
 <p>The citation below takes you to a website where you can download a .txt file with 42 measurements of gene expression in female and male whales found in Antartica or Australia.</p>
 <p>Attard, C. R. M. et al.&nbsp;(2012), Data from: Hybridization of Southern Hemisphere blue whale subspecies and a sympatric area off Antarctica: impacts of whaling or climate change?, Dryad, Dataset, <a href="https://doi.org/10.5061/dryad.8m0t6">https://doi.org/10.5061/dryad.8m0t6</a></p>
@@ -424,6 +426,53 @@ Cumulative Var    0.2    0.4    0.6    0.8    1.0</code></pre>
 <p><a href="https://doi.org/10.1007/s42974-021-00058-3">Guellaf et al., (2021)</a> collected data from 19 sites on abundance of aquatic insect species and the environmental factors of those sites. A canonical correspondence analysis indicated various relationships such as which species were typically found in areas where the current speed was high.</p>
 <p>Red arrows are water characteristics, blue triangles are insect species and red circles are sites.</p>
 <p><img src="./img/insect_ca.png" class="img-fluid" alt="two boxes divided into quadrants. The top box has red arrows radiating out from a centre point labbelled with abbrviations of physical water qualities. There is a scatter of blue triangles with abbrviations representing insect species. The bottom quadrant box has the same red arrows but a scatter of red circles labelled with the abbreviations of sites."></p>
+</section>
+<section id="running-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="running-in-r">Running in R</h2>
+<p>There is an imaginary nature reserve with different habitats such as open grassland, old woodland, monocultures of trees and mixes of either 2, 5 or 10 species of tree. The abundance of 14 different species of plant are counted in these different habitats.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>wood <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"data/wooddata.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>View the data.</p>
+<p><br></p>
+<p>To understand if certain plant species prefer different parts of the nature reserve we can run a correspondence analysis using the function <code>cca</code> in the <code>vegan</code> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s run the analysis but make a common mistake.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ca_wood <span class="ot">&lt;-</span> <span class="fu">cca</span>(wood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Figure out what’s causing this error and have a go at debugging it.</p>
+<div class="cell">
+
+</div>
+<p><br></p>
+<p>The information contained within the cca object can be seen using <code>str()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ca_wood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ca_wood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the <code>summary()</code> output the eigenvalues show the contribution of each CA to explaining the variation in the data in a similar way to a PCA.</p>
+<p>The species scores shows how much a species would contribute to defining that CA.</p>
+<p>The site scores show how much each site contributes to the separation in that CA.</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca_wood)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multivariatemethods_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Passing a cca object through <code>plot()</code> shows the habitats (sites) at the centroid of all the species that were abundant there.</p>
+<p>The species are positioned relative to the sites they are abundant in.</p>
+<p>Note what plant species are plotted close to Old Woodland and Open Grassland. View the data and examine the abundances so you understand why we have ended up with these results.</p>
+<p><br></p>
+<button type="button" class="btn btn-success">
+The variables in these simple examples have been measured on the same scale e.g.&nbsp;leaf dimensions in cm and % cover for plant species in the wood. However, sometimes variables in the same dataset have different scales (cm, counts, degrees) and then you have to make sure you <strong>scale</strong> the data before running multivariate analyses.
+</button>
 <p><br></p>
 <p><br></p>
 </section>
@@ -444,6 +493,47 @@ Cumulative Var    0.2    0.4    0.6    0.8    1.0</code></pre>
 <h2 class="anchored" data-anchor-id="example-2-1">Example 2</h2>
 <p><a href="https://doi.org/10.3390/metabo12020093">Sivaprakasam Padmanaban et al., 2022</a> measured the quantities of many small chemicals called metabolites in popular tree leaves. Cluster analysis separates the old and young leaves in the dendrogram in (b). PCA is also used (a).</p>
 <p><img src="./img/metabolites_dendrogram.jpg" class="img-fluid" alt="three images from a paper. The first is a circle within a square with a scatterplot of pink dots on teh right and black dots on teh left. The second is a dedrogram separating black and pink samples with a heat mat in green and red below. The third is a venn diagram with 4 main areas and numbers in the overlapping areas."></p>
+<p><br></p>
+<p><br></p>
+</section>
+<section id="running-in-r-1" class="level2">
+<h2 class="anchored" data-anchor-id="running-in-r-1">Running in R</h2>
+<p>Save the metals data set, <a href="./data/harbourmetals.csv">harbourmetals.csv</a> from <a href="https://www.sciencedirect.com/science/article/abs/pii/S026974910800033X">Robert et al.&nbsp;(2008)</a>, in your <code>data</code> file and write code to read into R.</p>
+<p><br></p>
+<div class="cell">
+
+</div>
+<p>These data have the concentrations of seven metals measured from 60 samples, half from the seaweed <em>Padina crassa</em> and half from the <em>Sargassum linearifolium</em> at two sites. The third column is sample labels and the remaining columns are the metal concentrations.</p>
+<p>Like PCA and CA, the cluster analysis runs on the response variables only so we could make a data frame with just the metal concentrations (columns 4-8).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>metalsOnly <span class="ot">&lt;-</span> metal[, <span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>We need to make a matrix that quantifies the similarity between each pair of samples. Here we will use the Euclidean distance but there are others to choose from.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>metals.sim <span class="ot">&lt;-</span> <span class="fu">dist</span>(metalsOnly, <span class="at">method =</span> <span class="st">"euclidean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>We then use <code>hclust()</code> with an argument that specifies the linkage method (here single).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>metals.cluster <span class="ot">&lt;-</span> <span class="fu">hclust</span>(metals.sim, <span class="at">method =</span> <span class="st">"single"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>Pass this object through <code>plot()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(metals.cluster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="multivariatemethods_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Instead of row numbers, the sample labels from the third column <code>Rep</code> of the original data would be more useful.</p>
+<p>Go back to where you created the <code>metalOnly</code> object and add rownames using the code below. Then run the analysis again.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(metalsOnly) <span class="ot">&lt;-</span> metal<span class="sc">$</span>Rep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<button type="button" class="btn btn-success">
+These are basic graphs. They would have to be modified to present in reports.
+</button>
 <p><br></p>
 <p><br></p>
 <p>Adapted from <a href="https://github.com/nicercode/EnvironmentalComputing">EnvironmentalComputing</a>.</p>

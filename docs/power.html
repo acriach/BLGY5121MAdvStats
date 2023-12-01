@@ -573,15 +573,16 @@ Search the internet for functions that calculate effect size.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>crabs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/crabs.csv"</span>, <span class="at">header =</span> T)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>crabs<span class="sc">$</span>Time <span class="ot">&lt;-</span> <span class="fu">factor</span>(crabs<span class="sc">$</span>Time)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>crab_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(CrabPres <span class="sc">~</span> Time <span class="sc">*</span> Dist, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> crabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>crabs<span class="sc">$</span>Dist <span class="ot">&lt;-</span> <span class="fu">factor</span>(crabs<span class="sc">$</span>Dist)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>crab_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(CrabPres <span class="sc">~</span> Time <span class="sc">*</span> Dist, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> crabs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details>
 <summary>
 <strong>Hints</strong>
 </summary>
 <p>You will have to find out what function is suitable for binomial regression (sometimes called logistic regression).<br>
-The effect sizes for a bionomial regressions are odds ratios.<br>
-There may be more than one odds ratio since there are two independent variables (Time and Distance).</p>
+The effect size for a bionomial regression is odds ratios. The coefficient given by R is the log odds.<br>
+There may be more than one log odds since there are two independent variables (Time and Distance) with multiple levels.</p>
 </details>
 <div class="cell">
 

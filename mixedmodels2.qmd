@@ -6,3 +6,183 @@ execute:
   message: false
 ---
 
+Some studies might need a **generalised mixed model**. Others might have random effects that are **crossed** or **nested**. 
+
+Understanding these concepts will mean you will be aware when they apply to your own studies.
+
+<br>
+
+
+
+# Generalised mixed models
+
+Sometimes the response (dependent) variable is not continuous but a categorical variable. Just as you can use alternative **generalized** models instead of lm such as logistic or poisson, you can use other **generalised mixed** models.
+
+For example, imagine each of our dragons was scored as passing or failing the intelligence test making the response `passFail` binary. Then you would use a **binary logistic mixed model**. 
+
+## Dragons again
+
+<br>
+
+**Challenge part 1**
+
+Find the function and the code for a binominal mixed model. Adapt the code to run an analysis on this [binomial dragon data](./data/dragons_binomial.csv) where the response variable `passFail` is if the dragon passed (1) or failed (0) the IQ test. The fixed effect is `bodyLength` and random effect is `mountainRange`. 
+
+```{r}
+#| echo: false
+#| eval: false
+dragons2 <- read.csv(file = "data/dragons_binomial.csv")
+library(lme4)
+```
+
+<button type="button" class="btn btn-success">
+
+Consider if you need to check for assumptions.  
+What numbers from the output are you going to use to interpret the results. You might want to remind yourself of the binomial response section of the linear model lesson. 
+Consider comparing full and null models in an anova or comparing AIC values.  
+
+</button>
+
+```{r}
+#| echo: false
+#| eval: false
+model <- glmer(passFail ~ bodyLength + (1|mountainRange), data = dragons2, family = binomial)
+# To check for linearity they may try to bootstrap the analysis to get a better graph like in the binomial generalised linear model.
+summary(model) # for glm esp binomial p values are unreliable but if look at the estimate for bodylength is pretty much 0.
+anova(model) # gives F value but not p. Possibly because can't really get p values for mixed models.
+full.model <- glmer(passFail ~ bodyLength + (1|mountainRange), data = dragons2, family = binomial)
+reduced.model <- glmer(passFail ~ 1 + (1|mountainRange), data = dragons2, family = binomial)
+anova(full.model, reduced.model) # only 2 units difference between AIC and p values is 0.9469 so not effect
+```
+
+<br>
+
+**Challenge part 2**
+
+Once you have run the analysis and interpreted the results, write out in your script how you would report this in words. 
+
+<br>
+
+**Challenge part 3**
+
+Decide what a suitable graph would be and create one making sure it's formatted.
+
+
+<br>
+
+## Lizards eating
+
+Imagine an experiment where lizards in tanks are observed everyday for 14 days to see if they eat or not (`lizards$eat`). Some are in a control group with dead prey and some are in a treatment group with live prey. There are males and females.
+
+```{r}
+lizards <- read.csv(file = "data/lizard.csv")
+head(lizards)
+```
+
+
+Identify why this needs a mixed model and therefore what the random variable is.
+
+<details>
+  <summary>**Answer**</summary>
+
+We need to control for the differences among individual animals which are repeated measured. In other words the measurements are not independent because some of them come from the same individual lizard. Therefore, `lizard` is the random variable.
+</details>
+
+<br>
+
+**Challenge part 1**
+
+Run a model for this and using the coefficients report the data. Remember they will be log odds.
+
+<br>
+
+<button type="button" class="btn btn-success">
+
+Ensure you know what level the model is using as the baseline or reference level. It might be that it is useful to change this.  
+</button>
+
+
+```{r}
+#| echo: false
+#| eval: false
+library(lme4)
+m <- glmer(eat ~ group * sex + (1|lizard), data = lizards, family = binomial)
+summary(m, corr = FALSE)
+full.model <- glmer(eat ~ group * sex + (1|lizard), data = lizards, family = binomial)
+reduced.model <- glmer(eat ~ 1 + (1|lizard), data = lizards, family = binomial)
+anova(full.model, reduced.model)
+```
+
+<br>
+
+**Challenge part 2**
+
+Report the analysis in words as clearly as you can. Include a graph. Can someone else understand the results from what you have written?
+
+
+<br>
+<br>
+
+# Nested design
+
+Some experiments have what's called a nested design. For example the lizard experiment would be nested if the lizards had been in groups within tanks rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add `tank` into the model. Since not every individual is in every tank ie they are only in one tank,  `lizard` is nested within `tank`.
+
+Another common example of nested variables occurs when data is taken from students but the students are at four different universities. Therefore the students are nested within the universities.
+
+<br>
+
+**Challenge**
+
+Do an internet search to find an example of a study or experimental set up, that includes a nested design. You have 3 tasks:  
+* Type a simple description of the experiment  
+* Name the variables that are the **response**, the **fixed effect**, the **random effects** and what is nested in what.  
+* Write out an example of R code for a mixed model with this nested design. 
+
+<button type="button" class="btn btn-success">
+
+Tip - searching for an R tutorial or guide on a nested mixed model will provide both an example and the code.
+</button>
+
+
+
+```{r}
+#| echo: false
+#| eval: false
+# from https://stackoverflow.com/questions/67123529/how-to-include-nested-effects-in-mixed-effect-model-with-lme4-package
+mixed.lmer2 <- lmer(Y~ X + (1|mountain/site), data = data)
+# for lizard example would be
+m2 <- lmer(eat ~ 1 + (1|tank/lizard), data = lizards, family = binomial)
+# classes and pupils
+(1|class/pupil)  # or  
+(1|class) + (1|class:pupil)
+```
+
+
+
+<br>
+
+# Crossed random effects
+
+Using the lizard examples again, a fully crossed design would be if the different lizards had experienced all the different tanks (the researcher would have had to keep moving them around tanks until each lizard had been measured in each tank).
+
+Or in the student example, if they were measured while they were at one university and then again when they went to one other university, this would be a partial crossed design (though there's the massive confounding variable of time here so it's not the best example!).
+
+<br>
+
+**Challenge**
+
+Do an internet search to find an example of a crossed (partial or fully) design. You have 3 tasks:  
+* Type a simple description of the experiment  
+* Name the variables that are the **response**, the **fixed effect**, the **random effects** and explain why it is crossed.  
+* Then write out an example of R code that would run a mixed model with crossed random effects.
+
+```{r}
+#| eval: false
+#| echo: false
+# https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified
+(1|class) + (1|pupil)
+```
+
+<br>
+
+<br>

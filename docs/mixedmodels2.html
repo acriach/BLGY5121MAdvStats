@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -125,7 +188,19 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#generalised-mixed-models" id="toc-generalised-mixed-models" class="nav-link active" data-scroll-target="#generalised-mixed-models">Generalised mixed models</a>
+  <ul class="collapse">
+  <li><a href="#dragons-again" id="toc-dragons-again" class="nav-link" data-scroll-target="#dragons-again">Dragons again</a></li>
+  <li><a href="#lizards-eating" id="toc-lizards-eating" class="nav-link" data-scroll-target="#lizards-eating">Lizards eating</a></li>
+  </ul></li>
+  <li><a href="#nested-design" id="toc-nested-design" class="nav-link" data-scroll-target="#nested-design">Nested design</a></li>
+  <li><a href="#crossed-random-effects" id="toc-crossed-random-effects" class="nav-link" data-scroll-target="#crossed-random-effects">Crossed random effects</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -147,8 +222,111 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Some studies might need a <strong>generalised mixed model</strong>. Others might have random effects that are <strong>crossed</strong> or <strong>nested</strong>.</p>
+<p>Understanding these concepts will mean you will be aware when they apply to your own studies.</p>
+<p><br></p>
+<section id="generalised-mixed-models" class="level1">
+<h1>Generalised mixed models</h1>
+<p>Sometimes the response (dependent) variable is not continuous but a categorical variable. Just as you can use alternative <strong>generalized</strong> models instead of lm such as logistic or poisson, you can use other <strong>generalised mixed</strong> models.</p>
+<p>For example, imagine each of our dragons was scored as passing or failing the intelligence test making the response <code>passFail</code> binary. Then you would use a <strong>binary logistic mixed model</strong>.</p>
+<section id="dragons-again" class="level2">
+<h2 class="anchored" data-anchor-id="dragons-again">Dragons again</h2>
+<p><br></p>
+<p><strong>Challenge part 1</strong></p>
+<p>Find the function and the code for a binominal mixed model. Adapt the code to run an analysis on this <a href="./data/dragons_binomial.csv">binomial dragon data</a> where the response variable <code>passFail</code> is if the dragon passed (1) or failed (0) the IQ test. The fixed effect is <code>bodyLength</code> and random effect is <code>mountainRange</code>.</p>
+<div class="cell">
+
+</div>
+<button type="button" class="btn btn-success">
+<p>Consider if you need to check for assumptions.<br>
+What numbers from the output are you going to use to interpret the results. You might want to remind yourself of the binomial response section of the linear model lesson. Consider comparing full and null models in an anova or comparing AIC values.</p>
+</button>
+<div class="cell">
+
+</div>
+<p><br></p>
+<p><strong>Challenge part 2</strong></p>
+<p>Once you have run the analysis and interpreted the results, write out in your script how you would report this in words.</p>
+<p><br></p>
+<p><strong>Challenge part 3</strong></p>
+<p>Decide what a suitable graph would be and create one making sure it’s formatted.</p>
+<p><br></p>
+</section>
+<section id="lizards-eating" class="level2">
+<h2 class="anchored" data-anchor-id="lizards-eating">Lizards eating</h2>
+<p>Imagine an experiment where lizards in tanks are observed everyday for 14 days to see if they eat or not (<code>lizards$eat</code>). Some are in a control group with dead prey and some are in a treatment group with live prey. There are males and females.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>lizards <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"data/lizard.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(lizards)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  lizard day   group    sex eat
+1      1   1 control female   0
+2      1   2 control female   0
+3      1   3 control female   1
+4      1   4 control female   0
+5      1   5 control female   0
+6      1   6 control female   0</code></pre>
+</div>
+</div>
+<p>Identify why this needs a mixed model and therefore what the random variable is.</p>
+<details>
+<summary>
+<strong>Answer</strong>
+</summary>
+We need to control for the differences among individual animals which are repeated measured. In other words the measurements are not independent because some of them come from the same individual lizard. Therefore, <code>lizard</code> is the random variable.
+</details>
+<p><br></p>
+<p><strong>Challenge part 1</strong></p>
+<p>Run a model for this and using the coefficients report the data. Remember they will be log odds.</p>
+<p><br></p>
+<button type="button" class="btn btn-success">
+Ensure you know what level the model is using as the baseline or reference level. It might be that it is useful to change this.
+</button>
+<div class="cell">
+
+</div>
+<p><br></p>
+<p><strong>Challenge part 2</strong></p>
+<p>Report the analysis in words as clearly as you can. Include a graph. Can someone else understand the results from what you have written?</p>
+<p><br> <br></p>
+</section>
+</section>
+<section id="nested-design" class="level1">
+<h1>Nested design</h1>
+<p>Some experiments have what’s called a nested design. For example the lizard experiment would be nested if the lizards had been in groups within tanks rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add <code>tank</code> into the model. Since not every individual is in every tank ie they are only in one tank, <code>lizard</code> is nested within <code>tank</code>.</p>
+<p>Another common example of nested variables occurs when data is taken from students but the students are at four different universities. Therefore the students are nested within the universities.</p>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>Do an internet search to find an example of a study or experimental set up, that includes a nested design. You have 3 tasks:<br>
+* Type a simple description of the experiment<br>
+* Name the variables that are the <strong>response</strong>, the <strong>fixed effect</strong>, the <strong>random effects</strong> and what is nested in what.<br>
+* Write out an example of R code for a mixed model with this nested design.</p>
+<button type="button" class="btn btn-success">
+Tip - searching for an R tutorial or guide on a nested mixed model will provide both an example and the code.
+</button>
+<div class="cell">
+
+</div>
+<p><br></p>
+</section>
+<section id="crossed-random-effects" class="level1">
+<h1>Crossed random effects</h1>
+<p>Using the lizard examples again, a fully crossed design would be if the different lizards had experienced all the different tanks (the researcher would have had to keep moving them around tanks until each lizard had been measured in each tank).</p>
+<p>Or in the student example, if they were measured while they were at one university and then again when they went to one other university, this would be a partial crossed design (though there’s the massive confounding variable of time here so it’s not the best example!).</p>
+<p><br></p>
+<p><strong>Challenge</strong></p>
+<p>Do an internet search to find an example of a crossed (partial or fully) design. You have 3 tasks:<br>
+* Type a simple description of the experiment<br>
+* Name the variables that are the <strong>response</strong>, the <strong>fixed effect</strong>, the <strong>random effects</strong> and explain why it is crossed.<br>
+* Then write out an example of R code that would run a mixed model with crossed random effects.</p>
+<div class="cell">
+
+</div>
+<p><br></p>
+<p><br></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

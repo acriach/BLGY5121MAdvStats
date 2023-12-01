@@ -202,6 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#estimate" id="toc-estimate" class="nav-link" data-scroll-target="#estimate">Estimate</a></li>
   <li><a href="#likelihood-ratio-test" id="toc-likelihood-ratio-test" class="nav-link" data-scroll-target="#likelihood-ratio-test">Likelihood ratio test</a></li>
   <li><a href="#aic-values" id="toc-aic-values" class="nav-link" data-scroll-target="#aic-values">AIC values</a></li>
+  <li><a href="#random-slope-mixed-model" id="toc-random-slope-mixed-model" class="nav-link" data-scroll-target="#random-slope-mixed-model">Random slope mixed model</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#identifying-when-a-mixed-model-is-needed" id="toc-identifying-when-a-mixed-model-is-needed" class="nav-link" data-scroll-target="#identifying-when-a-mixed-model-is-needed">Identifying when a mixed model is needed</a>
@@ -209,13 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#barley-yield-example" id="toc-barley-yield-example" class="nav-link" data-scroll-target="#barley-yield-example">Barley yield example</a></li>
   <li><a href="#caterpillar-example" id="toc-caterpillar-example" class="nav-link" data-scroll-target="#caterpillar-example">Caterpillar example</a></li>
   <li><a href="#petri-dish-example" id="toc-petri-dish-example" class="nav-link" data-scroll-target="#petri-dish-example">Petri dish example</a></li>
-  </ul></li>
-  <li><a href="#more-complex-mixed-models" id="toc-more-complex-mixed-models" class="nav-link" data-scroll-target="#more-complex-mixed-models">More complex mixed models</a>
-  <ul class="collapse">
-  <li><a href="#random-slope-mixed-model" id="toc-random-slope-mixed-model" class="nav-link" data-scroll-target="#random-slope-mixed-model">Random slope mixed model</a></li>
-  <li><a href="#generalised-mixed-models" id="toc-generalised-mixed-models" class="nav-link" data-scroll-target="#generalised-mixed-models">Generalised mixed models</a></li>
-  <li><a href="#nested-design" id="toc-nested-design" class="nav-link" data-scroll-target="#nested-design">Nested design</a></li>
-  <li><a href="#crossed-random-effects" id="toc-crossed-random-effects" class="nav-link" data-scroll-target="#crossed-random-effects">Crossed random effects</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -529,9 +523,41 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 </div>
 <p>Generally, if models are within 2 AICc units of each other they are very similar. Within 5 units they are quite similar, over 10 units difference and you can probably be happy with the model with lower AICc. As with p-values though, there is no “hard line” that’s always correct.</p>
 <p><br></p>
-<p><img src="./img/blue_dragon.png" class="img-fluid">{fig-alt=“one blue cartoon dragon}”</p>
+<p><img src="./img/blue_dragon.png" class="img-fluid" alt="one blue cartoon dragon"></p>
 <p>So we can conclude that body size has no effect on dragon intelligence and therefore we will be able to train the small ones and not use the big scary ones!</p>
 <p>If we had not accounted for mountain range in a mixed model we may have came to the wrong conclusion.</p>
+<p><br></p>
+</section>
+<section id="random-slope-mixed-model" class="level3">
+<h3 class="anchored" data-anchor-id="random-slope-mixed-model">Random slope mixed model</h3>
+<p>The mixed model we ran for the dragon data…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mixed.lmer <span class="ot">&lt;-</span>  <span class="fu">lmer</span>(testScore <span class="sc">~</span> bodyLength <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>mountainRange), <span class="at">data =</span> dragons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>…was a <strong>random intercept</strong> model.</p>
+<p>Here’s the graph to accompany that.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="mixedmodels1_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Notice that the different coloured lines for each mountain range would have different <strong>intercepts</strong> but the same <strong>slope</strong> as each other. (The intercept is the point where a line crosses the y axis if it were that long.)</p>
+<p><br></p>
+<p>We could have run this mixed model instead…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mixed.ranslope <span class="ot">&lt;-</span> <span class="fu">lmer</span>(testScore <span class="sc">~</span> bodyLength <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> bodyLength<span class="sc">|</span>mountainRange), <span class="at">data =</span> dragons) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>which is a <strong>random slope</strong> model.</p>
+<p>Here’s the corresponding graph</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="mixedmodels1_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Notice the lines for each mountain range have different intercepts <strong>AND</strong> slopes.</p>
+<p>Therefore, if your exploration of the data or understanding of the study system suggests that the relationship in each group of the random effect (i.e.&nbsp;in each mountainRange) is different, then use a random slope mixed model.</p>
+<p><strong>Challenge</strong> Take some time to do an internet search for another definition of the difference between random intercept and random slope mixed models. Write this definition in your own words in your script.</p>
+<p><br></p>
 <p><br></p>
 </section>
 </section>
@@ -545,53 +571,11 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 </ul>
 <p><br></p>
 <p>However, knowing when there is a random effect and therefore when a mixed model might be needed is more difficult.</p>
-<p>Take your time to imagine each of the studies below, identifying the variables that is the <strong>random effect</strong> in each one and writing the <strong>code</strong> to run a mixed model.</p>
-<p>If you get stuck, scroll down to read the Random Effect Check List box.</p>
-<p><br></p>
-<section id="barley-yield-example" class="level2">
-<h2 class="anchored" data-anchor-id="barley-yield-example">Barley yield example</h2>
-<p><img src="./img/barley.jpg" class="img-fluid" alt="a close up of barley growing with a black background."></p>
-<p>The effect of <code>variety</code> and type of nitrogen fertiliser <code>fertType</code> on the <code>yield</code> of barley plants, was tested in a field trial. The plants were grown in 20 different areas of the field called <code>area</code>, that were likely to vary in soil and water qualities that affected yield. The data was called <code>barley</code></p>
-<details>
-<summary>
-<strong>Answer</strong>
-</summary>
-<p>The random effect is <code>area</code> because we think it has an affect on yield and therefore want to control for it but we are not interested in how the area the plant is grown in affects the yield.</p>
+<p>Take your time to imagine each of the studies below, identifying the variables that is the <strong>random effect</strong> in each one and writing the <strong>code</strong> to run a mixed model. For example the code for the dragons was:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lmer</span>(yield <span class="sc">~</span> variety <span class="sc">+</span> fertType <span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>area), <span class="at">data =</span> barley)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mixed.lmer <span class="ot">&lt;-</span>  <span class="fu">lmer</span>(testScore <span class="sc">~</span> bodyLength <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>mountainRange), <span class="at">data =</span> dragons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</details>
-<p><br></p>
-</section>
-<section id="caterpillar-example" class="level2">
-<h2 class="anchored" data-anchor-id="caterpillar-example">Caterpillar example</h2>
-<p><img src="./img/cat.jpg" class="img-fluid" alt="a swallowtail caterpillar with green and black stripes with orange spots"></p>
-<p>We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We can only get 10 caterpillars from each female butterfly so use 14 females. For each of the 140 caterpillars, we note down which 1 to 14 <code>female</code> butterfly laid it, the development time <code>devTime</code> in hours and weight <code>wgt</code> in mg and call the dataset <code>butterflies</code>.</p>
-<details>
-<summary>
-<strong>Answer</strong>
-</summary>
-<p>The random effect is <code>female</code> because we don’t care about the differences between butterfly families but it probably has an affect on weight so we should account for it.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lmer</span>(wgt <span class="sc">~</span> devTime <span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>female), <span class="at">data =</span> butterflies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</details>
-<p><br></p>
-</section>
-<section id="petri-dish-example" class="level2">
-<h2 class="anchored" data-anchor-id="petri-dish-example">Petri dish example</h2>
-<p><img src="./img/petri.png" class="img-fluid" alt="a diagram of a cartoon petri dish with 10 yellow spots on it"></p>
-<p>The effect of two bacterial inhibitors <code>inhib</code> on bacterial <code>growth</code> is tested by growing 10 spots of bacteria per 20 petri dishes <code>dish</code>. Bacterial growth seemed to vary among the petri dishes. Data was called <code>bacteria</code>.</p>
-<details>
-<summary>
-<strong>Answer</strong>
-</summary>
-<p>The random effect is <code>dish</code> as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lmer</span>(growth <span class="sc">~</span> inhib <span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>dish), <span class="at">data =</span> bacteria)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</details>
-<p><br></p>
+<p>The following check list and information might help you.</p>
 <button type="button" class="btn btn-success">
 <p>Random variable check list<br>
 * Random effects are grouping factors. They are always categorical.<br>
@@ -608,77 +592,33 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 <p>When a random variable has less than 5 groups it is advisable to not have it as a random variable in a mixed model. Instead, include it in a model as another predictor. You may want to look at the interaction.</p>
 </button>
 <p><br></p>
-</section>
-</section>
-<section id="more-complex-mixed-models" class="level1">
-<h1>More complex mixed models</h1>
-<p>Some studies might need a <strong>random slope mixed model</strong> or a <strong>generalised mixed model</strong>. Others might have random effects that are <strong>crossed</strong> or <strong>nested</strong>.</p>
-<p>Being aware of these concepts will mean you can look out for them in your own studies.</p>
 <p><br></p>
-<section id="random-slope-mixed-model" class="level3">
-<h3 class="anchored" data-anchor-id="random-slope-mixed-model">Random slope mixed model</h3>
-<p>The mixed model we ran for the dragon data…</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mixed.lmer <span class="ot">&lt;-</span>  <span class="fu">lmer</span>(testScore <span class="sc">~</span> bodyLength <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>mountainRange), <span class="at">data =</span> dragons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>…was a <strong>random intercept</strong> model.</p>
-<p>Here’s the graph to accompany that.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="mixedmodels1_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Notice that the different coloured lines for each mountain range would have different <strong>intercepts</strong> but the same <strong>slope</strong> as each other. (The intercept is the point where a line crosses the y axis if it were that long.)</p>
-<p><br></p>
-<p>We could have run this mixed model instead…</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mixed.ranslope <span class="ot">&lt;-</span> <span class="fu">lmer</span>(testScore <span class="sc">~</span> bodyLength <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> bodyLength<span class="sc">|</span>mountainRange), <span class="at">data =</span> dragons) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>which is a <strong>random slope</strong> model.</p>
-<p>Here’s the corresponding graph</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="mixedmodels1_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Notice the lines for each mountain range have different intercepts <strong>AND</strong> slopes.</p>
-<p>Therefore, if your exploration of the data or understanding of the study system suggests that the relationship in each group of the random effect (i.e.&nbsp;in each mountainRange) is different, then use a random slope mixed model.</p>
-<p><strong>Challenge</strong> Take some time to do an internet search for another definition of the difference between random intercept and random slope mixed models.</p>
-<p><br></p>
-</section>
-<section id="generalised-mixed-models" class="level2">
-<h2 class="anchored" data-anchor-id="generalised-mixed-models">Generalised mixed models</h2>
-<p>Sometimes the response (dependent) variable is not continuous but a categorical variable. Just as you can use alternative <strong>generalized</strong> models instead of lm such as logistic or poisson, you can use other <strong>generalised mixed</strong> models.</p>
-<p>For example, imagine each of our dragons was scored as passing or failing the intelligence test making the response <code>passFail</code> binary. Then you would use a <strong>binary logistic mixed model</strong>.</p>
-<p><br></p>
-<p><strong>Challenge</strong></p>
-<p>Do an internet search to find the function and the code for a binominal mixed model. Adapt the code to run an analysis on this <a href="./data/dragons_binomial.csv">binomial dragon data</a> where the response variable <code>passFail</code> is if the dragon passed (1) or failed (0) the IQ test. The fixed effect is <code>bodyLength</code> and random effect is <code>mountainRange</code>.</p>
-<p>Once you have run the analysis, interpret the results (you might want to look back at the binomial response section of the linear model lesson) and write out the results in your script along with a suitable graph.</p>
+<section id="barley-yield-example" class="level2">
+<h2 class="anchored" data-anchor-id="barley-yield-example">Barley yield example</h2>
+<p><img src="./img/barley.jpg" class="img-fluid" alt="a close up of barley growing with a black background."></p>
+<p>The effect of <code>variety</code> and type of nitrogen fertiliser <code>fertType</code> on the <code>yield</code> of barley plants, was tested in a field trial. The plants were grown in 20 different areas of the field called <code>area</code>, that were likely to vary in soil and water qualities that affected yield. The data was called <code>barley</code></p>
 <div class="cell">
 
 </div>
+<p><br></p>
+</section>
+<section id="caterpillar-example" class="level2">
+<h2 class="anchored" data-anchor-id="caterpillar-example">Caterpillar example</h2>
+<p><img src="./img/cat.jpg" class="img-fluid" alt="a swallowtail caterpillar with green and black stripes with orange spots"></p>
+<p>We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We can only get 10 caterpillars from each female butterfly so use 14 females. For each of the 140 caterpillars, we note down which 1 to 14 <code>female</code> butterfly laid it, the development time <code>devTime</code> in hours and weight <code>wgt</code> in mg and call the dataset <code>butterflies</code>.</p>
 <div class="cell">
 
 </div>
-<p><br> <br></p>
-</section>
-<section id="nested-design" class="level2">
-<h2 class="anchored" data-anchor-id="nested-design">Nested design</h2>
-<p><strong>Challenge</strong></p>
-<p>Do an internet search to find an example of a study or experimental set up, that includes a nested design. You have 3 tasks:<br>
-* Type a simple description of the experiment<br>
-* Name the variables that are the <strong>response</strong>, the <strong>fixed effect</strong>, the <strong>random effects</strong> and what is nested in what.<br>
-* Write out an example of R code for a mixed model with this nested design.</p>
-<p>Tip - searching for an R tutorial or guide on a nested mixed model will provide both an example and the code.</p>
 <p><br></p>
 </section>
-<section id="crossed-random-effects" class="level2">
-<h2 class="anchored" data-anchor-id="crossed-random-effects">Crossed random effects</h2>
-<p><strong>Challenge</strong></p>
-<p>Do an internet search to find an example of a crossed (partial or fully) design. You have 3 tasks:<br>
-* Type a simple description of the experiment<br>
-* Name the variables that are the <strong>response</strong>, the <strong>fixed effect</strong>, the <strong>random effects</strong> and explain why it is crossed.<br>
-* Then write out an example of R code that would run a mixed model with crossed random effects.</p>
+<section id="petri-dish-example" class="level2">
+<h2 class="anchored" data-anchor-id="petri-dish-example">Petri dish example</h2>
+<p><img src="./img/petri.png" class="img-fluid" alt="a diagram of a cartoon petri dish with 10 yellow spots on it"></p>
+<p>The effect of two bacterial inhibitors <code>inhib</code> on bacterial <code>growth</code> is tested by growing 10 spots of bacteria per 20 petri dishes <code>dish</code>. Bacterial growth seemed to vary among the petri dishes. Data was called <code>bacteria</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lmer</span>(growth <span class="sc">~</span> inhib <span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>dish), <span class="at">data =</span> bacteria)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><br></p>
 <p><br></p>
 <p>Adapted from the <a href="https://ourcodingclub.github.io/">Coding Club</a> tutorial <a href="https://ourcodingclub.github.io/tutorials/mixed-models/#six">Introduction to Linear Mixed Models</a> by Gabriela K Hajduk.</p>

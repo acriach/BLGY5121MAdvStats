@@ -290,7 +290,7 @@ Generally, if models are within 2 AICc units of each other they are very similar
 
 <br>
 
-![](./img/blue_dragon.png){fig-alt="one blue cartoon dragon}"
+![](./img/blue_dragon.png){fig-alt="one blue cartoon dragon"}
 
 
 So we can conclude that body size has no effect on dragon intelligence and therefore we will be able to train the small ones and not use the big scary ones!
@@ -299,116 +299,6 @@ If we had not accounted for mountain range in a mixed model we may have came to 
 
 <br>
 
-# Identifying when a mixed model is needed
-
-There are lots of available guides to help you run mixed models in R. 
-
-* This lesson is adapted from Hajduk's [Introduction to Linear Mixed Models](https://ourcodingclub.github.io/tutorials/mixed-models/#six) which gives more details than here.
-* There is also [Environmental Computing](https://environmentalcomputing.net/statistics/mixed-models/) mixed model lessons.
-
-<br>
-
-However, knowing when there is a random effect and therefore when a mixed model might be needed is more difficult.
-
-Take your time to imagine each of the studies below, identifying the variables that is the **random effect** in each one and writing the **code** to run a mixed model.
-
-If you get stuck, scroll down to read the Random Effect Check List box.
-
-<br>
-
-## Barley yield example
-
-![](./img/barley.jpg){fig-alt="a close up of barley growing with a black background."}
-
-
-The effect of `variety` and type of nitrogen fertiliser `fertType` on the `yield` of barley plants, was tested in a field trial. The plants were grown in 20 different areas of the field called `area`, that were likely to vary in soil and water qualities that affected yield.
-The data was called `barley`
-
-<details>
-  <summary>**Answer**</summary>
-The random effect is `area` because we think it has an affect on yield and therefore want to control for it but we are not interested in how the area the plant is grown in affects the yield.
-```{r}
-#| eval: false
-model <- lmer(yield ~ variety + fertType +(1|area), data = barley)
-```
-
-</details>
-
-<br>
-
-## Caterpillar example
-
-![](./img/cat.jpg){fig-alt="a swallowtail caterpillar with green and black stripes with orange spots"}
-
-
-We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We can only get 10 caterpillars from each female butterfly so use 14 females. For each of the 140 caterpillars, we note down which 1 to 14 `female` butterfly laid it, the development time `devTime` in hours and weight `wgt` in mg and call the dataset `butterflies`.
-
-<details>
-  <summary>**Answer**</summary>
-The random effect is `female` because we don't care about the differences between butterfly families but it probably has an affect on weight so we should account for it.
-```{r}
-#| eval: false
-model <- lmer(wgt ~ devTime +(1|female), data = butterflies)
-```
-
-</details>
-
-<br>
-
-## Petri dish example
-
-![](./img/petri.png){fig-alt="a diagram of a cartoon petri dish with 10 yellow spots on it"}
-
-
-The effect of two bacterial inhibitors `inhib` on bacterial `growth` is tested by growing 10 spots of bacteria per 20 petri dishes `dish`. Bacterial growth seemed to vary among the petri dishes. Data was called `bacteria`.
-
-<details>
-  <summary>**Answer**</summary>
-The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.
-```{r}
-#| eval: false
-model <- lmer(growth ~ inhib +(1|dish), data = bacteria)
-```
-
-</details>
-
-<br>
-
-<button type="button" class="btn btn-success">
-
-Random variable check list  
-* Random effects are grouping factors. They are always categorical.  
-* Usually you are not interested in a random effect's impact on the response variable.  
-* Usually you don't care about the differences between the levels/groups of the random variable.  
-* You suspect the random variable has an effect and therefore want to control for it.
-  
-</button>
-
-<br>
-
-<button type="button" class="btn btn-success">
-
-A variable might be a random effect and fixed effect. Be clear on what hypothesis you are testing. 
-
-</button>
-
-<br>
-
-<button type="button" class="btn btn-success">
-
-When a random variable has less than 5 groups it is advisable to not have it as a random variable in a mixed model. Instead, include it in a model as another predictor. You may want to look at the interaction. 
-
-</button>
-
-<br>
-
-# More complex mixed models
-
-Some studies might need a **random slope mixed model** or a **generalised mixed model**. Others might have random effects that are **crossed** or **nested**. 
-
-Being aware of these concepts will mean you can look out for them in your own studies.
-
-<br>
 
 ### Random slope mixed model
 
@@ -460,69 +350,114 @@ Notice the lines for each mountain range have different intercepts **AND** slope
 Therefore, if your exploration of the data or understanding of the study system suggests that the relationship in each group of the random effect (i.e. in each mountainRange) is different, then use a random slope mixed model.
 
 **Challenge**
-Take some time to do an internet search for another definition of the difference between random intercept and random slope mixed models.
+Take some time to do an internet search for another definition of the difference between random intercept and random slope mixed models. Write this definition in your own words in your script.
 
 <br>
 
-## Generalised mixed models
+<br>
 
-Sometimes the response (dependent) variable is not continuous but a categorical variable. Just as you can use alternative **generalized** models instead of lm such as logistic or poisson, you can use other **generalised mixed** models.
+# Identifying when a mixed model is needed
 
-For example, imagine each of our dragons was scored as passing or failing the intelligence test making the response `passFail` binary. Then you would use a **binary logistic mixed model**. 
+There are lots of available guides to help you run mixed models in R. 
+
+* This lesson is adapted from Hajduk's [Introduction to Linear Mixed Models](https://ourcodingclub.github.io/tutorials/mixed-models/#six) which gives more details than here.
+* There is also [Environmental Computing](https://environmentalcomputing.net/statistics/mixed-models/) mixed model lessons.
 
 <br>
 
-**Challenge**
+However, knowing when there is a random effect and therefore when a mixed model might be needed is more difficult.
 
-Do an internet search to find the function and the code for a binominal mixed model. Adapt the code to run an analysis on this [binomial dragon data](./data/dragons_binomial.csv) where the response variable `passFail` is if the dragon passed (1) or failed (0) the IQ test. The fixed effect is `bodyLength` and random effect is `mountainRange`. 
+Take your time to imagine each of the studies below, identifying the variables that is the **random effect** in each one and writing the **code** to run a mixed model. For example the code for the dragons was:
+```{r}
+mixed.lmer <-  lmer(testScore ~ bodyLength + (1|mountainRange), data = dragons)
+```
 
-Once you have run the analysis, interpret the results (you might want to look back at the binomial response section of the linear model lesson) and write out the results in your script along with a suitable graph.
+
+The following check list and information might help you.
+
+<button type="button" class="btn btn-success">
+
+Random variable check list  
+* Random effects are grouping factors. They are always categorical.  
+* Usually you are not interested in a random effect's impact on the response variable.  
+* Usually you don't care about the differences between the levels/groups of the random variable.  
+* You suspect the random variable has an effect and therefore want to control for it.
+  
+</button>
+
+<br>
+
+<button type="button" class="btn btn-success">
+
+A variable might be a random effect and fixed effect. Be clear on what hypothesis you are testing. 
+
+</button>
+
+<br>
+
+<button type="button" class="btn btn-success">
+
+When a random variable has less than 5 groups it is advisable to not have it as a random variable in a mixed model. Instead, include it in a model as another predictor. You may want to look at the interaction. 
+
+</button>
+
+<br>
+
+<br>
+
+## Barley yield example
+
+![](./img/barley.jpg){fig-alt="a close up of barley growing with a black background."}
+
+
+The effect of `variety` and type of nitrogen fertiliser `fertType` on the `yield` of barley plants, was tested in a field trial. The plants were grown in 20 different areas of the field called `area`, that were likely to vary in soil and water qualities that affected yield.
+The data was called `barley`
+
 
 
 ```{r}
-#| echo: false
 #| eval: false
-dragons2 <- read.csv(file = "data/dragons_binomial.csv")
-library(lme4)
+#| echo: false
+# The random effect is `area` because we think it has an affect on yield and therefore want to control for it but we are not interested in how the area the plant is grown in affects the yield.
+model <- lmer(yield ~ variety + fertType +(1|area), data = barley)
 ```
+
+
+<br>
+
+## Caterpillar example
+
+![](./img/cat.jpg){fig-alt="a swallowtail caterpillar with green and black stripes with orange spots"}
+
+
+We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We can only get 10 caterpillars from each female butterfly so use 14 females. For each of the 140 caterpillars, we note down which 1 to 14 `female` butterfly laid it, the development time `devTime` in hours and weight `wgt` in mg and call the dataset `butterflies`.
+
 
 ```{r}
-#| echo: false
 #| eval: false
-model <- glmer(passFail ~ bodyLength + (1|mountainRange), data = dragons2, family = binomial)
-# To check for linearity they may try to bootstrap the analysis to get a better graph like in the binomial generalised linear model.
-summary(model) # for glm esp binomial p values are unreliable but if look at the estimate for bodylength is pretty much 0.
-anova(model) # gives F value but not p. Possibly because can't really get p values for mixed models.
-full.model <- glmer(passFail ~ bodyLength + (1|mountainRange), data = dragons2, family = binomial)
-reduced.model <- glmer(passFail ~ 1 + (1|mountainRange), data = dragons2, family = binomial)
-anova(full.model, reduced.model) # only 2 units difference between AIC and p values is 0.9469 so not effect
+#| echo: false
+# The random effect is `female` because we don't care about the differences between butterfly families but it probably has an affect on weight so we should account for it.
+model <- lmer(wgt ~ devTime +(1|female), data = butterflies)
 ```
 
-<br>
-<br>
-
-## Nested design
-
-**Challenge**
-
-Do an internet search to find an example of a study or experimental set up, that includes a nested design. You have 3 tasks:  
-* Type a simple description of the experiment  
-* Name the variables that are the **response**, the **fixed effect**, the **random effects** and what is nested in what.  
-* Write out an example of R code for a mixed model with this nested design. 
-
-Tip - searching for an R tutorial or guide on a nested mixed model will provide both an example and the code.
-
 
 <br>
 
-## Crossed random effects
+## Petri dish example
 
-**Challenge**
+![](./img/petri.png){fig-alt="a diagram of a cartoon petri dish with 10 yellow spots on it"}
 
-Do an internet search to find an example of a crossed (partial or fully) design. You have 3 tasks:  
-* Type a simple description of the experiment  
-* Name the variables that are the **response**, the **fixed effect**, the **random effects** and explain why it is crossed.  
-* Then write out an example of R code that would run a mixed model with crossed random effects.
+
+The effect of two bacterial inhibitors `inhib` on bacterial `growth` is tested by growing 10 spots of bacteria per 20 petri dishes `dish`. Bacterial growth seemed to vary among the petri dishes. Data was called `bacteria`.
+
+
+```{r}
+#| eval: false
+#| #| echo: false
+# The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.
+model <- lmer(growth ~ inhib +(1|dish), data = bacteria)
+```
+
 
 <br>
 

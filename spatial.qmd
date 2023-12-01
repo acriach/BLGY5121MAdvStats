@@ -341,21 +341,26 @@ summary(model1)
 
 It is useful to learn how to download datasets from various sources. Try downloading the seabird data from [Kaggle](https://www.kaggle.com/datasets/saurabhshahane/predicting-animal-behavior-using-gps/)
 
-If you get stuck you can use this source -[seabird dataset](./data/seabirds.csv)
+If you get stuck you can use this source but it only has a subset of the data - [seabird dataset](./data/smallseabirds.csv)
 
 
 ```{r}
 #| echo: false
 #| eval: false
-seabirds <- read.table(file = "data/seabirds.csv", header = TRUE, sep = ",")
-seabirds$maxDepth <- seabirds$max_depth.m
-seabirds <- subset(seabirds, select = -max_depth.m) # change variable name
-library(ncf) 
-model1 <- lm(maxDepth ~ species, data=seabirds)
-summary(model1)
+# seabirds <- read.table(file = "data/seabirds.csv", header = TRUE, sep = ",") # too big to commit to github
+
 # take a subset of data so it can run as dataset is massive
 set.seed(123)  # Set a seed for reproducibility
 sampled_seabirds <- seabirds[sample(nrow(seabirds), 10000, replace = FALSE), ]
+# read this one out and make avaliable incase they have problems getting data from kaggle
+write.csv(sampled_seabirds, "data/smallseabirds.csv", row.names = FALSE)
+
+sampled_seabirds <- read.table(file = "data/smallseabirds.csv", header = TRUE, sep = ",")
+sampled_seabirds$maxDepth <- sampled_seabirds$max_depth.m
+sampled_seabirds <- subset(sampled_seabirds, select = -max_depth.m)  # change variable name
+library(ncf) 
+model1 <- lm(maxDepth ~ species, data=bigseabirds)
+summary(model1)
 model2 <- lm(maxDepth ~ species, data=sampled_seabirds)
 summary(model2)
 correlog_object <- spline.correlog(sampled_seabirds$lat, sampled_seabirds$lon, residuals(model2), resamp=0, latlon=TRUE)

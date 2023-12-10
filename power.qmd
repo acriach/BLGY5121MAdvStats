@@ -374,14 +374,20 @@ There may be more than one log odds since there are two independent variables (T
 ```{r}
 #| echo: false
 #| eval: false
+# I think a better method is the first one.
+library(WebPower)
+#For only time independent with 5min or 10min only 2 levels
+wp.logistic(alpha = 0.05, p0=(5/30), p1=(13/27), n = 57, power = NULL, family = "Bernoulli")
+#The p0 is "The baseline probability, representing the probability of observing the event of interest when the predictor variables are set to 0." which I took to be the number of times the response was 1 out of all time for time was 5min ie there's 5 1s in the response out of a total of 30 samples for 5min. Then the p1 is the probability you get a crab present out of all the 10min samples.
+
 library(pwr)
 coef(crab_glm)
 odds_ratio_Dist0vs2 <- exp(-8.109302e-01) # odds ratio for Distance which has 3 levels
-pwr.2p.test(h = log(odds_ratio_Dist0vs2), # use the log of the log odds to get odds ratio
+pwr.2p.test(h = log(odds_ratio_Dist0vs2), # use the log of the odds ratio to get odds ratio
             sig.level = 0.05,
             n = 57, # if take n to be total samples
             power = NULL) # power = 0.99
-pwr.2p.test(h = log(odds_ratio_Dist0vs2), # use the log of the log odds to get odds ratio
+pwr.2p.test(h = log(odds_ratio_Dist0vs2),
             sig.level = 0.05,
             n = 20, # if take n to be number of crabs at each distance
             power = NULL) # power = 0.72

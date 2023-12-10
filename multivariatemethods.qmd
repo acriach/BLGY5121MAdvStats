@@ -215,13 +215,13 @@ Each sample in [Mühlbauer et al., 2021](https://doi.org/10.1016/j.baae.2021.05.
 
 In the figure below each sampled area is a dot (with colours representing different seasons), bird species in black text and environmental characteristics in grey text. The grey arrows show which environmental characteristics correspond with birds in those areas.
 
-![](./img/bird_ca.jpg){fig-alt="a box with many dots and polygons in coloured light blue, orange or green. Most dots are clustered in the bottom right. Grey arrows from the centre of the cluster go left and right labelled with abbreviations of environmental measurements such as sap, water, svol. Black text indicates abbreviations of bird species such as CoF, CoL, PyP. x axis label is "Axis 1 (10%)" and y is "Axis 2 (7%)"."}
+![](./img/bird_ca.jpg){fig-alt="a box with many dots and polygons in coloured light blue, orange or green. Most dots are clustered in the bottom right. Grey arrows from the centre of the cluster go left and right labelled with abbreviations of environmental measurements such as sap, water, svol. Black text indicates abbreviations of bird species such as CoF, CoL, PyP. x axis label is Axis 1 (10%) and y is Axis 2 (7%)."}
 
 <br>
 
 ## Example 2
 
-[Guellaf et al., (2021)](https://doi.org/10.1007/s42974-021-00058-3) collected data from 19 sites on abundance of aquatic insect species and the environmental factors of those sites. A canonical correspondence analysis indicated various relationships such as which species were typically found in areas where the current speed was high.
+[Guellaf et al. (2021)](https://doi.org/10.1007/s42974-021-00058-3) collected data from 19 sites on abundance of aquatic insect species and the environmental factors of those sites. A canonical correspondence analysis indicated various relationships such as which species were typically found in areas where the current speed was high.
 
 Red arrows are water characteristics, blue triangles are insect species and red circles are sites.
 
@@ -257,6 +257,8 @@ Let's run the analysis but make a common mistake.
 ca_wood <- cca(wood)
 ```
 
+**Challenge**
+
 Figure out what's causing this error and have a go at debugging it.
 
 ```{r}
@@ -274,8 +276,7 @@ The information contained within the cca object can be seen using `str()`.
 #| eval: false
 str(ca_wood)
 ```
-  
-<br>
+
 
 ```{r}
 #| echo: true
@@ -318,7 +319,7 @@ Cluster analysis is used to group samples based on multiple variables that have 
 
 ## Example 1 
 
-[Ding et al., 2022](https://doi.org/10.3390/genes13081364) measured the expression of over 100,000 genes in 6 individuals (named FM, SM, FF, SF, EA and LA) of a wax-producing bug. The dendrogram in (a) below, shows how cluster analysis revealed one of the three technical replicates from the insect EA was not reliable and should be excluded. 
+[Ding et al. (2022)](https://doi.org/10.3390/genes13081364) measured the expression of over 100,000 genes in 6 individuals (named FM, SM, FF, SF, EA and LA) of a wax-producing bug. The dendrogram in (a) below, shows how cluster analysis revealed one of the three technical replicates from the insect EA was not reliable and should be excluded. 
 
 The graph in (c) below, demonstrates how cluster analysis grouped these 100,000 genes into 19 "modules". Further analyses could then narrow down what groups of genes were associated with higher wax secretions. 
 
@@ -330,7 +331,7 @@ The graph in (c) below, demonstrates how cluster analysis grouped these 100,000 
 
 ## Example 2 
 
-[Sivaprakasam Padmanaban et al., 2022](https://doi.org/10.3390/metabo12020093) measured the quantities of many small chemicals called metabolites in popular tree leaves. Cluster analysis separates the old and young leaves in the dendrogram in (b). PCA is also used (a).
+[Sivaprakasam Padmanaban et al. (2022)](https://doi.org/10.3390/metabo12020093) measured the quantities of many small chemicals called metabolites in popular tree leaves. Cluster analysis separates the old and young leaves in the dendrogram in (b). PCA is also used (a).
 
 ![](./img/metabolites_dendrogram.jpg){fig-alt="three images from a paper. The first is a circle within a square with a scatterplot of pink dots on teh right and black dots on teh left. The second is a dedrogram separating black and pink samples with a heat mat in green and red below. The third is a venn diagram with 4 main areas and numbers in the overlapping areas."}
 

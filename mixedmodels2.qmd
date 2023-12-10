@@ -125,7 +125,7 @@ Report the analysis in words as clearly as you can. Include a graph. Can someone
 
 # Nested design
 
-Some experiments have what's called a nested design. For example the lizard experiment would be nested if the lizards had been in groups within tanks rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add `tank` into the model. Since not every individual is in every tank ie they are only in one tank,  `lizard` is nested within `tank`.
+Some experiments have what's called a nested design. For example the lizard experiment would be nested if the lizards had been housed in groups in tanks rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add `tank` into the model. Since not every individual is in every tank ie they are only in one tank,  `lizard` is nested within `tank`.
 
 Another common example of nested variables occurs when data is taken from students but the students are at four different universities. Therefore the students are nested within the universities.
 

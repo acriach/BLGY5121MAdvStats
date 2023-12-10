@@ -177,6 +177,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="./metaanalyses.html">
  <span class="menu-text">Meta-analyses</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./And Finally.html">
+ <span class="menu-text">And Finally</span></a>
+  </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -238,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Dragon example</h1>
 <section id="linear-models-reminder" class="level2">
 <h2 class="anchored" data-anchor-id="linear-models-reminder">Linear models reminder</h2>
-<p>We will use a fictional study system - dragons! If you are using R for yourself, click this <a href="https://raw.githubusercontent.com/acriach/BLGY5112M/main/data/dragons.csv">link to the dragon data</a> and right click to save it in your data file in your R project.</p>
+<p>We will use a fictional study system - dragons! Click this <a href="https://raw.githubusercontent.com/acriach/BLGY5112M/main/data/dragons.csv">link to the dragon data</a> and save it in your data file in your R project.</p>
 <p><img src="./img/dragons.png" class="img-fluid" alt="Three colourful cartoon dragons."></p>
 <p>Imagine we went to eight mountain ranges (<code>mountainRange</code>) and collected data on the intelligence (<code>testScore</code>) and size (<code>bodyLength</code>) of 480 dragons. We want to know if size affects their intelligence since we want intelligent dragons that we can train but that aren’t too big and scary!</p>
 <p>Load the csv dataset</p>
@@ -282,7 +286,7 @@ Multiple R-squared:  0.1529,    Adjusted R-squared:  0.1511
 F-statistic: 86.25 on 1 and 478 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>View the ‘Code Explained’ if using lm is new to you.</p>
+<p>View the ‘Code Explained’ if using lm is relatively new to you.</p>
 <details>
 <summary>
 <strong>Code Explained</strong>
@@ -556,7 +560,8 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 </div>
 <p>Notice the lines for each mountain range have different intercepts <strong>AND</strong> slopes.</p>
 <p>Therefore, if your exploration of the data or understanding of the study system suggests that the relationship in each group of the random effect (i.e.&nbsp;in each mountainRange) is different, then use a random slope mixed model.</p>
-<p><strong>Challenge</strong> Take some time to do an internet search for another definition of the difference between random intercept and random slope mixed models. Write this definition in your own words in your script.</p>
+<p><strong>Challenge</strong></p>
+<p>Take some time to do an internet search for another definition of the difference between random intercept and random slope mixed models. Write this definition in your own words in your script.</p>
 <p><br></p>
 <p><br></p>
 </section>

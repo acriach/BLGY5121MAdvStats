@@ -10,7 +10,7 @@ execute:
 
 ## Linear models reminder
 
-We will use a fictional study system - dragons! If you are using R for yourself, click this [link to the dragon data](https://raw.githubusercontent.com/acriach/BLGY5112M/main/data/dragons.csv) and right click to save it in your data file in your R project.
+We will use a fictional study system - dragons! Click this [link to the dragon data](https://raw.githubusercontent.com/acriach/BLGY5112M/main/data/dragons.csv) and save it in your data file in your R project.
 
 ![](./img/dragons.png){fig-alt="Three colourful cartoon dragons."}
 
@@ -34,7 +34,7 @@ basic.lm <- lm(testScore ~ bodyLength, data = dragons)
 summary(basic.lm)
 ```
 
-View the 'Code Explained' if using lm is new to you.
+View the 'Code Explained' if using lm is relatively new to you.
 
 <details>
   <summary>**Code Explained**</summary>
@@ -350,6 +350,7 @@ Notice the lines for each mountain range have different intercepts **AND** slope
 Therefore, if your exploration of the data or understanding of the study system suggests that the relationship in each group of the random effect (i.e. in each mountainRange) is different, then use a random slope mixed model.
 
 **Challenge**
+
 Take some time to do an internet search for another definition of the difference between random intercept and random slope mixed models. Write this definition in your own words in your script.
 
 <br>

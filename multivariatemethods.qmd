@@ -229,7 +229,7 @@ Red arrows are water characteristics, blue triangles are insect species and red 
 
 ## Running in R
 
-There is an imaginary nature reserve with different habitats such as open grassland, old woodland, monocultures of trees and mixes of either 2, 5 or 10 species of tree. The abundance of 14 different species of plant are counted in these different habitats.
+There is an imaginary nature reserve with different habitats such as open grassland, old woodland, monocultures of trees and mixes of either 2, 5 or 10 species of tree. The abundance of 14 different species of plant are counted in these different habitats. [wood data](./data/wooddata.csv)
 
 ```{r}
 #| echo: true

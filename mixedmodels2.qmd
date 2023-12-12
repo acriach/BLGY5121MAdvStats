@@ -72,7 +72,7 @@ Decide what a suitable graph would be and create one making sure it's formatted.
 
 ## Lizards eating
 
-Imagine an experiment where lizards in tanks are observed everyday for 14 days to see if they eat or not (`lizards$eat`). Some are in a control group with dead prey and some are in a treatment group with live prey. There are males and females.
+Imagine an experiment where lizards in individual tanks are observed everyday for 14 days to see if they eat or not (`lizards$eat`). Some are in a control group with dead prey and some are in a treatment group with live prey. There are males and females. [lizard data](./data/lizard.csv)
 
 ```{r}
 lizards <- read.csv(file = "data/lizard.csv")
@@ -117,7 +117,7 @@ anova(full.model, reduced.model)
 
 **Challenge part 2**
 
-Report the analysis in words as clearly as you can. Include a graph. Can someone else understand the results from what you have written?
+Report the analysis in words as clearly as you can. Include a graph. Ask someone else if they can understand the results from what you have written?
 
 
 <br>
@@ -125,7 +125,7 @@ Report the analysis in words as clearly as you can. Include a graph. Can someone
 
 # Nested design
 
-Some experiments have what's called a nested design. For example the lizard experiment would be nested if the lizards had been housed in groups in tanks rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add `tank` into the model. Since not every individual is in every tank ie they are only in one tank,  `lizard` is nested within `tank`.
+Some experiments have what's called a nested design. For example the lizard experiment would be nested if the lizards had been housed in groups in tanks rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add `tank` into the model. Since not every individual is in every tank ie each one is only in one tank,  `lizard` is nested within `tank`.
 
 Another common example of nested variables occurs when data is taken from students but the students are at four different universities. Therefore the students are nested within the universities.
 

@@ -6,8 +6,6 @@ execute:
   message: false
 ---
 
-# Finally
-
 ## How to share code
 
 Ideas around sharing code are not new as this [2015 post](https://ramblingsofanecologa.wordpress.com/2015/10/23/publish-and-share-your-code/) shows.

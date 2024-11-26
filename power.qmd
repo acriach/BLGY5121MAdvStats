@@ -139,7 +139,7 @@ In the future (and already in some disciplines) conventions might change to use,
 
 # Power analyses in R
 
-There are various packages which do power analysis in R. [pwr](https://cran.r-project.org/web/packages/pwr/index.html) is for simpler analyses such as t tests and ANOVAs, up to `lm` and [simR](https://cran.r-project.org/web/packages/simr/index.html) is for more complex mixed model glms.
+There are various packages which do power analysis in R. [pwr](https://cran.r-project.org/web/packages/pwr/index.html) is for simpler analyses such as t tests and ANOVAs, up to `lm`. [simR](https://cran.r-project.org/web/packages/simr/index.html) and [WebPower](https://cran.r-project.org/web/packages/WebPower/WebPower.pdf) are for more complex mixed model glms.
 
 First, download and install the package.
 
@@ -293,13 +293,11 @@ Would you change the number of birds that you initially thought you would test a
 
 
 <details>
-  <summary>**Possible Answer**</summary>
+  <summary>**Hints**</summary>
 
-Suppose you planned to test 50 birds (n = 25 per group). And used the effect size d = 0.29 as reported in [Osbrink et al, 2021](https://doi.org/10.1098/rspb.2020.2851).
-```{r}
-pwr.t.test(n = 25, d = 0.29, sig.level = 0.05, power = NULL)
-```
-Power would be 0.17 so it would only be worthwhile doing the study if it was feasible to increase the number of birds.
+Before staring write down the number of birds in each group and in total you would plan to use.
+
+Use the effect size d = 0.29 as reported in [Osbrink et al, 2021](https://doi.org/10.1098/rspb.2020.2851).
 
 </details>
 
@@ -364,8 +362,8 @@ crab_glm <- glm(CrabPres ~ Time * Dist, family = "binomial", data = crabs)
 <details>
   <summary>**Hints**</summary>
 
-You will have to find out what function is suitable for binomial regression (sometimes called logistic regression).  
-The effect size for a bionomial regression is odds ratios. The coefficient given by R is the log odds.    
+You will have to find out what power function is best for binomial regression (sometimes called logistic regression).  
+The effect size for a binomial regression is odds ratios. The coefficient given by R is the log odds.    
 There may be more than one log odds since there are two independent variables (Time and Distance) with multiple levels.  
 
 </details>

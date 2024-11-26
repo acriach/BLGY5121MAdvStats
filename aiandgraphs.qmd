@@ -22,9 +22,9 @@ You MUST NOT use AI to write text for your assignments!
 
 **Challenge**
 
-Create an account with [ChatGPT3.5](https://openai.com/) (freeversion), [Google bard](https://bard.google.com/) or similar AI. Use it in the challenges below to help you write code.
+Go to [copilot.microsoft.com](copliot.microsoft.com) use your Uni of Leeds IT account to sign in. The shield in the top right tells you it is secure. Use it in the challenges below to help you write code.
 
-Try to get the code to run in R. If it fails try to rephrase your prompt to the AI. 
+Try to get the code to run in R. If it fails try to rephrase your prompt to copilot. 
 
 <br>
 
@@ -112,23 +112,25 @@ Graph arrangements like this might be called subplots, panels or grids.
 
 ### Reflect on using AI
 
-Did the R code always work first time? Did you or the AI correct it?
+Did the R code always work first time? Did you or copilot correct it?
 
 Did you ask the AI to address two problems at once or one at a time and what worked?
 
 Could you have been more specific in your question?
 
-Did you give the AI the raw data? Is it a good idea to give your data to AI software?
+Did you give copilot the code and error?
 
 <br>
 
 ### Citing AI
 
-Some norms are emerging for correctly crediting AI.
+The [university has guidance](https://generative-ai.leeds.ac.uk) on stating that you have used AI in an acknowledgement or declaration section at the end of your work. An example is below.
 
-One suggestion is to state in the methods section what part of the work you used AI for, what software was used and what you asked it to do.
+"I acknowledge the use of Copilot (copilot.microsoft.com) to write and debug parts of my R code."
 
-For example you may write "The R code used to run a power analysis on the chaffinch data was written using artificial intelligence software ChatGPT 3.5 (OpenAI, 2023).
+Alternatively, you could cite in the methods section what part of the work you used AI for, what software was used and what you asked it to do.
+
+For example "The R code used to run a power analysis on the chaffinch data was written using artificial intelligence software ChatGPT 3.5 (OpenAI, 2023).
 
 The reference would be "OpenAi. 2023. ChatGPT (26 Oct version) [Large language model]. https://chat.opanai.com/chat"
 

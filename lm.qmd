@@ -123,7 +123,7 @@ confint(model)
   
 In summary, you could report
 
->The model (log(plant height) = -0.22566 + 0.0421.temperature, R^2 = 0.246) was significant (F(1,176) = 57.5, p < 0.001) with temperature significantly predicting (t = 7.583, p < 0.001) the height of the plants. This means that when temperature increases by 1 degree the plant height increases by 0.042 (CI 0.031, 0.053).
+>The model (log(plant height) = -0.22566 + 0.0421.temperature, R^2^ = 0.246) was significant (F~1,176~ = 57.5, p < 0.001) with temperature significantly predicting (t = 7.583, p < 0.001) the height of the plants. This means that when temperature increases by 1 degree the plant height increases by 0.042 (CI 0.031, 0.053).
 
 If you have run several analyses (or if  there is more than one predictor), it may be useful to present the results as a table with coefficient values, standard errors and *p*-values for each explanatory variable.  What parts you choose to report is down to discipline, style of the journal or what the writer thinks should be emphasised to answer the results question.
 

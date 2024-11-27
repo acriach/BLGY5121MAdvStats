@@ -368,11 +368,7 @@ There are lots of available guides to help you run mixed models in R.
 
 However, knowing when there is a random effect and therefore when a mixed model might be needed is more difficult.
 
-Take your time to imagine each of the studies below, identifying the variables that is the **random effect** in each one and writing the **code** to run a mixed model. For example the code for the dragons was:
-```{r}
-mixed.lmer <-  lmer(testScore ~ bodyLength + (1|mountainRange), data = dragons)
-```
-
+Complete the Challenges below for the three senarios.
 
 The following check list and information might help you.
 
@@ -406,23 +402,27 @@ When a random variable has less than 5 groups it is advisable to not have it as 
 
 <br>
 
-## Barley yield example
+## Petri dish example
 
-![](./img/barley.jpg){fig-alt="a close up of barley growing with a black background."}
+![](./img/petri.png){fig-alt="a diagram of a cartoon petri dish with 10 yellow spots on it"}
 
+The effect of two bacterial inhibitors `inhib` on bacterial `growth` is tested by growing 10 spots of bacteria per 20 petri dishes `dish`. Bacterial growth seemed to vary among the petri dishes perhaps according to the position of the petri dish in the heated room. Data was called `bacteria`.
 
-The effect of `variety` and type of nitrogen fertiliser `fertType` on the `yield` of barley plants, was tested in a field trial. The plants were grown in 20 different areas of the field called `area`, that were likely to vary in soil and water qualities that affected yield.
-The data was called `barley`
+**Challenge**
 
-
+Identifying the variable that is the **random effect** and write the **code** to run a mixed model. For example the code for the dragons was:
+```{r}
+mixed.lmer <-  lmer(testScore ~ bodyLength + (1|mountainRange), data = dragons)
+```
 
 ```{r}
 #| eval: false
-#| echo: false
-# The random effect is `area` because we think it has an affect on yield and therefore want to control for it but we are not interested in how the area the plant is grown in affects the yield.
-model <- lmer(yield ~ variety + fertType +(1|area), data = barley)
+#| #| echo: false
+# The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.
+model <- lmer(growth ~ inhib +(1|dish), data = bacteria)
 ```
 
+<br>
 
 <br>
 
@@ -431,32 +431,101 @@ model <- lmer(yield ~ variety + fertType +(1|area), data = barley)
 ![](./img/cat.jpg){fig-alt="a swallowtail caterpillar with green and black stripes with orange spots"}
 
 
-We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We can only get 10 caterpillars from each female butterfly so use 14 females. For each of the 140 caterpillars, we note down which 1 to 14 `female` butterfly laid it, the development time `devTime` in hours and weight `wgt` in mg and call the dataset `butterflies`.
+We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We have various numbers of caterpillars from 14 `female` butterflies. For each of the caterpillars, we have the development time in days `devTime` and `weight` in g. Click this [link to the caterpillar data](https://raw.githubusercontent.com/acriach/BLGY5112M/main/data/caterpillar.csv), save it in your data file in your R project and read it in.
+
+**Challenges**
+
+Visualise the data using a suitable graph.
+
+Write the code for a mixed model. Then use the estimate, likelihood ratio test and AIC values to determine if there is an effect of `devTime` on `weight`. Investigate any messages that R gives you.
 
 
 ```{r}
 #| eval: false
 #| echo: false
 # The random effect is `female` because we don't care about the differences between butterfly families but it probably has an affect on weight so we should account for it.
-model <- lmer(wgt ~ devTime +(1|female), data = butterflies)
-```
+caterpillar <- read.csv(file = "data/caterpillar.csv", header = TRUE)
 
+hist(caterpillar$weight)
+
+plot(caterpillar$devTime, caterpillar$weight) # could colour by female
+
+model <- lmer(weight ~ devTime +(1|female), data = caterpillar) # no message because REML = TRUE
+summary(model) # estimate suggests is sig but that's not true
+
+full.lmer <- lmer(weight ~ devTime +(1|female), data = caterpillar, REML = FALSE) # get ingular boundary message so should look into that
+reduced.lmer <- lmer(weight ~ 1 + (1|female), data = caterpillar, REML = FALSE)
+anova(reduced.lmer, full.lmer)
+
+# Actual model would end up using
+modellm <- lm(weight ~ devTime, data = caterpillar)
+summary(modellm)
+```
 
 <br>
 
-## Petri dish example
+## Barley yield example
 
-![](./img/petri.png){fig-alt="a diagram of a cartoon petri dish with 10 yellow spots on it"}
+![](./img/barley.jpg){fig-alt="a close up of barley growing with a black background."}
 
 
-The effect of two bacterial inhibitors `inhib` on bacterial `growth` is tested by growing 10 spots of bacteria per 20 petri dishes `dish`. Bacterial growth seemed to vary among the petri dishes. Data was called `bacteria`.
+The effect of `variety` and type of nitrogen fertiliser `fertType` on the `yield` of barley plants, was tested in a field trial. The plants were grown in 8 different areas of the field called `plots`, that were likely to vary in soil and water qualities that affected yield.
+The data was called `barley`
 
+**Challenge**
+
+Analyse the data. Then report the results - ie is there a significant difference in variety and type of fertiliser on yield? Include directions (which is higher or lower).
 
 ```{r}
 #| eval: false
-#| #| echo: false
-# The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.
-model <- lmer(growth ~ inhib +(1|dish), data = bacteria)
+#| echo: false
+barley <- read.csv(file = "data/barley.csv", header = TRUE)
+
+hist(barley$yield)
+
+ggplot(barley, aes(x = fertType, y = yield, colour = variety)) +
+  geom_point(size = 2) +
+  theme_classic() +
+  theme(legend.position = "none")
+
+# Define a vector of colors for each plot
+plot_colors <- c("1" = "red", "2" = "blue", "3" = "green", "4" = "purple", "5" = "orange", "6" = "pink", "7" = "brown", "8" = "yellow")
+
+#fertType on x
+ggplot(barley, aes(x = fertType, y = yield, colour = factor(plot))) +
+  geom_boxplot() +
+  theme_classic() +
+  theme(legend.position = "none") +
+  scale_color_manual(values = plot_colors)
+
+#variety on x
+ggplot(barley, aes(x = variety, y = yield, colour = factor(plot))) +
+  geom_boxplot() +
+  theme_classic() +
+  theme(legend.position = "none") +
+  scale_color_manual(values = plot_colors)
+
+model <- lmer(yield ~ fertType + variety +(1|plot), data = barley) 
+summary(model) # estimate suggests is sig, they have to interpret as predictors are factors
+
+model <- lmer(yield ~ fertType + variety +(1|plot), data = barley, REML = FALSE) 
+
+#does plot really have an affect
+model <- lm(yield ~ fertType + variety +plot, data = barley) 
+model <- lm(yield ~ fertType + variety, data = barley) # without the plot the results are not as clearly sig
+model <- lm(yield ~ plot, data = barley) # plot on it's own it not sig
+summary(model)
+
+full.lmer <- lmer(yield ~ fertType + variety +(1|plot), data = barley, REML = FALSE) 
+fertType.lmer <- lmer(yield ~ fertType +(1|plot), data = barley, REML = FALSE)
+variety.lmer <- lmer(yield ~ variety +(1|plot), data = barley, REML = FALSE)
+reduced.lmer <- lmer(yield ~ 1 + (1|plot), data = barley, REML = FALSE)
+
+anova(reduced.lmer, full.lmer)
+anova(fertType.lmer, full.lmer)
+anova(variety.lmer, full.lmer)
+anova(partial.reduced.model, full.lmer)
+#think plot should be included in model even though it's effect is sutbtle
 ```
 
 

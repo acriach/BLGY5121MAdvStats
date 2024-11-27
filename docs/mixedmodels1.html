@@ -211,9 +211,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#identifying-when-a-mixed-model-is-needed" id="toc-identifying-when-a-mixed-model-is-needed" class="nav-link" data-scroll-target="#identifying-when-a-mixed-model-is-needed">Identifying when a mixed model is needed</a>
   <ul class="collapse">
-  <li><a href="#barley-yield-example" id="toc-barley-yield-example" class="nav-link" data-scroll-target="#barley-yield-example">Barley yield example</a></li>
-  <li><a href="#caterpillar-example" id="toc-caterpillar-example" class="nav-link" data-scroll-target="#caterpillar-example">Caterpillar example</a></li>
   <li><a href="#petri-dish-example" id="toc-petri-dish-example" class="nav-link" data-scroll-target="#petri-dish-example">Petri dish example</a></li>
+  <li><a href="#caterpillar-example" id="toc-caterpillar-example" class="nav-link" data-scroll-target="#caterpillar-example">Caterpillar example</a></li>
+  <li><a href="#barley-yield-example" id="toc-barley-yield-example" class="nav-link" data-scroll-target="#barley-yield-example">Barley yield example</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -576,10 +576,7 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 </ul>
 <p><br></p>
 <p>However, knowing when there is a random effect and therefore when a mixed model might be needed is more difficult.</p>
-<p>Take your time to imagine each of the studies below, identifying the variables that is the <strong>random effect</strong> in each one and writing the <strong>code</strong> to run a mixed model. For example the code for the dragons was:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mixed.lmer <span class="ot">&lt;-</span>  <span class="fu">lmer</span>(testScore <span class="sc">~</span> bodyLength <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>mountainRange), <span class="at">data =</span> dragons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Complete the Challenges below for the three senarios.</p>
 <p>The following check list and information might help you.</p>
 <button type="button" class="btn btn-success">
 <p>Random variable check list<br>
@@ -598,31 +595,42 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 </button>
 <p><br></p>
 <p><br></p>
-<section id="barley-yield-example" class="level2">
-<h2 class="anchored" data-anchor-id="barley-yield-example">Barley yield example</h2>
-<p><img src="./img/barley.jpg" class="img-fluid" alt="a close up of barley growing with a black background."></p>
-<p>The effect of <code>variety</code> and type of nitrogen fertiliser <code>fertType</code> on the <code>yield</code> of barley plants, was tested in a field trial. The plants were grown in 20 different areas of the field called <code>area</code>, that were likely to vary in soil and water qualities that affected yield. The data was called <code>barley</code></p>
+<section id="petri-dish-example" class="level2">
+<h2 class="anchored" data-anchor-id="petri-dish-example">Petri dish example</h2>
+<p><img src="./img/petri.png" class="img-fluid" alt="a diagram of a cartoon petri dish with 10 yellow spots on it"></p>
+<p>The effect of two bacterial inhibitors <code>inhib</code> on bacterial <code>growth</code> is tested by growing 10 spots of bacteria per 20 petri dishes <code>dish</code>. Bacterial growth seemed to vary among the petri dishes perhaps according to the position of the petri dish in the heated room. Data was called <code>bacteria</code>.</p>
+<p><strong>Challenge</strong></p>
+<p>Identifying the variable that is the <strong>random effect</strong> and write the <strong>code</strong> to run a mixed model. For example the code for the dragons was:</p>
 <div class="cell">
-
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mixed.lmer <span class="ot">&lt;-</span>  <span class="fu">lmer</span>(testScore <span class="sc">~</span> bodyLength <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>mountainRange), <span class="at">data =</span> dragons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lmer</span>(growth <span class="sc">~</span> inhib <span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>dish), <span class="at">data =</span> bacteria)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
 <p><br></p>
 </section>
 <section id="caterpillar-example" class="level2">
 <h2 class="anchored" data-anchor-id="caterpillar-example">Caterpillar example</h2>
 <p><img src="./img/cat.jpg" class="img-fluid" alt="a swallowtail caterpillar with green and black stripes with orange spots"></p>
-<p>We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We can only get 10 caterpillars from each female butterfly so use 14 females. For each of the 140 caterpillars, we note down which 1 to 14 <code>female</code> butterfly laid it, the development time <code>devTime</code> in hours and weight <code>wgt</code> in mg and call the dataset <code>butterflies</code>.</p>
+<p>We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We have various numbers of caterpillars from 14 <code>female</code> butterflies. For each of the caterpillars, we have the development time in days <code>devTime</code> and <code>weight</code> in g. Click this <a href="https://raw.githubusercontent.com/acriach/BLGY5112M/main/data/caterpillar.csv">link to the caterpillar data</a>, save it in your data file in your R project and read it in.</p>
+<p><strong>Challenges</strong></p>
+<p>Visualise the data using a suitable graph.</p>
+<p>Write the code for a mixed model. Then use the estimate, likelihood ratio test and AIC values to determine if there is an effect of <code>devTime</code> on <code>weight</code>. Investigate any messages that R gives you.</p>
 <div class="cell">
 
 </div>
 <p><br></p>
 </section>
-<section id="petri-dish-example" class="level2">
-<h2 class="anchored" data-anchor-id="petri-dish-example">Petri dish example</h2>
-<p><img src="./img/petri.png" class="img-fluid" alt="a diagram of a cartoon petri dish with 10 yellow spots on it"></p>
-<p>The effect of two bacterial inhibitors <code>inhib</code> on bacterial <code>growth</code> is tested by growing 10 spots of bacteria per 20 petri dishes <code>dish</code>. Bacterial growth seemed to vary among the petri dishes. Data was called <code>bacteria</code>.</p>
+<section id="barley-yield-example" class="level2">
+<h2 class="anchored" data-anchor-id="barley-yield-example">Barley yield example</h2>
+<p><img src="./img/barley.jpg" class="img-fluid" alt="a close up of barley growing with a black background."></p>
+<p>The effect of <code>variety</code> and type of nitrogen fertiliser <code>fertType</code> on the <code>yield</code> of barley plants, was tested in a field trial. The plants were grown in 8 different areas of the field called <code>plots</code>, that were likely to vary in soil and water qualities that affected yield. The data was called <code>barley</code></p>
+<p><strong>Challenge</strong></p>
+<p>Analyse the data. Then report the results - ie is there a significant difference in variety and type of fertiliser on yield? Include directions (which is higher or lower).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lmer</span>(growth <span class="sc">~</span> inhib <span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>dish), <span class="at">data =</span> bacteria)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <p><br></p>
 <p><br></p>

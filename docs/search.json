@@ -235,21 +235,21 @@
     "href": "mixedmodels1.html#barley-yield-example",
     "title": "Mixed Models 1",
     "section": "Barley yield example",
-    "text": "Barley yield example\n\nThe effect of variety and type of nitrogen fertiliser fertType on the yield of barley plants, was tested in a field trial. The plants were grown in 20 different areas of the field called area, that were likely to vary in soil and water qualities that affected yield. The data was called barley"
+    "text": "Barley yield example\n\nThe effect of variety and type of nitrogen fertiliser fertType on the yield of barley plants, was tested in a field trial. The plants were grown in 8 different areas of the field called plots, that were likely to vary in soil and water qualities that affected yield. The data was called barley\nChallenge\nAnalyse the data. Then report the results - ie is there a significant difference in variety and type of fertiliser on yield? Include directions (which is higher or lower).\n\n\n\n\n\nAdapted from the Coding Club tutorial Introduction to Linear Mixed Models by Gabriela K Hajduk."
   },
   {
     "objectID": "mixedmodels1.html#caterpillar-example",
     "href": "mixedmodels1.html#caterpillar-example",
     "title": "Mixed Models 1",
     "section": "Caterpillar example",
-    "text": "Caterpillar example\n\nWe want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We can only get 10 caterpillars from each female butterfly so use 14 females. For each of the 140 caterpillars, we note down which 1 to 14 female butterfly laid it, the development time devTime in hours and weight wgt in mg and call the dataset butterflies."
+    "text": "Caterpillar example\n\nWe want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We have various numbers of caterpillars from 14 female butterflies. For each of the caterpillars, we have the development time in days devTime and weight in g. Click this link to the caterpillar data, save it in your data file in your R project and read it in.\nChallenges\nVisualise the data using a suitable graph.\nWrite the code for a mixed model. Then use the estimate, likelihood ratio test and AIC values to determine if there is an effect of devTime on weight. Investigate any messages that R gives you."
   },
   {
     "objectID": "mixedmodels1.html#petri-dish-example",
     "href": "mixedmodels1.html#petri-dish-example",
     "title": "Mixed Models 1",
     "section": "Petri dish example",
-    "text": "Petri dish example\n\nThe effect of two bacterial inhibitors inhib on bacterial growth is tested by growing 10 spots of bacteria per 20 petri dishes dish. Bacterial growth seemed to vary among the petri dishes. Data was called bacteria.\n\n# The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.\nmodel <- lmer(growth ~ inhib +(1|dish), data = bacteria)\n\n\n\nAdapted from the Coding Club tutorial Introduction to Linear Mixed Models by Gabriela K Hajduk."
+    "text": "Petri dish example\n\nThe effect of two bacterial inhibitors inhib on bacterial growth is tested by growing 10 spots of bacteria per 20 petri dishes dish. Bacterial growth seemed to vary among the petri dishes perhaps according to the position of the petri dish in the heated room. Data was called bacteria.\nChallenge\nIdentifying the variable that is the random effect and write the code to run a mixed model. For example the code for the dragons was:\n\nmixed.lmer <-  lmer(testScore ~ bodyLength + (1|mountainRange), data = dragons)\n\n\n# The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.\nmodel <- lmer(growth ~ inhib +(1|dish), data = bacteria)"
   },
   {
     "objectID": "mixedmodels1.html#generalised-mixed-models",

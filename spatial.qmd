@@ -67,7 +67,7 @@ You could look at the p values under `Pr(>|t|)`. For `log(Disease)` it is <2e-16
 
 <br>
 
-So there we have it - IQ is definitely caused by disease!  Or is it...?  Since this dataset is spatial it is likely to have the problem of **autocorrelation**!
+So we conclude IQ is predicted by disease but not nutrition!  Or is it...?  Since this dataset is spatial it is likely to have the problem of **autocorrelation**!
 
 <button type="button" class="btn btn-success">
 
@@ -85,7 +85,7 @@ Spatial autocorrelation can be measured using **Moran's I** (I the letter not 1 
 
 ### Correlograms
 
-We can use the function `spline.correlog()` in the package `ncf` to create a **correlogram**. This tells us if we have autocorrelation. 
+We can use the function `spline.correlog()` in the package `ncf` to create a **correlogram**. This helps us decide if we have autocorrelation. 
 
 Install and library load the `ncf` package.
 
@@ -121,18 +121,27 @@ plot(correlog_object)
 <br> 
 
 ### Interpreting the correlogram
-On the x axis, are the distances between countries (calculated from latitude and longitude). Moran's I values are on the y axis labelled `Correlation`. There are high values if the data is very similar, low values closer to 0 if it is not. 
+On the x axis, are the distances between countries (calculated from latitude and longitude). Moran's I values are on the y axis labelled `Correlation`. There are high values (positive ad negative) if the data is very similar, low values closer to 0 if it is not. 
 
 * there **is no** spatial autocorrelation if the values of Moran's I varies no matter what the distance
 * there **is** spatial autocorrelation if Moran's I values are higher for countries closer together (i.e. lower distance apart).
 
-Un-oh! Looks like we have spatial autocorrelation! (Moran's I values are high on the left of the graph.) 
+We possibly have spatial autocorrelation! (Moran's I values are high on the left of the graph.) 
+
+Adding the error to the graph (by doing iterations with `resamp=10`) helps us determine where Moran's I values really do differ from 0.
+
+```{r}
+correlog_object <- spline.correlog(IQData$Longitude, IQData$Latitude, residuals(model1), resamp=10, latlon=TRUE)
+plot(correlog_object)
+```
+The error on the left of the graph which represents countries close together still suggests correlation.
+
 
 <br>
 
 ### moran.test
 
-We can also establish if there is autocorrelation by running the `moran.test()` in package `spdep`. It gives us a p value that suggests if the data is randomly dispersed.
+In addition we can establish if there is autocorrelation by running the `moran.test()` in package `spdep`. It gives us a p value that suggests if the data is randomly dispersed.
 
 Load the package
 ```{r}
@@ -165,7 +174,7 @@ result <- moran.test(residuals(model1), listw=IQlistw)
 result
 ```
 
-The p value suggests there is a difference in the Moran I's values as the distances change. Therefore there is autocorrelation.
+The p value suggests there is a difference in the Moran I's values as the distances change. We use this result along with the correlogram to decide that there is autocorrelation in this case.
 
 <br>
 
@@ -329,7 +338,7 @@ Compare the results of this model where spatial autocorrelation is accounted for
 summary(model1)
 ```
 
-`Nutrition` is significant when autocorrelation is accounted for. `Disease` is still significant (even though p value is not as small).
+Only `Disease` was significant in the lm model. Now we conclude `Disease` **and** `Nutrition` is significant when autocorrelation is accounted for in the model.
 
 </details>
 
@@ -368,11 +377,11 @@ plot(correlog_object)
 # no spatial autocorrelation so would decide not to go any further.
 ```
 
-This data needs cleaning for example, you only need the variables `lat`, `lon`, `species`, `max_depth.m` so make a dataset only containing them.
+This data is quite large. In this case you might find it easier to make a data frame only containing the variables you need `lat`, `lon`, `species`, `max_depth.m`.
 
 <br>
 
-Next, practice renaming the variable `max_depth.m` to `maxDepth`.
+The data also needs cleaning. Practice renaming the variable `max_depth.m` to `maxDepth`.
 
 <br>
 

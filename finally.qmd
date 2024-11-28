@@ -47,6 +47,6 @@ Go back and review all the graphs or other figures you have used in this course.
 
 ## Downloading data
 
-Practice downloading datasets from the internet for the assignment using the Assessment Guidelines on Minerva.
+Practice downloading datasets from the internet for the assessment using the BLGY5121M Advanced Statistics Assessment document on Minerva.
 
 <br>

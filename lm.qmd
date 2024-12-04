@@ -228,7 +228,7 @@ and ymax is the upper confidence interval.
 
 **Challenge**
 
-Read in the Palmer Penguins dataset (penguins.csv).
+Read in the Palmer Penguins dataset [penguins.csv](./data/penguins.csv).
 Make a violin plot of `body_weight_g` for the two groups in `sex`.
 
 Can you search the internet to find out how to remove NA values?

@@ -618,7 +618,7 @@ The coefficient numbers (called log odds) are difficult for you (and your reader
 exp(coef(crab_glm)) # calculates the exponential of the coefficients in the model i.e. turns log odds into odds ratios
 ```
 
-Odds ratios above 1 mean crabs are more likely to be present (present is coded as 1 in the response `CrabPres`). Odds ratios below 1 mean crabs are less likely to be present. 
+Odds ratios above 1 mean crabs are more likely to be present(because 0 which is absence is the baseline). Odds ratios below 1 mean crabs are less likely to be present. 
 
 The odds ratio for `Time` is 3.6. We report "Crabs are 3.6 times more likely to be present at time point 10 compared to time point 5".
 
@@ -628,8 +628,8 @@ Tip if the odds ratio is below 1 try recoding the explanatory variables so that 
 
 <br>
 
-For numeric predictors a positive odds ratio such as 3.21 would mean that a 1 unit increase in the predictor, increases the odds of the response being present by 3.21. 
-However, our odds ratio for distance is negative which is more difficult to put into words and relate back to the research question.  One solution is to express it as the % decrease. For example, (0.97–1) * 100 = -3%. Then we can write "Each additional increase of one in distance is associated with an 3% decrease in the odds of a crab being present.
+For numeric predictors like distance, a positive odds ratio such as 1.03 would mean that a 1 unit increase in the predictor, increases the odds of the response being present by 1.03. 
+However, an odds ratio for a predictor might be negative which is more difficult to put into words and relate back to the research question.  One solution is to express it as the % decrease. For example, (0.97–1) * 100 = -3%. Then we can write "Each additional increase of one in concentration (a predictor) is associated with an 3% decrease in the odds of a fly surviving."
 
 **Challenge**
 

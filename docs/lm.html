@@ -884,13 +884,13 @@ Tip: People get stuck interpreting binomial results because they do not have a c
   0.1800871   3.6390656   1.0255455   1.0588183 </code></pre>
 </div>
 </div>
-<p>Odds ratios above 1 mean crabs are more likely to be present (present is coded as 1 in the response <code>CrabPres</code>). Odds ratios below 1 mean crabs are less likely to be present.</p>
+<p>Odds ratios above 1 mean crabs are more likely to be present(because 0 which is absence is the baseline). Odds ratios below 1 mean crabs are less likely to be present.</p>
 <p>The odds ratio for <code>Time</code> is 3.6. We report “Crabs are 3.6 times more likely to be present at time point 10 compared to time point 5”.</p>
 <button type="button" class="btn btn-success">
 Tip if the odds ratio is below 1 try recoding the explanatory variables so that another group is the baseline.
 </button>
 <p><br></p>
-<p>For numeric predictors a positive odds ratio such as 3.21 would mean that a 1 unit increase in the predictor, increases the odds of the response being present by 3.21. However, our odds ratio for distance is negative which is more difficult to put into words and relate back to the research question. One solution is to express it as the % decrease. For example, (0.97–1) * 100 = -3%. Then we can write “Each additional increase of one in distance is associated with an 3% decrease in the odds of a crab being present.</p>
+<p>For numeric predictors like distance, a positive odds ratio such as 1.03 would mean that a 1 unit increase in the predictor, increases the odds of the response being present by 1.03. However, an odds ratio for a predictor might be negative which is more difficult to put into words and relate back to the research question. One solution is to express it as the % decrease. For example, (0.97–1) * 100 = -3%. Then we can write “Each additional increase of one in concentration (a predictor) is associated with an 3% decrease in the odds of a fly surviving.”</p>
 <p><strong>Challenge</strong></p>
 <p>What plots do you think could be used to present this data?</p>
 <p><br></p>

@@ -168,7 +168,7 @@ Leaf_PCA2 <- princomp(Leaf_data, cor = TRUE) # uses a correlation matrix
 
 **Challenges**
 
-Analyse these datasets and create graphs to present your findings.
+Analyse these datasets using PCA. The plot function is fine for visualising the results yourself but to present results experiment using `ggbiplot()` which gives you more control.
 
 **1) Blue whale genomic data** 
 

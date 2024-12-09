@@ -472,7 +472,7 @@ summary(modellm)
 
 
 The effect of `variety` and type of nitrogen fertiliser `fertType` on the `yield` of barley plants, was tested in a field trial. The plants were grown in 8 different areas of the field called `plots`, that were likely to vary in soil and water qualities that affected yield.
-The data was called `barley`
+The data was called [barley](./data/barley.csv)
 
 **Challenge**
 

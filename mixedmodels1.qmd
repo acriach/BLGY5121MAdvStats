@@ -433,7 +433,7 @@ model <- lmer(growth ~ inhib +(1|dish), data = bacteria)
 ![](./img/cat.jpg){fig-alt="a swallowtail caterpillar with green and black stripes with orange spots"}
 
 
-We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We have various numbers of caterpillars from 14 `female` butterflies. For each of the caterpillars, we have the development time in days `devTime` and `weight` in g. Click this [link to the caterpillar data](https://raw.githubusercontent.com/acriach/BLGY5112M/main/data/caterpillar.csv), save it in your data file in your R project and read it in.
+We want to know if development time can predict the weight of caterpillars. There may be genetic influences on weight too. We have various numbers of caterpillars from 14 `female` butterflies. For each of the caterpillars, we have the development time in days `devTime` and `weight` in g. Click this [link to the caterpillar data](./data/caterpillar.csv), save it in your data file in your R project and read it in.
 
 **Challenges**
 

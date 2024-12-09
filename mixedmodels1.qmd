@@ -26,6 +26,24 @@ head(dragons)
 
 <br>
 
+Let’s plot the data with ggplot2:
+```{r}
+#| eval: true
+#| message: false
+#| warning: false
+library(tidyverse)  # load the package containing both ggplot2 and dplyr
+```
+
+```{r}
+#| message: false
+#| warning: false
+dragonPlot <- ggplot(dragons, aes(x = bodyLength, y = testScore)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+<br>
+
 One way to analyse this data would be to fit a linear model.
 
 Fit the model with `testScore` as the response and `bodyLength` as the predictor and have a look at the output:
@@ -66,23 +84,7 @@ Points you could take from the output include:
 
 <br>
 
-Let’s plot the data with ggplot2:
-```{r}
-#| eval: true
-#| message: false
-#| warning: false
-library(tidyverse)  # load the package containing both ggplot2 and dplyr
-```
-
-```{r}
-#| message: false
-#| warning: false
-dragonPlot <- ggplot(dragons, aes(x = bodyLength, y = testScore)) +
-  geom_point() +
-  geom_smooth(method = "lm")
-```
-
-Okay, both the linear model and the plot, suggest bigger dragons do better in our intelligence test. From our knowledge of dragons, that seems a bit odd: size shouldn’t really affect the test scores.
+Okay, both the plot and the linear model suggest bigger dragons do better in our intelligence test. From our knowledge of dragons, that seems a bit odd: size shouldn’t really affect the test scores.
 
 But are the assumptions met?
 

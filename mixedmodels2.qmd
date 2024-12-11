@@ -38,7 +38,7 @@ library(lme4)
 <button type="button" class="btn btn-success">
 
 Consider if you need to check for assumptions.  
-What numbers from the output are you going to use to interpret the results. You might want to remind yourself of the binomial response section of the linear model lesson. 
+What numbers from the output are you going to use to interpret the results? You might want to remind yourself of the binomial response section of the linear model lesson. 
 Consider comparing full and null models in an anova or comparing AIC values.  
 
 </button>
@@ -85,7 +85,7 @@ Identify why this needs a mixed model and therefore what the random variable is.
 <details>
   <summary>**Answer**</summary>
 
-We need to control for the differences among individual animals which are repeated measured. In other words the measurements are not independent because some of them come from the same individual lizard. Therefore, `lizard` is the random variable.
+We need to control for the differences among individual animals because we have repeated measures. In other words the measurements are not independent because some of them come from the same individual lizard. Therefore, `lizard` is the random variable.
 </details>
 
 <br>
@@ -117,7 +117,7 @@ anova(full.model, reduced.model)
 
 **Challenge part 2**
 
-Report the analysis in words as clearly as you can. Include a graph. Ask someone else if they can understand the results from what you have written?
+Report the analysis in words as clearly as you can. Include a graph. Ask someone else if they can understand the results from what you have written.
 
 
 <br>

@@ -128,10 +128,6 @@ The square root of this is referred to as 'standard error'. The inverse of this 
 
 We can get R to calculate standardised effect sizes for each study (ie every row) using the function `escalc()` in `metafor`. 
 
-SWAP IT SO lnrr IS FIRST THEN SMD
-
-
-
 To obtain the response ratio (lnRR), we use:
 ```{r effect-size-2}
 #| tidy: true
@@ -233,6 +229,7 @@ forest(dat$yi[1:12], dat$vi[1:12])
 **Challenge**
 
 Do an internet search to find out how to interpret forest plots. Answer the questions below.
+
 * What do the squares mean? 
 * Why is there a dotted line at 0? 
 * Some forest plots you see on the internet might have a diamond. What does the diamond represent?

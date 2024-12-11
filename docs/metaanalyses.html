@@ -349,7 +349,6 @@ se^2_{\mathrm{SMD}}= \frac{n_{C}+n_{E}}{n_{C}n_{E}}+\frac{\mathrm{SMD}^2}{2(n_{C
 <p><br></p>
 <p><br></p>
 <p>We can get R to calculate standardised effect sizes for each study (ie every row) using the function <code>escalc()</code> in <code>metafor</code>.</p>
-<p>SWAP IT SO lnrr IS FIRST THEN SMD</p>
 <p>To obtain the response ratio (lnRR), we use:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lnRR <span class="ot">&lt;-</span> <span class="fu">escalc</span>(</span>
@@ -457,7 +456,14 @@ se^2_{\mathrm{SMD}}= \frac{n_{C}+n_{E}}{n_{C}n_{E}}+\frac{\mathrm{SMD}^2}{2(n_{C
 </div>
 <p><br></p>
 <p><strong>Challenge</strong></p>
-<p>Do an internet search to find out how to interpret forest plots. Answer the questions below. * What do the squares mean? * Why is there a dotted line at 0? * Some forest plots you see on the internet might have a diamond. What does the diamond represent? * Find forest plots where the studies are in order? Does this help you view the figure? * Can you find any forest plots where colour denotes if they cross 0 or not.</p>
+<p>Do an internet search to find out how to interpret forest plots. Answer the questions below.</p>
+<ul>
+<li>What do the squares mean?</li>
+<li>Why is there a dotted line at 0?</li>
+<li>Some forest plots you see on the internet might have a diamond. What does the diamond represent?</li>
+<li>Find forest plots where the studies are in order? Does this help you view the figure?</li>
+<li>Can you find any forest plots where colour denotes if they cross 0 or not.</li>
+</ul>
 <p><br></p>
 <p><strong>Challenge</strong></p>
 <p>Now add the SMD values (the alternative ones to lnRR) to <code>dat</code> and create a forest plot with them. Compare the two forest plots.</p>

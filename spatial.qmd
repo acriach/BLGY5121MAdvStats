@@ -241,7 +241,7 @@ Another way to visualise why there is a autocorrelation problem, is to plot IQ a
 ```{r}
 #| warning: false
 ggplot(IQData, aes(x=log(Disease), y=IQ, group = Continent)) + 
-geom_point(aes(shape=Continent))
+geom_point(aes(color=Continent))
 ```
 
 

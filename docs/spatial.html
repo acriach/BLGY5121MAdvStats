@@ -508,7 +508,7 @@ Moran I statistic       Expectation          Variance
 <p>Another way to visualise why there is a autocorrelation problem, is to plot IQ and disease according to the continent of the country (similar to Figure 1 from <a href="https://reader.elsevier.com/reader/sd/pii/S0160289611000572?token=7B8DFAD8896C1FBA0AA9B2EF7ACA41509969C6894A95E31DF179E376D3DAEEFADD3E503B5D1366C185330CEDBC41FFB3&amp;originRegion=eu-west-1&amp;originCreation=20220902125737">Hassall and Sherratt, 2011</a>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(IQData, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">log</span>(Disease), <span class="at">y=</span>IQ, <span class="at">group =</span> Continent)) <span class="sc">+</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>Continent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Continent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="spatial_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>

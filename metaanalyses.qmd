@@ -133,7 +133,7 @@ To obtain the response ratio (lnRR), we use:
 #| tidy: true
 lnRR <- escalc(
   measure = "ROM", n1i = dat$n1i, n2i = dat$n2i,
-  m1i = dat$m1i, m2 = dat$m2i,
+  m1i = dat$m1i, m2i = dat$m2i,
   sd1i = dat$sd1i, sd2i = dat$sd2i
 )
 ```

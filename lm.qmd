@@ -28,7 +28,7 @@ The relationship between a response (also called dependent) variable $y$ and one
 Follow this link to a data set on plant heights around the world, [Plant_height.csv](./data/Plant_height.csv). Right click to "Save as" in your Rproj `data` folder and import into R.
 
 ```{r}
-Plant_height <- read.csv(file = "data/Plant_height.csv", header = TRUE)
+Plant_height <- read.csv(file = "data/Plant_height.csv")
 ```
 
 <br>
@@ -189,7 +189,7 @@ library(dplyr)
 We could test if a sample of pH measurements from one river, A, differs from a sample of pH measurements from a second river, B. Save the data [River_pH.csv](./data/River_pH.csv) in the `data` file in your Rproj.
 
 ```{r}
-River_pH <- read.csv(file = "data/River_pH.csv", header = TRUE)
+River_pH <- read.csv("data/River_pH.csv")
 ```
 
 ## Visualising data

@@ -412,14 +412,14 @@ The effect of two bacterial inhibitors `inhib` on bacterial `growth` is tested b
 
 **Challenge**
 
-Identifying the variable that is the **random effect** and write the **code** to run a mixed model. For example the code for the dragons was:
+Identify the variable that is the **random effect** and write the **code** to run a mixed model. To remind you, the code for the dragons was:
 ```{r}
 mixed.lmer <-  lmer(testScore ~ bodyLength + (1|mountainRange), data = dragons)
 ```
 
 ```{r}
 #| eval: false
-#| #| echo: false
+#| echo: false
 # The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.
 model <- lmer(growth ~ inhib +(1|dish), data = bacteria)
 ```

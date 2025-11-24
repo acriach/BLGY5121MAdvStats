@@ -601,13 +601,12 @@ full.lmer       4 4001.5 4018.2 -1996.7   3993.5 0.2075  1     0.6488</code></pr
 <p><img src="./img/petri.png" class="img-fluid" alt="a diagram of a cartoon petri dish with 10 yellow spots on it"></p>
 <p>The effect of two bacterial inhibitors <code>inhib</code> on bacterial <code>growth</code> is tested by growing 10 spots of bacteria per 20 petri dishes <code>dish</code>. Bacterial growth seemed to vary among the petri dishes perhaps according to the position of the petri dish in the heated room. Data was called <code>bacteria</code>.</p>
 <p><strong>Challenge</strong></p>
-<p>Identifying the variable that is the <strong>random effect</strong> and write the <strong>code</strong> to run a mixed model. For example the code for the dragons was:</p>
+<p>Identify the variable that is the <strong>random effect</strong> and write the <strong>code</strong> to run a mixed model. To remind you, the code for the dragons was:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mixed.lmer <span class="ot">&lt;-</span>  <span class="fu">lmer</span>(testScore <span class="sc">~</span> bodyLength <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>mountainRange), <span class="at">data =</span> dragons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lmer</span>(growth <span class="sc">~</span> inhib <span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>dish), <span class="at">data =</span> bacteria)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 <p><br></p>
 <p><br></p>

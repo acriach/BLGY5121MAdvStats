@@ -249,7 +249,7 @@
     "href": "mixedmodels1.html#petri-dish-example",
     "title": "Mixed Models 1",
     "section": "Petri dish example",
-    "text": "Petri dish example\n\nThe effect of two bacterial inhibitors inhib on bacterial growth is tested by growing 10 spots of bacteria per 20 petri dishes dish. Bacterial growth seemed to vary among the petri dishes perhaps according to the position of the petri dish in the heated room. Data was called bacteria.\nChallenge\nIdentifying the variable that is the random effect and write the code to run a mixed model. For example the code for the dragons was:\n\nmixed.lmer <-  lmer(testScore ~ bodyLength + (1|mountainRange), data = dragons)\n\n\n# The random effect is `dish` as there are several bacterial growth per dish so they can be grouped according to what dish they are are in which might have an affect on growth.\nmodel <- lmer(growth ~ inhib +(1|dish), data = bacteria)"
+    "text": "Petri dish example\n\nThe effect of two bacterial inhibitors inhib on bacterial growth is tested by growing 10 spots of bacteria per 20 petri dishes dish. Bacterial growth seemed to vary among the petri dishes perhaps according to the position of the petri dish in the heated room. Data was called bacteria.\nChallenge\nIdentify the variable that is the random effect and write the code to run a mixed model. To remind you, the code for the dragons was:\n\nmixed.lmer <-  lmer(testScore ~ bodyLength + (1|mountainRange), data = dragons)"
   },
   {
     "objectID": "mixedmodels1.html#generalised-mixed-models",

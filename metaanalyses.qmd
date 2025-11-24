@@ -462,7 +462,7 @@ summary(metareg)
 ```
 
 
-Look at the R$^2$ value - the moderators do not explain anything!  Also, the `Test of Moderators` (again the Q value) say they are not significant. A terrible model!
+Look at the R$^2$ value - the moderators do not explain anything!  Also, the `Test of Moderators` (again the Q value) say they are not significant.
 
 **Challenge**
 

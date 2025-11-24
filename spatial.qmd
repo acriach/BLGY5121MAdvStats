@@ -393,7 +393,7 @@ Then decide if you need to control for spatial autocorrelation when you test the
 
 <button type="button" class="btn btn-success">
 
-If you run into any unexpected problems take the time to think about the possible solutions and how to implement them.
+If you run into any unexpected problems practice taking the time to think about a possible solution and how to implement it. There will be multiple solutions to the same problem.
 </button>
 
 

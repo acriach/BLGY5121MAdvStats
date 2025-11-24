@@ -22,7 +22,7 @@ You MUST NOT use AI to write text for your assignments!
 
 **Challenge**
 
-Go to [copilot.microsoft.com](copliot.microsoft.com) use your Uni of Leeds IT account to sign in. The shield in the top right tells you it is secure. Use it in the challenges below to help you write code.
+Go to [copilot](https://m365.cloud.microsoft/chat/) use your Uni of Leeds IT account to sign in. The shield in the top right tells you it is secure. Use it in the challenges below to help you write code.
 
 Try to get the code to run in R. If it fails try to rephrase your prompt to copilot. 
 
@@ -124,7 +124,7 @@ Did you give copilot the code and error?
 
 ### Citing AI
 
-The [university has guidance](https://generative-ai.leeds.ac.uk) on stating that you have used AI in an acknowledgement or declaration section at the end of your work. An example is below.
+The [university has guidance](https://generative-ai.leeds.ac.uk/ai-and-assessments/acknowledging-use-of-ai/) on stating that you have used AI in an acknowledgement or declaration section at the end of your work. An example is below.
 
 "I acknowledge the use of Copilot (copilot.microsoft.com) to write and debug parts of my R code."
 

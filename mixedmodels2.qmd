@@ -145,9 +145,17 @@ Find and run the code for this nested mixed model.
 Tip - Identify the variables that are the **response**, the **fixed effect**, the **random effects** and what is nested in what.
 </button>
 
+<br>
+
 **Challenge part 2**
 
-Report the analysis. Include a graph. Did including the tank in the model change the results?
+Report the analysis. Include a graph. 
+
+<br>
+
+**Challenge part 3**
+
+Decide if including the tank in the model changed the results?
 
 
 ```{r}
@@ -179,23 +187,25 @@ m2 <- glmer(eat ~ 1 + (1|tank/lizard), data = lizards, family = binomial)
 
 # Crossed random effects
 
-Using the lizard examples again, a fully crossed design would be if the different lizards had experienced all the different tanks (the researcher would have had to keep moving them around tanks until each lizard had been measured in each tank).
+Using the lizard examples again, a **crossed** design would be if the different lizards had experienced the different tanks (the researcher would have had to keep moving them around tanks). It would be a **partially crossed** design if each lizard had been measured in only some of the tanks and a **fully crossed** design if each lizard had been measured in all of the tanks.
 
 
 <br>
 
 **Challenge**
 
-Decide for each of the below if you would consider as having a nested, partial crossed or fully crossed design. 
+For each experiment below decide if it is a mixed model, nested, partially crossed or fully crossed design. 
 
-1) Students (studentID) are measured for statistics ability repeatedly in tests (testScore). The effects of gender, prior education are fixed effects. Students study different programmes.
+1) Students are measured for statistics ability repeatedly in tests. The effects of gender and prior education are fixed effects. Students study different programmes.
 
 2) Researchers test how light intensity (high vs low) and nutrient availability (high vs low) affect plant biomass across multiple forest sites. At each site, plots are divided into subplots that receive all combinations of light and nutrient treatments, creating a 2×2 factorial design.
 
 3) Researchers want to test how soil type (sandy vs clay) influences plant biomass across different forest sites. They select 6 sites, and within each site, they identify 3 plots. In each plot, they measure biomass of 10 individual plants growing in the same soil type. 
 
 ```{r}
-#1)Partially nested
+#| eval: false
+#| echo: false
+#1)mixed model with random as Student ID
 #2)Fully crossed Sites and plots are treated as random effects, while light and nutrients are fixed factors, allowing the model to account for hierarchical sampling and interaction effects. This design ensures every level of one factor occurs with every level of the other across all plots.
 #3) Nested Here, plants are nested within plots, and plots are nested within sites, while soil type is a fixed factor applied at the plot level. This design accounts for hierarchical structure and spatial dependence.
 ```

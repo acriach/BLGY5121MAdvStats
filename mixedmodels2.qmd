@@ -125,23 +125,39 @@ Report the analysis in words as clearly as you can. Include a graph. Ask someone
 
 # Nested design
 
-Some experiments have what's called a nested design. For example the lizard experiment would be nested if the lizards had been housed in groups in tanks rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add `tank` into the model. Since not every individual is in every tank ie each one is only in one tank,  `lizard` is nested within `tank`.
+Some experiments have what's called a nested design. For example the lizard experiment would be nested if the lizards had been housed in groups of 10 lizards to a tank rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add `tank` into the model. Since not every individual is in every tank ie each one is only in one tank,  `lizard` is nested within `tank`.
 
-Another common example of nested variables occurs when data is taken from students but the students are at four different universities. Therefore the students are nested within the universities.
+```{r}
+lizards <- read.csv(file = "data/lizard_nested.csv")
+head(lizards)
+table(lizards$tank)
+```
+
 
 <br>
 
-**Challenge**
+**Challenge part 1**
 
-Do an internet search to find an example of a study or experimental set up, that includes a nested design. You have 3 tasks:  
-* Type a simple description of the experiment  
-* Name the variables that are the **response**, the **fixed effect**, the **random effects** and what is nested in what.  
-* Write out an example of R code for a mixed model with this nested design. 
+Find and run the code for this nested mixed model.
 
 <button type="button" class="btn btn-success">
 
-Tip - searching for an R tutorial or guide on a nested mixed model will provide both an example and the code.
+Tip - Identify the variables that are the **response**, the **fixed effect**, the **random effects** and what is nested in what.
 </button>
+
+**Challenge part 2**
+
+Report the analysis. Include a graph. Did including the tank in the model change the results?
+
+
+```{r}
+#| echo: false
+#| eval: false
+
+lizardsnest <- read.csv(file = "data/lizard_nested.csv")
+model <- glmer(eat ~ 1 + (1|tank/lizard), data = lizardsnest, family = binomial)
+summary(model)
+```
 
 
 
@@ -151,7 +167,7 @@ Tip - searching for an R tutorial or guide on a nested mixed model will provide 
 # from https://stackoverflow.com/questions/67123529/how-to-include-nested-effects-in-mixed-effect-model-with-lme4-package
 mixed.lmer2 <- lmer(Y~ X + (1|mountain/site), data = data)
 # for lizard example would be
-m2 <- lmer(eat ~ 1 + (1|tank/lizard), data = lizards, family = binomial)
+m2 <- glmer(eat ~ 1 + (1|tank/lizard), data = lizards, family = binomial)
 # classes and pupils
 (1|class/pupil)  # or  
 (1|class) + (1|class:pupil)
@@ -165,16 +181,27 @@ m2 <- lmer(eat ~ 1 + (1|tank/lizard), data = lizards, family = binomial)
 
 Using the lizard examples again, a fully crossed design would be if the different lizards had experienced all the different tanks (the researcher would have had to keep moving them around tanks until each lizard had been measured in each tank).
 
-Or in the student example, if they were measured while they were at one university and then again when they went to one other university, this would be a partial crossed design (though there's the massive confounding variable of time here so it's not the best example!).
 
 <br>
 
 **Challenge**
 
-Do an internet search to find an example of a crossed (partial or fully) design. You have 3 tasks:  
-* Type a simple description of the experiment  
-* Name the variables that are the **response**, the **fixed effect**, the **random effects** and explain why it is crossed.  
-* Then write out an example of R code that would run a mixed model with crossed random effects.
+Decide for each of the below if you would consider as having a nested, partial crossed or fully crossed design. 
+
+1) Students (studentID) are measured for statistics ability repeatedly in tests (testScore). The effects of gender, prior education are fixed effects. Students study different programmes.
+
+2) Researchers test how light intensity (high vs low) and nutrient availability (high vs low) affect plant biomass across multiple forest sites. At each site, plots are divided into subplots that receive all combinations of light and nutrient treatments, creating a 2×2 factorial design.
+
+3) Researchers want to test how soil type (sandy vs clay) influences plant biomass across different forest sites. They select 6 sites, and within each site, they identify 3 plots. In each plot, they measure biomass of 10 individual plants growing in the same soil type. 
+
+```{r}
+#1)Partially nested
+#2)Fully crossed Sites and plots are treated as random effects, while light and nutrients are fixed factors, allowing the model to account for hierarchical sampling and interaction effects. This design ensures every level of one factor occurs with every level of the other across all plots.
+#3) Nested Here, plants are nested within plots, and plots are nested within sites, while soil type is a fixed factor applied at the plot level. This design accounts for hierarchical structure and spatial dependence.
+```
+
+
+
 
 ```{r}
 #| eval: false

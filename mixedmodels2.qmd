@@ -125,7 +125,7 @@ Report the analysis in words as clearly as you can. Include a graph. Ask someone
 
 # Nested design
 
-Some experiments have what's called a nested design. For example the lizard experiment would be nested if the lizards had been housed in groups of 10 lizards to a tank rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add `tank` into the model. Since not every individual is in every tank ie each one is only in one tank,  `lizard` is nested within `tank`.
+Some experiments have what's called a nested design. For example the lizard experiment would be nested if the lizards had been housed in groups of 10 lizards to a tank rather than having a tank to themselves. There may be some differences among the tanks and therefore you would have to add `tank` into the model. Since not every individual is in every tank ie each one is only in one tank,  `lizard` is nested within `tank`. [nested lizard data](./data/lizard_nested.csv)
 
 ```{r}
 lizards <- read.csv(file = "data/lizard_nested.csv")

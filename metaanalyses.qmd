@@ -10,7 +10,7 @@ execute:
 ![](./img/metanalysis.jpg){fig-alt="Two diagrams. Left diagram has three silouhettes of insects above a graph with four horizontal lines with points in the middle of each labbelled female, male mixed sex and hermaphrodite. None of the four lines overlap the reference vertical dotted line. Right diagram has seven silouhettes of insects above a graph with four horizontal lines with points in the middle of each labbelled female, male mixed sex and hermaphrodite. On this graph all four lines overlap the reference vertical dotted line."}
 
 
-There are many steps involve in a meta-analysis. For guidance on how to do a meta-analysis see [(Nakagawa *et al.* 2017)](https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-017-0357-7) which considers the process of meta-analysis using 10 questions.
+There are many steps involve in a meta-analysis. For guidance on how to do a meta-analysis see [(Nakagawa *et al.* 2017)](https://bmcbiol.biomedcentral.com/articles/10.1186/s12915-017-0357-7) which considers the process of meta-analysis using 10 questions. For taking numbers from published graphs try [plotdigitizer](https://plotdigitizer.com/app).
 
 This lesson only considers how to do the statistics part of the meta-analysis & publication bias. 
 

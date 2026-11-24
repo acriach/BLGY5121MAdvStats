@@ -156,46 +156,13 @@ Leaf_PCA2 <- princomp(Leaf_data, cor = TRUE) # uses a correlation matrix
 
 <br>
 
-## Communicating the results
- 
-**Written.** In the results section, it would be typical to state the amount of variation explained by the first two (or more) PCs and the contribution of different variables to those PCs. In this example, you would state that the first principal component explained 90% of the variation in leaf morphology and was most strongly related to leaf width at the widest point.
-
-**Visual.** PCA results are best presented visually as a 2-dimensional plot of PCs. It is common to label the points in some way to seek patterns on the plot (like how we labelled leaves by species above).
-
-<br>
-
-<br>
-
-**Challenges**
-
-Analyse these datasets using PCA. The plot function is fine for visualising the results yourself but to present results experiment using `ggbiplot()` which gives you more control.
-
-**1) Blue whale genomic data** 
-
-The citation below takes you to a website where you can download a .txt file with 42 measurements of gene expression in female and male whales found in Antartica or Australia.
-
-Attard, C. R. M. et al. (2012), Data from: Hybridization of Southern Hemisphere blue whale subspecies and a sympatric area off Antarctica: impacts of whaling or climate change?, Dryad, Dataset, [https://doi.org/10.5061/dryad.8m0t6](https://doi.org/10.5061/dryad.8m0t6)
-
-Save and read the text file into R and run a pca.
-
-**2) Animal skulls** 
-
-[Skull Base](http://skullbase.info/) lists skull length, width, height and weight for many species. For each skull record the measurements on an excel spreadsheet to save as a csv file. Format the data so that you can run a PCA.
-
-You can choose what skull groups to compare. Some suggestions are: 
-
-* Felidae versus Canidae or Mustelidae  
-* Suidae, Cervidae and Bovidae within Artiodactyla  
-* Rodentia versus Lagomorpha or Soricomorpha  
-* You could compare dog breeds using categories such as sporting, working, hounds, toy etc.
-
-<br>
-
 ## Further help
  
 Type `?princomp` to get the R help for this function. 
 
 An nice [interactive page](http://setosa.io/ev/principal-component-analysis/) to help you understand what PCA is doing.
+
+`ggbiplot()` and `ggfortify()` make report quality biplots.
 
 <br>
 
@@ -396,6 +363,31 @@ rownames(metalsOnly) <- metal$Rep
 These are basic graphs. They would have to be modified to present in reports.
 </button>
 
+<br>
+
+<br>
+
+# Writing Up
+
+**Blue whale genomic data**
+
+Analyse this data using PCA. The plot function is fine for visualising the results yourself but to present results experiment using `ggbiplot()` which gives you more control.
+
+The citation below takes you to a website where you can download a .txt file with 42 measurements of gene expression in female and male whales found in Antartica or Australia.
+
+Attard, C. R. M. et al. (2012), Data from: Hybridization of Southern Hemisphere blue whale subspecies and a sympatric area off Antarctica: impacts of whaling or climate change?, Dryad, Dataset, [https://doi.org/10.5061/dryad.8m0t6](https://doi.org/10.5061/dryad.8m0t6)
+
+Save and read the text file into R and run a pca.
+
+<br>
+ 
+Use the headings **Methods Statistical Analysis**, **Results**, **Code** and **Acknowledgements** if you use AI.
+
+In methods state where the data came from, how you treated it and analysed it. In the results section, give the results and graph in such a way that guides your reader to how they should interpret them. 
+
+To decide how to report PCA look at papers.
+
+Code should be minimally annotated.
 
 <br>
 

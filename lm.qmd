@@ -620,7 +620,7 @@ exp(coef(crab_glm)) # calculates the exponential of the coefficients in the mode
 
 Odds ratios above 1 mean crabs are more likely to be present(because 0 which is absence is the baseline). Odds ratios below 1 mean crabs are less likely to be present. 
 
-The odds ratio for `Time` is 3.6. We report "Crabs are 3.6 times more likely to be present at time point 10 compared to time point 5".
+The odds ratio for `Time` is 3.6. We report "The odds of crab presence are 3.6 fold higher at time point 10 compared to time point 5".
 
 <button type="button" class="btn btn-success">
 Tip if the odds ratio is below 1 try recoding the explanatory variables so that another group is the baseline.

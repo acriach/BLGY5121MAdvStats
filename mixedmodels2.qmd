@@ -196,7 +196,7 @@ Using the lizard examples again, a **crossed** design would be if the different 
 
 For each experiment below decide if it is a mixed model, nested, partially crossed or fully crossed design. 
 
-1) Students are measured for statistics ability repeatedly in tests. The effects of gender and prior education are fixed effects. Students study different programmes.
+1) Students are measured for statistics ability repeatedly in tests. The effects of gender and prior education are fixed effects.
 
 2) Researchers test how light intensity (high vs low) and nutrient availability (high vs low) affect plant biomass across multiple forest sites. At each site, plots are divided into subplots that receive all combinations of light and nutrient treatments, creating a 2×2 factorial design.
 

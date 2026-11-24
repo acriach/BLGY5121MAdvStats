@@ -279,16 +279,15 @@ The p value under `Pr(>Chisq)` is not significant, there is no difference betwee
 
 You can also assess models using AIC values. The model with the lower AIC value will fit the data better. Models with similar values are no different.
 
-AIC values were given in the `anova()` output above or use the `AICc()` function in the `AICcmodavg` package:
+AIC values were given in the `anova()` output above or use the `AIC()` function:
 ```{r}
 #| message: false
 #| warning: false
-library(AICcmodavg)
-AICc(reduced.lmer)
-AICc(full.lmer)
+AIC(reduced.lmer)
+AIC(full.lmer)
 ```
 
-Generally, if models are within 2 AICc units of each other they are very similar. Within 5 units they are quite similar, over 10 units difference and you can probably be happy with the model with lower AICc. As with p-values though, there is no "hard line" that's always correct.
+Generally, if models are within 2 AIC units of each other they are very similar. Within 5 units they are quite similar, over 10 units difference and you can probably be happy with the model with lower AIC. As with p-values though, there is no "hard line" that's always correct.
 
 <br>
 
@@ -412,7 +411,7 @@ The effect of two bacterial inhibitors `inhib` on bacterial `growth` is tested b
 
 **Challenge**
 
-Identify the variable that is the **random effect** and write the **code** to run a mixed model. To remind you, the code for the dragons was:
+Identify the variable that is the **random effect** and write the **code** to run a mixed model. There is no data, instead use the variable names above. To remind you, the code for the dragons was:
 ```{r}
 mixed.lmer <-  lmer(testScore ~ bodyLength + (1|mountainRange), data = dragons)
 ```

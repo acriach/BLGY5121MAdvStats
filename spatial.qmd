@@ -161,7 +161,7 @@ IQlistw <- nb2listw(IQnb)
 * `dnearneigh()` is a function
 * `as.matrix` means our object will be a matrix
 * `IQData[9:10]` specifies columns 9 and 10 where the longitude and latitude values are.
-* `0, 10000` specify the lower and upper bounds of the distance class of interest (1 – 10000km is nearly global)
+* `0, 10000` specify the lower and upper bounds of the distance class of interest (calculate for points within 0 – 10000km of each other)
 * `IQlistw` is an object we create ready to pass through the `moran.test()`
 * `nb2listw` is a function that turns our neighbourhood `IQnb` object into a weighted list
 </details>
@@ -185,7 +185,7 @@ Maps may help us understand why data is autocorrelated.
 
 **Challenge**
 
-Install and library load the package `ggplot2` and `ggmap` containing the `world` dataset which is the coordinates of a simple world map. 
+Install and library load the package `ggplot2`, `ggmap` and `maps` containing the `world` dataset which is the coordinates of a simple world map. 
 Then pass the `world` dataset through the map_data function and assign it as an object that you call `world`.
 
 <details>
@@ -193,12 +193,14 @@ Then pass the `world` dataset through the map_data function and assign it as an 
 ```{r}
 #| eval: false
 install.packages("ggmap")
+install.packages("maps")
 ```
 
 ```{r}
 #| eval: true
 #| warning: false
-library(ggmap) 
+library(ggmap) # for function map_data
+library(maps) # for the dataset world
 world <- map_data("world") 
 ```
 </details>
